@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/select-npq" method="post">
+
+          {{ govukRadios({
+            name: "whereDoYouLive",
+            fieldset: {
+              legend: {
+                text: "When do you want to start your course?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "april",
+                text: "April 2026",
+                hint: {
+                  text: "DfE scholarship funding is not available"
+                }
+              },
+              {
+                value: "november",
+                text: "November 2026"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

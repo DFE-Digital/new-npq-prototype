@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Section",
+        href: "#"
+      },
+      {
+        text: "Subsection"
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{ serviceName }}
+      </h1>
+
+      <p>Use this service to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>check if you’re eligible for DfE scholarship funding for an NPQ</li>
+        <li>register for an NPQ with your provider</li>
+      </ul>
+
+      <p>After registering, your provider will send you an application form to complete.</p>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "/course-start",
+        isStartButton: true
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Sign in
+      </h2>
+
+      <p>
+        You can also <a href="#">sign in</a> to view a previous registration or change your personal details.
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

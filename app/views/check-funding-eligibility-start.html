@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Check if you’re eligible for DfE scholarship funding
+      </h1>
+
+      <form class="form" action="/path/of/next/page" method="post">
+
+        <p>
+          The next questions will assess your eligibility for DfE scholarship funding for NPQs starting in November 2026.
+        </p>
+
+        <p>
+          You can then proceed to register.
+        </p>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+          text: "Check funding"
+          }) }}
+
+          <a class="govuk-link" href="#">Continue without funding for courses starting in April</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
