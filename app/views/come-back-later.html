@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        It’s not possible to register for a DfE funded NPQ yet
+      </h1>
+
+      <form class="form" action="/path/of/next/page" method="post">
+
+        <p>
+          Come back later to check your eligibility and register.
+        </p>
+
+        <p>
+          You can sign up to be notified of this.
+        </p>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+          text: "Sign up for updates"
+          }) }}
+
+          <a class="govuk-link" href="#">Continue to register for an unfunded NPQ</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

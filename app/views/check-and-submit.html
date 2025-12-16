@@ -1,0 +1,141 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        Check and submit your registration
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Funding outcome"
+            },
+            value: {
+              html:
+                govukTag({
+                  text: "Not funded",
+                  classes: "govuk-tag--red"
+                })
+            },
+            actions: {}
+          },
+          {
+            key: {
+              text: "Course start"
+            },
+            value: {
+              text: "November 2026"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Course"
+            },
+            value: {
+              text: "Headship NPQ"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Provider"
+            },
+            value: {
+              text: "Ambition"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Setting"
+            },
+            value: {
+              text: "State funded setting"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 4"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Workplace"
+            },
+            value: {
+              text: "Best Start School"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 5"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Now send your registration to your provider
+      </h2>
+
+      <p>
+        By submitting you’re confirming that the details are correct.
+      </p>
+
+      <form action="/confirmation" method="post" novalidate>
+        {{ govukButton({
+          text: "Submit"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
