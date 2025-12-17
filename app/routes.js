@@ -12,7 +12,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 router.post('/select-npq', function (req, res) {
 
     // Get the value from the radio buttons
-    var startMonth = req.session.data['courseStart']
+    var startMonth = req.session.data['course-start']
 
     // Check which option the user selected
     if (startMonth === "April 2026") {
