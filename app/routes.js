@@ -6,4 +6,21 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-// Add your routes here
+
+
+// Run this code when a form is submitted to 'select-npq'
+router.post('/select-npq', function (req, res) {
+
+    // Get the value from the radio buttons
+    var startMonth = req.session.data['courseStart']
+
+    // Check which option the user selected
+    if (startMonth === "April 2026") {
+        // Send user to the November-specific page
+        res.redirect('/select-npq')
+    } else {
+        // Send user to the default April page
+        res.redirect('/check-funding-start')
+    }
+
+})

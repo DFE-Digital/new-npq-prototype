@@ -26,14 +26,14 @@
               text: "Course start"
             },
             value: {
-              text: "April 2026"
+              text: data['course-start']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/course-start",
                   text: "Change",
-                  visuallyHiddenText: "Question 1"
+                  visuallyHiddenText: "Change course start"
                 }
               ]
             }
@@ -44,14 +44,14 @@
               text: "Course"
             },
             value: {
-              text: "Headship NPQ"
+              text: data['select-npq']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/select-NPQ",
                   text: "Change",
-                  visuallyHiddenText: "Question 2"
+                  visuallyHiddenText: "Change course"
                 }
               ]
             }
@@ -62,12 +62,29 @@
               text: "Provider"
             },
             value: {
-              text: "Ambition"
+              text: data['select-provider']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/select-provider",
+                  text: "Change",
+                  visuallyHiddenText: "Change provider"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Funding source"
+            },
+            value: {
+              text: data['funding-source']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/funding-source",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }

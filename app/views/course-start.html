@@ -19,7 +19,7 @@
       <form class="form" action="/select-npq" method="post">
 
           {{ govukRadios({
-            name: "whereDoYouLive",
+            name: "course-start",
             fieldset: {
               legend: {
                 text: "When do you want to start your course?",
@@ -29,14 +29,14 @@
             },
             items: [
               {
-                value: "april",
+                value: "April 2026",
                 text: "April 2026",
                 hint: {
                   text: "DfE scholarship funding is not available"
                 }
               },
               {
-                value: "november",
+                value: "November 2026",
                 text: "November 2026"
               }
             ]
