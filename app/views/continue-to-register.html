@@ -19,6 +19,11 @@
         Continue to register
       </h1>
 
+      {% set courseHint = '' %}
+      {% if data['course-start'] == 'April 2026' %}
+        {% set courseHint = '<p class="govuk-hint">DfE scholarship funding is not available for courses starting in April</p>' %}
+      {% endif %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -26,7 +31,7 @@
               text: "Course start"
             },
             value: {
-              text: data['course-start']
+              html: data['course-start'] + courseHint
             },
             actions: {
               items: [
@@ -37,8 +42,7 @@
                 }
               ]
             }
-          }
-          ,
+          },
           {
             key: {
               text: "Course"
@@ -55,8 +59,7 @@
                 }
               ]
             }
-          }
-          ,
+          },
           {
             key: {
               text: "Provider"
