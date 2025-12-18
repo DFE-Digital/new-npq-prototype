@@ -27,7 +27,7 @@
       <form class="form" action="/select-npq-funding-check" method="post">
 
           {{ govukRadios({
-              name: "whereDoYouLive",
+              name: "england",
               fieldset: {
                 legend: {
                   text: "Do you work in England?",
@@ -36,11 +36,11 @@
               },
             items: [
               {
-                value: "yes",
+                value: "Yes",
                 text: "Yes"
               },
               {
-                value: "no",
+                value: "No",
                 text: "No"
               }
             ]
