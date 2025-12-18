@@ -6,7 +6,7 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-router.post('/select-npq', function (req, res) {
+router.post('/course-start-answer', function (req, res) {
 
     var startMonth = req.session.data['course-start']
 
@@ -18,7 +18,7 @@ router.post('/select-npq', function (req, res) {
 
 })
 
-router.post('/select-npq-funding-check', function (req, res) {
+router.post('/england-funding-check-answer', function (req, res) {
 
     var workEngland = req.session.data['england']
 
