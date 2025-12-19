@@ -16,35 +16,63 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/path/of/next/page" method="post">
+      <span class="govuk-caption-xl">
+        Check your funding eligibility
+      </span>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+        What type of setting do you work in?
+      </h1>
+
+      <form class="form" action="/setting-funding-check-answers" method="post">
 
           {{ govukRadios({
-            name: "whereDoYouLive",
+            name: "setting-funding-check",
             fieldset: {
               legend: {
-                text: "Which of the following best describes your workplace?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
+                text: "What type of setting do you work in?",
+                classes: "govuk-visually-hidden"
               }
             },
             items: [
               {
-                value: "State funded setting",
-                text: "State funded setting",
-                hint: {
-                  text: "Includes schools, academy trusts, 16 to 19 settings and LA-maintained nurseries"
-                }
+                value: "Nursery or preschool class",
+                text: "Nursery or preschool class"
               },
               {
-                value: "Private early years setting",
-                text: "Private early years setting",
-                hint: {
-                  text: "For example you’re a childminder or work in a private nursery"
-                }
+                value: "School",
+                text: "School"
+              },
+              {
+                value: "Academy trust",
+                text: "Academy trust"
+              },
+              {
+                value: "16 to 19 setting",
+                text: "16 to 19 setting"
+              },
+              {
+                value: "Local authority",
+                text: "Local authority"
+              },
+              {
+                value: "Initial teacher training",
+                text: "Initial teacher training"
+              },
+              {
+                value: "Young offender institution",
+                text: "Young offender institution"
+              },
+              {
+                value: "Hospital school",
+                text: "Hospital school"
+              },
+              {
+                value: "Secure children’s homes or training centre",
+                text: "Secure children’s homes or training centre"
               },
             {
-              divider: "or"
-            },
+                divider: "or"
+              },
               {
                 value: "Other",
                 text: "Other"
