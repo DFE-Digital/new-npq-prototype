@@ -6,9 +6,9 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.back()"
-}) }}
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -18,26 +18,44 @@
 
       <form class="form" action="/path/of/next/page" method="post">
 
-          {{ govukRadios({
-            name: "whereDoYouLive",
-            fieldset: {
-              legend: {
-                text: "Do you have an Ofsted unique reference number?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
+        {% set ofstedNumberInput %}
+          {{ govukInput({
+            id: "ofsted-number",
+            name: "ofstedNumber",
+            type: "text",
+            autocomplete: "off",
+            spellcheck: false,
+            classes: "govuk-!-width-one-half",
+            label: {
+              text: "Your unique reference number"
+            }
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "ofsted-number",
+          fieldset: {
+            legend: {
+              text: "Do you have an Ofsted unique reference number?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: false,
+              conditional: {
+                html: ofstedNumberInput
               }
             },
-            items: [
-              {
-                value: "Yes",
-                text: "Yes"
-              },
-              {
-                value: "No",
-                text: "No"
-              }
-            ]
-          }) }}
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
 
         {{ govukButton({
           text: "Continue"
