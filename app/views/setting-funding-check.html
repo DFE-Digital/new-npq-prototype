@@ -13,84 +13,63 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-xl">
-        Check your funding eligibility
-      </span>
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-        What type of setting do you work in?
-      </h1>
+    <span class="govuk-caption-xl">
+      Check your funding eligibility
+    </span>
 
-      <form class="form" action="/setting-funding-check-answers" method="post">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      What type of setting do you work in?
+    </h1>
 
-          {{ govukRadios({
-            name: "setting-funding-check",
-            fieldset: {
-              legend: {
-                text: "What type of setting do you work in?",
-                classes: "govuk-visually-hidden"
-              }
-            },
-            items: [
-              {
-                value: "Nursery or preschool class",
-                text: "Nursery or preschool class"
-              },
-              {
-                value: "School",
-                text: "School"
-              },
-              {
-                value: "Academy trust",
-                text: "Academy trust"
-              },
-              {
-                value: "16 to 19 setting",
-                text: "16 to 19 setting"
-              },
-              {
-                value: "Local authority",
-                text: "Local authority"
-              },
-              {
-                value: "Initial teacher training",
-                text: "Initial teacher training"
-              },
-              {
-                value: "Young offender institution",
-                text: "Young offender institution"
-              },
-              {
-                value: "Hospital school",
-                text: "Hospital school"
-              },
-              {
-                value: "Secure children’s home or training centre",
-                text: "Secure children’s home or training centre"
-              },
-              {
-                value: "Childminding setting",
-                text: "Childminding setting"
-              },
-            {
-                divider: "or"
-              },
-              {
-                value: "Other",
-                text: "Other"
-              }
-            ]
-          }) }}
+    <form class="form" action="/setting-funding-check-answers" method="post">
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+      {{ govukRadios({
+        name: "setting-funding-check",
+        fieldset: {
+          legend: {
+            text: "What type of setting do you work in?",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          { value: "School", text: "School" },
+          { value: "Academy trust", text: "Academy trust" },
+          { value: "16 to 19 setting", text: "16 to 19 setting" },
 
-      </form>
+          { divider: "Early years " },
+          { value: "Nursery or preschool class", text: "Nursery or preschool class" },
+          { value: "Private nursery", text: "Private nursery" },
+          { value: "Childminding setting", text: "Childminding setting" },
+          { value: "Other early years", text: "Other early years" },
 
-    </div>
+          { divider: "Local authority " },
+          { value: "Virtual school", text: "Virtual school" },
+          { value: "Across schools", text: "Across schools" },
+
+          { divider: "Alternative provision " },
+          { value: "Young offender institution", text: "Young offender institution" },
+          { value: "Hospital school", text: "Hospital setting" },
+          { value: "Secure children’s home or training centre", text: "Secure children’s home or training centre" },
+
+          { divider: "Teacher training " },
+          { value: "Initial teacher training", text: "Initial teacher training" },
+
+          { divider: "Other" },
+          { value: "Agency", text: "Agency" },
+          { value: "Other", text: "Other" }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
   </div>
+</div>
 
 {% endblock %}
