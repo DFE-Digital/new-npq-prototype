@@ -38,7 +38,7 @@ router.post('/setting-funding-check-answer', function (req, res) {
     'School',
     'Academy trust',
     '16 to 19 setting',
-    'Nursery or preschool class',
+    'Preschool class or nursery - part of a school',
     'Secure children’s home or training centre',
   ]
 
@@ -50,7 +50,7 @@ router.post('/setting-funding-check-answer', function (req, res) {
 
     const role = [
         'Virtual school',
-        'Across schools',
+        'Working across schools',
     ]
 
     const employer = [
@@ -59,6 +59,14 @@ router.post('/setting-funding-check-answer', function (req, res) {
 
     const hospital = [
         'Hospital school',
+    ]
+
+    const nursery = [
+        'Nursery',
+    ]
+
+    const teacherTrainingProvider = [
+        'As a lead mentor for an accredited ITT provider',
     ]
 
   if (schoolsDropdown.includes(setting)) {
@@ -71,6 +79,10 @@ router.post('/setting-funding-check-answer', function (req, res) {
     res.redirect('/employer-funding-check')
   } else if (hospital.includes(setting)) {
     res.redirect('/hospital-school-funding-check')
+  } else if (nursery.includes(setting)) {
+    res.redirect('/nursery-funding-check')
+  } else if (teacherTrainingProvider.includes(setting)) {
+      res.redirect('/ITT-provider-funding-check')
   } else {
     res.redirect('/not-eligible-for-funding-england')
   }
