@@ -84,7 +84,33 @@ router.post('/setting-funding-check-answer', function (req, res) {
   } else if (teacherTrainingProvider.includes(setting)) {
       res.redirect('/ITT-provider-funding-check')
   } else {
-    res.redirect('/not-eligible-for-funding-england')
+    res.redirect('/not-eligible-for-funding-other')
   }
+
+})
+
+
+router.post('/nursery-funding-check-answer', function (req, res) {
+
+    var publiclyFundedNursery = req.session.data['publicly-funded-nursery']
+
+    if (publiclyFundedNursery === "Yes") {
+        res.redirect('/workplace-funding-check')
+    } else {
+        res.redirect('/ofsted-number-funding-check')
+    }
+
+})
+
+
+router.post('/hospital-school-funding-check-answer', function (req, res) {
+
+    var publiclyFundedHospitalSchool = req.session.data['publicly-funded-hospital-school']
+
+    if (publiclyFundedHospitalSchool === "Yes") {
+        res.redirect('/workplace-funding-check')
+    } else {
+        res.redirect('/employer-funding-check')
+    }
 
 })

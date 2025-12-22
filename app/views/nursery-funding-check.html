@@ -23,13 +23,13 @@
         Do you work in a publicly funded nursery?
       </h1>
 
-      <form class="form" action="/setting-funding-check" method="post">
+      <form class="form" action="/nursery-funding-check-answer" method="post">
 
           {{ govukRadios({
-              name: "npq-funded",
+              name: "publicly-funded-nursery",
               fieldset: {
                 legend: {
-                  text: "What type of hospital school do you work in?",
+                  text: "Do you work in a publicly funded nursery?",
                   classes: "govuk-visually-hidden"
                 }
               },
