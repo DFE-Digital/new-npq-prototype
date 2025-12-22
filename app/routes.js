@@ -30,7 +30,6 @@ router.post('/england-funding-check-answer', function (req, res) {
 
 })
 
-
 router.post('/setting-funding-check-answer', function (req, res) {
 
   var setting = req.session.data['setting-funding-check']
@@ -40,6 +39,7 @@ router.post('/setting-funding-check-answer', function (req, res) {
     'Academy trust',
     '16 to 19 setting',
     'Nursery or preschool class',
+    'Secure children’s home or training centre',
   ]
 
    const ofsted = [
@@ -48,10 +48,29 @@ router.post('/setting-funding-check-answer', function (req, res) {
     'Other early years',
   ]
 
+    const role = [
+        'Virtual school',
+        'Across schools',
+    ]
+
+    const employer = [
+        'Young offender institution',
+    ]
+
+    const hospital = [
+        'Hospital school',
+    ]
+
   if (schoolsDropdown.includes(setting)) {
-    res.redirect('/workplace')
+    res.redirect('/workplace-funding-check')
   } else if (ofsted.includes(setting)) {
-    res.redirect('/ofsted-number')
+    res.redirect('/ofsted-number-funding-check')
+  } else if (role.includes(setting)) {
+    res.redirect('/role-funding-check')
+  } else if (employer.includes(setting)) {
+    res.redirect('/employer-funding-check')
+  } else if (hospital.includes(setting)) {
+    res.redirect('/hospital-school-funding-check')
   } else {
     res.redirect('/not-eligible-for-funding-england')
   }

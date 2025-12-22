@@ -16,6 +16,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+    <span class="govuk-caption-xl">
+      Check your funding eligibility
+    </span>
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      Do you have an Ofsted unique reference number?
+    </h1>
+
       <form class="form" action="/path/of/next/page" method="post">
 
         {% set ofstedNumberInput %}
@@ -38,7 +46,7 @@
             legend: {
               text: "Do you have an Ofsted unique reference number?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--xl govuk-visually-hidden"
             }
           },
           items: [

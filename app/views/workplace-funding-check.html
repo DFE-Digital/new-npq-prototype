@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-xl">
+      Check your funding eligibility
+    </span>
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      Search for your workplace
+    </h1>
+
+      <form class="form" action="/path/of/next/page" method="post">
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          label: {
+            text: "Search for your workplace",
+            classes: "govuk-label--xl govuk-visually-hidden",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Search using any combination of postcode, workplace name, URN or street name. If you work for a trust, search for one of its schools.",
+            classes: "govuk-!-margin-bottom-2"
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
