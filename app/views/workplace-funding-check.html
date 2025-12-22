@@ -16,13 +16,46 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-    <span class="govuk-caption-xl">
-      Check your funding eligibility
-    </span>
+      <span class="govuk-caption-xl">
+        Check your funding eligibility
+      </span>
 
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-      Search for your workplace
-    </h1>
+      <h1 class="govuk-heading-xl">
+        Your workplace
+      </h1>
+
+      <p class="govuk-body">
+        Search for your workplace using any combination of postcode, workplace name, URN or street name.
+      </p>
+
+      <p class="govuk-body">
+        If you work for a trust, search for one of its schools.
+      </p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            If you cannot find your workplace
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">You can:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                check its details on
+                <a href="https://get-information-schools.service.gov.uk/Search?SelectedTab=Establishments"
+                   class="govuk-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                   Get information about schools (opens in a new tab)
+                </a>
+              </li>
+              <li>
+                <a href="/setting-funding-check" class="govuk-link">check your workplace setting</a>
+              </li>
+            </ul>
+        </div>
+      </details>
 
       <form class="form" action="/path/of/next/page" method="post">
 
@@ -31,17 +64,12 @@
         {{ govukInput({
           label: {
             text: "Search for your workplace",
-            classes: "govuk-label--xl govuk-visually-hidden",
+            classes: "govuk-label--m",
             isPageHeading: true
-          },
-          hint: {
-            text: "Search using any combination of postcode, workplace name, URN or street name. If you work for a trust, search for one of its schools.",
-            classes: "govuk-!-margin-bottom-2"
           },
           id: "event-name",
           name: "eventName"
         }) }}
-
 
         {{ govukButton({
           text: "Continue"

@@ -45,7 +45,7 @@ router.post('/setting-funding-check-answer', function (req, res) {
    const ofsted = [
     'Private nursery',
     'Childminding setting',
-    'Other early years',
+    'Other - early years',
   ]
 
     const role = [

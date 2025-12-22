@@ -21,7 +21,7 @@
     </span>
 
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-      What type of setting do you work in?
+      What setting do you work in?
     </h1>
 
     <form class="form" action="/setting-funding-check-answer" method="post">
@@ -38,26 +38,16 @@
           { value: "School", text: "School" },
           { value: "Academy trust", text: "Academy trust" },
           { value: "16 to 19 setting", text: "16 to 19 setting" },
-
-          { divider: "Early years " },
           { value: "Nursery", text: "Nursery" },
           { value: "Preschool class or nursery - part of a school", text: "Preschool class or nursery - part of a school" },
-          { value: "Childminding setting", text: "Childminding setting" },
-          { value: "Other early years", text: "Other early years" },
-
-          { divider: "Local authority " },
-          { value: "Virtual school", text: "Virtual school" },
-          { value: "Working across schools", text: "Working across schools" },
-
-          { divider: "Alternative provision " },
-          { value: "Young offender institution", text: "Young offender institution" },
           { value: "Hospital school", text: "Hospital school" },
+          { value: "Virtual school", text: "Local authority - virtual school" },
+          { value: "Working across schools", text: "Local authority - working across schools" },
+          { value: "Young offender institution", text: "Young offender institution" },
           { value: "Secure children’s home or training centre", text: "Secure children’s home or training centre" },
-
-          { divider: "Initial teacher training (ITT)" },
-          { value: "As a lead mentor for an accredited ITT provider", text: "As a lead mentor for an accredited ITT provider" },
-
-          { divider: "Other" },
+          { value: "As a lead mentor for an accredited ITT provider", text: "Initial teacher training (ITT) - as a lead mentor for an accredited ITT provider" },
+          { value: "Childminding setting", text: "Childminding setting" },
+          { divider: "or" },
           { value: "Other", text: "Other" }
         ]
       }) }}
