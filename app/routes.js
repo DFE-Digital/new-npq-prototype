@@ -114,3 +114,16 @@ router.post('/hospital-school-funding-check-answer', function (req, res) {
     }
 
 })
+
+
+router.post('/workplace-funding-check-answer', function (req, res) {
+
+    var workplaceCategory = req.session.data['workplace']
+
+    if (workplaceCategory === "Workplace on one of the eligibility lists") {
+        res.redirect('/eligible-for-funding')
+    } else {
+        res.redirect('/not-eligible-for-funding-workplace-not-eligible')
+    }
+
+})
