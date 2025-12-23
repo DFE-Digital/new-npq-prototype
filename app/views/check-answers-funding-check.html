@@ -23,13 +23,13 @@
         rows: [
           {
             key: {
-              text: "Funding outcome"
+              text: "DfE scholarship funding"
             },
             value: {
               html:
                 govukTag({
-                  text: "Not funded",
-                  classes: "govuk-tag--red"
+                  text: "Eligible",
+                  classes: "govuk-tag--green"
                 })
             },
             actions: {}
@@ -39,12 +39,12 @@
               text: "Course start"
             },
             value: {
-              text: "November 2026"
+              text: data['course-start']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/course-start",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -56,31 +56,14 @@
               text: "Course"
             },
             value: {
-              text: "Headship NPQ"
+              text: data['npq-funded']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/select-npq-funding-check",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Provider"
-            },
-            value: {
-              text: "Ambition"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Question 3"
                 }
               ]
             }
@@ -90,12 +73,12 @@
               text: "Setting"
             },
             value: {
-              text: "State funded setting"
+              text: data['setting-funding-check']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/setting-funding-check",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -107,14 +90,31 @@
               text: "Workplace"
             },
             value: {
-              text: "Best Start School"
+              text: data['workplace']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/workplace-funding-check",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Provider"
+            },
+            value: {
+              text: data['select-provider-funded']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/select-provider-funded",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
                 }
               ]
             }
