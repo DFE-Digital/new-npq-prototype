@@ -6,13 +6,12 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.back()"
-}) }}
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -59,16 +58,19 @@
 
       <form class="form" action="/path/of/next/page" method="post">
 
-        {% from "govuk/components/input/macro.njk" import govukInput %}
-
-        {{ govukInput({
+        {{ xGovukAutocomplete({
+          id: "workplace",
+          name: "workplace",
+          allowEmpty: false,
           label: {
-            text: "Search for your workplace",
             classes: "govuk-label--m",
-            isPageHeading: true
+            isPageHeading: false,
+            text: "Search for your workplace"
           },
-          id: "event-name",
-          name: "eventName"
+          items: [
+            { text: "Workplace on one of the eligibility lists", value: "Workplace on one of the eligibility lists" },
+            { text: "Workplace not on any of the eligibility lists", value: "Workplace not on any of the eligibility lists" }
+          ]
         }) }}
 
         {{ govukButton({
@@ -76,8 +78,6 @@
         }) }}
 
       </form>
-
     </div>
   </div>
-
 {% endblock %}

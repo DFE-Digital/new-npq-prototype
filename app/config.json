@@ -3,6 +3,7 @@
   "plugins": {
     "govuk-frontend": {
       "rebrand": true
-    }
+    },
+    "@x-govuk/govuk-prototype-components": {}
   }
 }
