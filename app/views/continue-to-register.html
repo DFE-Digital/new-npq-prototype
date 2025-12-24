@@ -21,8 +21,99 @@
 
       {% set courseHint = '' %}
       {% if data['course-start'] == 'April 2026' %}
-        {% set courseHint = '<p class="govuk-hint">DfE scholarship funding is not available for courses starting in April</p>' %}
+        {% set courseHint = '<p class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">DfE scholarship funding is not available</p>' %}
       {% endif %}
+
+      {% if data['england'] === 'No'
+      and data['course-start'] === 'November 2026'
+      and data['check-funding'] === 'yes' %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "DfE scholarship funding"
+            },
+            value: {
+              html: govukTag({
+                text: "Not eligible",
+                classes: "govuk-tag--red"
+              })
+            },
+            actions: {}
+          },
+          {
+            key: {
+              text: "Course start"
+            },
+            value: {
+              html: data['course-start'] + courseHint
+            },
+            actions: {
+              items: [
+                {
+                  href: "/course-start",
+                  text: "Change",
+                  visuallyHiddenText: "course start"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Course"
+            },
+            value: {
+              text: data['select-npq']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/select-NPQ",
+                  text: "Change",
+                  visuallyHiddenText: "course"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Provider"
+            },
+            value: {
+              text: data['select-provider']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/select-provider",
+                  text: "Change",
+                  visuallyHiddenText: "provider"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Funding source"
+            },
+            value: {
+              text: data['funding-source']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/funding-source",
+                  text: "Change",
+                  visuallyHiddenText: "funding source"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+    {% else %}
 
       {{ govukSummaryList({
         rows: [
@@ -89,13 +180,16 @@
                 {
                   href: "/funding-source",
                   text: "Change",
-                  visuallyHiddenText: "Question 3"
+                  visuallyHiddenText: "Change funding source"
                 }
               ]
             }
           }
         ]
       }) }}
+
+    {% endif %}
+
 
       <h2 class="govuk-heading-m">
         Verify your identity
