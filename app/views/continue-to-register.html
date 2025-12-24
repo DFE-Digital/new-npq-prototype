@@ -33,84 +33,61 @@
         {{ govukSummaryList({
           rows: [
             {
-              key: {
-                text: "DfE scholarship funding"
-              },
-              value: {
-                html: govukTag({
-                  text: "Not eligible",
-                  classes: "govuk-tag--red"
-                })
-              },
+              key: { text: "DfE scholarship funding" },
+              value: { html: govukTag({ text: "Not eligible", classes: "govuk-tag--red" }) },
               actions: {}
             },
             {
-              key: {
-                text: "Course start"
-              },
-              value: {
-                html: data['course-start'] + courseHint
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/course-start",
-                    text: "Change",
-                    visuallyHiddenText: "course start"
-                  }
-                ]
-              }
+              key: { text: "Course start" },
+              value: { html: data['course-start'] + courseHint },
+              actions: { items: [{ href: "/course-start", text: "Change", visuallyHiddenText: "course start" }] }
             },
             {
-              key: {
-                text: "Course"
-              },
-              value: {
-                text: data['select-npq']
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/select-NPQ",
-                    text: "Change",
-                    visuallyHiddenText: "course"
-                  }
-                ]
-              }
+              key: { text: "Working in England" },
+              value: { text: data['england'] },
+              actions: { items: [{ href: "/england-funding-check", text: "Change", visuallyHiddenText: "england" }] }
             },
             {
-              key: {
-                text: "Provider"
-              },
-              value: {
-                text: data['select-provider']
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/select-provider",
-                    text: "Change",
-                    visuallyHiddenText: "provider"
-                  }
-                ]
-              }
+              key: { text: "Course" },
+              value: { text: data['select-npq'] },
+              actions: { items: [{ href: "/select-NPQ", text: "Change", visuallyHiddenText: "course" }] }
             },
             {
-              key: {
-                text: "Funding source"
-              },
-              value: {
-                text: data['funding-source']
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/funding-source",
-                    text: "Change",
-                    visuallyHiddenText: "funding source"
-                  }
-                ]
-              }
+              key: { text: "Provider" },
+              value: { text: data['select-provider'] },
+              actions: { items: [{ href: "/select-provider", text: "Change", visuallyHiddenText: "provider" }] }
+            },
+            {
+              key: { text: "Funding source" },
+              value: { text: data['funding-source'] },
+              actions: { items: [{ href: "/funding-source", text: "Change", visuallyHiddenText: "funding source" }] }
+            }
+          ]
+        }) }}
+
+      {% elseif data['check-funding'] === 'no' and data['course-start'] === 'November 2026' %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: { text: "Course start" },
+              value: { html: data['course-start'] + courseHint },
+              actions: { items: [{ href: "/course-start", text: "Change", visuallyHiddenText: "course start" }] }
+            },
+            {
+              key: { text: "Course" },
+              value: { text: data['select-npq'] },
+              actions: { items: [{ href: "/select-NPQ", text: "Change", visuallyHiddenText: "course" }] }
+            },
+            {
+              key: { text: "Provider" },
+              value: { text: data['select-provider'] },
+              actions: { items: [{ href: "/select-provider", text: "Change", visuallyHiddenText: "provider" }] }
+            },
+            {
+              key: { text: "Funding source" },
+              value: { text: data['funding-source'] },
+              actions: { items: [{ href: "/funding-source", text: "Change", visuallyHiddenText: "funding source" }] }
             }
           ]
         }) }}
@@ -120,77 +97,29 @@
         {{ govukSummaryList({
           rows: [
             {
-              key: {
-                text: "Course start"
-              },
-              value: {
-                html: data['course-start'] + courseHint
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/course-start",
-                    text: "Change",
-                    visuallyHiddenText: "Change course start"
-                  }
-                ]
-              }
+              key: { text: "Course start" },
+              value: { html: data['course-start'] + courseHint },
+              actions: { items: [{ href: "/course-start", text: "Change", visuallyHiddenText: "course start" }] }
             },
             {
-              key: {
-                text: "Course"
-              },
-              value: {
-                text: data['select-npq']
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/select-NPQ",
-                    text: "Change",
-                    visuallyHiddenText: "Change course"
-                  }
-                ]
-              }
+              key: { text: "Course" },
+              value: { text: data['select-npq'] },
+              actions: { items: [{ href: "/select-NPQ", text: "Change", visuallyHiddenText: "course" }] }
             },
             {
-              key: {
-                text: "Provider"
-              },
-              value: {
-                text: data['select-provider']
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/select-provider",
-                    text: "Change",
-                    visuallyHiddenText: "Change provider"
-                  }
-                ]
-              }
+              key: { text: "Provider" },
+              value: { text: data['select-provider'] },
+              actions: { items: [{ href: "/select-provider", text: "Change", visuallyHiddenText: "provider" }] }
             },
             {
-              key: {
-                text: "Funding source"
-              },
-              value: {
-                text: data['funding-source']
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/funding-source",
-                    text: "Change",
-                    visuallyHiddenText: "Change funding source"
-                  }
-                ]
-              }
+              key: { text: "Funding source" },
+              value: { text: data['funding-source'] },
+              actions: { items: [{ href: "/funding-source", text: "Change", visuallyHiddenText: "funding source" }] }
             }
           ]
         }) }}
-      {% endif %}
 
+      {% endif %}
 
       <h2 class="govuk-heading-m">
         Verify your identity
@@ -201,11 +130,7 @@
       </p>
 
       <form action="/confirmation" method="post" novalidate>
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
+        {{ govukButton({ text: "Continue" }) }}
       </form>
 
     </div>

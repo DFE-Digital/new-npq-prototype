@@ -18,6 +18,29 @@ router.post('/course-start-answer', function (req, res) {
 
 })
 
+
+router.all('/check-funding-answer', function (req, res) {
+
+    const data = req.session.data || {};
+
+    if (req.query['check-funding'] === 'no') {
+        data['check-funding'] = 'no';
+    }
+
+    else if (req.body['check-funding'] === 'yes') {
+        data['check-funding'] = 'yes';
+    }
+
+    req.session.data = data;
+
+    res.render('select-npq', {
+        data: data,
+        serviceName: 'NPQ service'
+    })
+
+})
+
+
 router.post('/england-funding-check-answer', function (req, res) {
 
     var workEngland = req.session.data['england']

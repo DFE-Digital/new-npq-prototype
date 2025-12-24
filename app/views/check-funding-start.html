@@ -6,43 +6,45 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.back()"
-}) }}
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">
-        Check if you’re eligible for DfE scholarship funding
-      </h1>
+    <h1 class="govuk-heading-xl">
+      Check if you’re eligible for DfE scholarship funding
+    </h1>
 
-      <form class="form" action="/england-funding-check" method="post">
+    <p>
+      The next questions will assess your eligibility for DfE scholarship funding for NPQs starting in November 2026.
+    </p>
 
-        <p>
-          The next questions will assess your eligibility for DfE scholarship funding for NPQs starting in November 2026.
-        </p>
+    <p>
+      You can then proceed to register.
+    </p>
 
-        <p>
-          You can then proceed to register.
-        </p>
+    <div class="govuk-button-group">
 
-        <div class="govuk-button-group">
-          {{ govukButton({
+      <form class="form" action="/england-funding-check" method="post" style="display:inline">
+        {{ govukButton({
           text: "Check funding",
           name: "check-funding",
           value: "yes"
-          }) }}
-
-          <a class="govuk-link" href="/select-npq">Continue without DfE funding</a>
-        </div>
-
+        }) }}
       </form>
 
+      <a class="govuk-link" href="/check-funding-answer?check-funding=no">
+        Continue without DfE funding
+      </a>
+
     </div>
+
   </div>
+</div>
 
 {% endblock %}
