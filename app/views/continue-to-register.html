@@ -33,11 +33,6 @@
         {{ govukSummaryList({
           rows: [
             {
-              key: { text: "DfE scholarship funding" },
-              value: { html: govukTag({ text: "Not eligible", classes: "govuk-tag--red" }) },
-              actions: {}
-            },
-            {
               key: { text: "Course start" },
               value: { html: data['course-start'] + courseHint },
               actions: { items: [{ href: "/course-start", text: "Change", visuallyHiddenText: "course start" }] }
@@ -46,6 +41,17 @@
               key: { text: "Working in England" },
               value: { text: data['england'] },
               actions: { items: [{ href: "/england-funding-check", text: "Change", visuallyHiddenText: "england" }] }
+            },
+            {
+              key: { text: "DfE scholarship funding" },
+              value: {
+                html: govukTag({
+                  text: "Not eligible",
+                  classes: "govuk-tag--red"
+                }) +
+                '<p class="govuk-hint govuk-!-margin-top-2">This is because you do not work in England</p>'
+              },
+              actions: {}
             },
             {
               key: { text: "Course" },
