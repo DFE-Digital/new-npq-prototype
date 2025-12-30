@@ -53,6 +53,17 @@
         } %}
       {% endif %}
 
+      {% set fundingSourceRow = null %}
+
+      {% if data['workplace'] == 'Workplace not on any of the eligibility lists' and data['funding-source-not-funded'] %}
+        {% set fundingSourceRow = {
+          key: { text: "Funding source" },
+          value: { text: data['funding-source-not-funded'] },
+          actions: { items: [{ href: "/funding-source-not-funded", text: "Change" }] }
+        } %}
+      {% endif %}
+
+
       {{ govukSummaryList({
         rows: [
           {
@@ -141,6 +152,7 @@
             }
           },
           fundingRow,
+          fundingSourceRow,
           {
             key: {
               text: "Provider"
