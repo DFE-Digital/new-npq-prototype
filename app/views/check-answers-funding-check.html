@@ -19,6 +19,40 @@
         Continue to register
       </h1>
 
+      {% set fundingRow = null %}
+
+      {% if data['workplace'] == 'Workplace on one of the eligibility lists' %}
+        {% set fundingRow = {
+          key: { text: "DfE scholarship funding" },
+          value: {
+            html:
+              govukTag({
+                text: "Eligible",
+                classes: "govuk-tag--green"
+              }) +
+              '<p class="govuk-hint govuk-!-margin-top-2">' +
+                'Your workplace is listed as one of the eligible schools' +
+              '</p>'
+          },
+          actions: {}
+        } %}
+      {% elseif data['workplace'] == 'Workplace not on any of the eligibility lists' %}
+        {% set fundingRow = {
+          key: { text: "DfE scholarship funding" },
+          value: {
+            html:
+              govukTag({
+                text: "Not eligible",
+                classes: "govuk-tag--red"
+              }) +
+              '<p class="govuk-hint govuk-!-margin-top-2">' +
+                'Your workplace is not listed as one of the eligible schools' +
+              '</p>'
+          },
+          actions: {}
+        } %}
+      {% endif %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -89,22 +123,7 @@
               ]
             }
           },
-          {
-            key: {
-              text: "DfE scholarship funding"
-            },
-            value: {
-              html:
-                govukTag({
-                  text: "Eligible",
-                  classes: "govuk-tag--green"
-                }) +
-                '<p class="govuk-hint govuk-!-margin-top-2">' +
-                  'Your workplace is listed as one of the eligible schools' +
-                '</p>'
-            },
-            actions: {}
-          },
+          fundingRow,
           {
             key: {
               text: "Provider"
