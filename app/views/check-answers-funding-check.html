@@ -23,19 +23,6 @@
         rows: [
           {
             key: {
-              text: "DfE scholarship funding"
-            },
-            value: {
-              html:
-                govukTag({
-                  text: "Eligible",
-                  classes: "govuk-tag--green"
-                })
-            },
-            actions: {}
-          },
-          {
-            key: {
               text: "Course start"
             },
             value: {
@@ -101,6 +88,22 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "DfE scholarship funding"
+            },
+            value: {
+              html:
+                govukTag({
+                  text: "Eligible",
+                  classes: "govuk-tag--green"
+                }) +
+                '<p class="govuk-hint govuk-!-margin-top-2">' +
+                  'Your workplace is listed as one of the eligible schools' +
+                '</p>'
+            },
+            actions: {}
           },
           {
             key: {
