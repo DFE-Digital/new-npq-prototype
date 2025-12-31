@@ -1,0 +1,38 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        You’re eligible for DfE scholarship funding
+      </h1>
+
+      <p>
+        Your workplace is eligible for DfE scholarship funding for the Early years leadership NPQ.
+      </p>
+
+      <form class="form" action="/select-provider-funded" method="post">
+
+        {{ govukButton({
+          text: "Continue to register"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -150,3 +150,19 @@ router.post('/workplace-funding-check-answer', function (req, res) {
     }
 
 })
+
+
+router.post('/ofsted-number-funding-check-answer', function (req, res) {
+
+  const ofstedCategory = req.session.data['ofstedNumber']
+  const selectedNpqs = req.session.data['npq-funded']
+
+  if (ofstedCategory === 'An early years setting on the early years list' && selectedNpqs === 'Early years leadership') {
+    res.redirect('/eligible-for-funding-early-years')
+  } else if (ofstedCategory === 'An early years setting on the early years list' && selectedNpqs !== 'Early years leadership') {
+    res.redirect('/not-eligible-for-funding-early-years-change-npq')
+  } else {
+    res.redirect('/not-eligible-for-funding-workplace-not-eligible')
+  }
+
+})
