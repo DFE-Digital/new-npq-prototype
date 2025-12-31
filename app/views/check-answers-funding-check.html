@@ -111,7 +111,12 @@
 
       {% set fundingSourceRow = null %}
 
-      {% if data['workplace'] == 'Workplace not on any of the eligibility lists' and data['funding-source-not-funded'] %}
+      {% if
+          (data['workplace'] == 'Workplace not on any of the eligibility lists' and data['funding-source-not-funded'])
+          or (data['do-you-have-ofsted-number'] == 'No' and data['funding-source-not-funded'])
+          or (data['ofsted-number'] == 'An early years setting not on the early years list' and data['funding-source-not-funded'])
+          or (data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] != 'Early years leadership' and data['funding-source-not-funded'])
+      %}
         {% set fundingSourceRow = {
           key: { text: "Funding source" },
           value: { text: data['funding-source-not-funded'] },

@@ -115,15 +115,22 @@ router.post('/setting-funding-check-answer', function (req, res) {
 
 router.post('/nursery-funding-check-answer', function (req, res) {
 
-    var publiclyFundedNursery = req.session.data['publicly-funded-nursery']
+    const data = req.session.data;
+    const publiclyFundedNursery = data['publicly-funded-nursery'];
+
+    // Clear downstream fields that depend on this answer
+    delete data['workplace'];
+    delete data['funding-source-not-funded'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
 
     if (publiclyFundedNursery === "Yes") {
-        res.redirect('/workplace-funding-check')
+        res.redirect('/workplace-funding-check');
     } else {
-        res.redirect('/ofsted-number-funding-check')
+        res.redirect('/ofsted-number-funding-check');
     }
 
-})
+});
 
 
 router.post('/hospital-school-funding-check-answer', function (req, res) {
@@ -141,6 +148,11 @@ router.post('/hospital-school-funding-check-answer', function (req, res) {
 
 router.post('/workplace-funding-check-answer', function (req, res) {
 
+    // Clear dependent fields
+    req.session.data['funding-source-not-funded'] = null;
+    req.session.data['do-you-have-ofsted-number'] = null;
+    req.session.data['ofsted-number'] = null;
+
     var workplaceCategory = req.session.data['workplace']
 
     if (workplaceCategory === "Workplace on one of the eligibility lists") {
@@ -151,12 +163,14 @@ router.post('/workplace-funding-check-answer', function (req, res) {
 
 })
 
-
 router.post('/ofsted-number-funding-check-answer', function (req, res) {
 
   const doYouHaveOfstedNumber = req.session.data['do-you-have-ofsted-number']
   const ofstedNumber = req.session.data['ofsted-number']
   const selectedNpqs = req.session.data['npq-funded']
+
+    // Clear dependent fields
+    req.session.data['funding-source-not-funded'] = null;
 
   if (doYouHaveOfstedNumber === 'Yes' && ofstedNumber === 'An early years setting on the early years list' && selectedNpqs === 'Early years leadership') {
     res.redirect('/eligible-for-funding-early-years')
