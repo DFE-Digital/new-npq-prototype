@@ -15,13 +15,26 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <h1 class="govuk-heading-l" style="margin: 0;">
+            DfE scholarship funding
+          </h1>
+          {{ govukTag({
+            text: "Not eligible",
+            classes: "govuk-tag--red"
+          }) }}
+        </div>
 
-      <h1 class="govuk-heading-l">
-        You’re not eligible for DfE scholarship funding for the {{ data['npq-funded'] }} NPQ
-      </h1>
+      <p class="govuk-body govuk-!-margin-top-6">
+        You’re not eligible for DfE scholarship funding for the {{ data['npq-funded'] }} NPQ.
+      </p>
 
       <p>
-        However, your workplace is eligible for the Early years leadership NPQ.
+        This is because your workplace is not listed as one of the eligible schools.
+      </p>
+
+      <p>
+        However, you would be eligible for the Early years leadership NPQ because your workplace is listed as a highly disadvantaged early years setting.
       </p>
 
       <p>
