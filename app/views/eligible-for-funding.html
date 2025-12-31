@@ -16,12 +16,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-        You’re eligible for DfE scholarship funding
-      </h1>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+          <h1 class="govuk-heading-l" style="margin: 0;">
+            DfE scholarship funding
+          </h1>
+          {{ govukTag({
+            text: "Eligible",
+            classes: "govuk-tag--green"
+          }) }}
+      </div>
 
-      <p>
-        Your workplace is listed as one of the eligible schools.
+      <p class="govuk-body govuk-!-margin-top-6">
+        You’re eligible for DfE scholarship funding because workplace is listed as one of the highly disadvantaged schools or 16 to 19 settings.
       </p>
 
       <form class="form" action="/select-provider-funded" method="post">
