@@ -29,10 +29,10 @@
         {% set ofstedNumberInput %}
           {{ xGovukAutocomplete({
             id: "ofsted-number",
-            name: "ofstedNumber",
+            name: "ofsted-number",
             allowEmpty: false,
             label: {
-              text: "Your unique reference number",
+              text: "Your Ofsted unique reference number",
               classes: "govuk-label--s"
             },
             hint: {
@@ -46,7 +46,7 @@
         {% endset %}
 
         {{ govukRadios({
-          name: "ofsted-number",
+          name: "do-you-have-ofsted-number",
           fieldset: {
             legend: {
               text: "Do you have an Ofsted unique reference number?",

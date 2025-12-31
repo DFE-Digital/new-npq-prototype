@@ -48,10 +48,9 @@
                 html: govukTag({
                   text: "Not eligible",
                   classes: "govuk-tag--red"
-                }) +
-                '<p class="govuk-hint govuk-!-margin-top-2">This is because you do not work in England</p>'
+                })
               },
-              actions: {}
+              actions: { items: [{ href: "/not-eligible-for-funding-england", text: "View", visuallyHiddenText: "course" }] }
             },
             {
               key: { text: "Course" },

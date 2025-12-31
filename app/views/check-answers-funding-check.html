@@ -21,36 +21,92 @@
 
       {% set fundingRow = null %}
 
-      {% if data['workplace'] == 'Workplace on one of the eligibility lists' %}
+      {% if
+        data['ofsted-number'] == 'An early years setting on the early years list'
+        and data['npq-funded'] == 'Early years leadership'
+      %}
+
         {% set fundingRow = {
           key: { text: "DfE scholarship funding" },
           value: {
-            html:
-              govukTag({
-                text: "Eligible",
-                classes: "govuk-tag--green"
-              }) +
-              '<p class="govuk-hint govuk-!-margin-top-2">' +
-                'Your workplace is listed as one of the eligible schools' +
-              '</p>'
+            html: govukTag({
+              text: "Eligible",
+              classes: "govuk-tag--green"
+            })
           },
-          actions: {}
+          actions: { items: [{ href: "/eligible-for-funding-early-years", text: "View" }] }
         } %}
+
+      {% elseif
+        data['ofsted-number'] == 'An early years setting on the early years list'
+        and data['npq-funded'] != 'Early years leadership'
+      %}
+
+        {% set fundingRow = {
+          key: { text: "DfE scholarship funding" },
+          value: {
+            html: govukTag({
+              text: "Not eligible",
+              classes: "govuk-tag--red"
+            })
+          },
+          actions: { items: [{ href: "/not-eligible-for-funding-early-years-change-npq", text: "View" }] }
+        } %}
+
+      {% elseif
+        data['ofsted-number'] == 'An early years setting not on the early years list'
+      %}
+
+        {% set fundingRow = {
+          key: { text: "DfE scholarship funding" },
+          value: {
+            html: govukTag({
+              text: "Not eligible",
+              classes: "govuk-tag--red"
+            })
+          },
+          actions: { items: [{ href: "/not-eligible-for-funding-workplace-not-eligible", text: "View" }] }
+        } %}
+
+      {% elseif data['do-you-have-ofsted-number'] == 'No' %}
+
+      {% set fundingRow = {
+        key: { text: "DfE scholarship funding" },
+        value: {
+          html: govukTag({
+            text: "Not eligible",
+            classes: "govuk-tag--red"
+          })
+        },
+        actions: { items: [{ href: "/not-eligible-for-funding-workplace-not-eligible", text: "View" }] }
+      } %}
+
+      {% elseif data['workplace'] == 'Workplace on one of the eligibility lists' %}
+
+        {% set fundingRow = {
+          key: { text: "DfE scholarship funding" },
+          value: {
+            html: govukTag({
+              text: "Eligible",
+              classes: "govuk-tag--green"
+            })
+          },
+          actions: { items: [{ href: "/eligible-for-funding", text: "View" }] }
+        } %}
+
       {% elseif data['workplace'] == 'Workplace not on any of the eligibility lists' %}
+
         {% set fundingRow = {
           key: { text: "DfE scholarship funding" },
           value: {
-            html:
-              govukTag({
-                text: "Not eligible",
-                classes: "govuk-tag--red"
-              }) +
-              '<p class="govuk-hint govuk-!-margin-top-2">' +
-                'Your workplace is not listed as one of the eligible schools' +
-              '</p>'
+            html: govukTag({
+              text: "Not eligible",
+              classes: "govuk-tag--red"
+            })
           },
-          actions: {}
+          actions: { items: [{ href: "/not-eligible-for-funding-workplace-not-eligible", text: "View" }] }
         } %}
+
       {% endif %}
 
       {% set fundingSourceRow = null %}
