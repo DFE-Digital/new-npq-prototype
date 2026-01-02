@@ -19,94 +19,41 @@
         Continue to register
       </h1>
 
+      <!--Show different tags and links on the funding row depending on the funding outcome-->
       {% set fundingRow = null %}
+      {% set fundingStatus = null %}
+      {% set fundingHref = null %}
 
-      {% if
-        data['ofsted-number'] == 'An early years setting on the early years list'
-        and data['npq-funded'] == 'Early years leadership'
-      %}
+      {% if data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] == 'Early years leadership' %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/eligible-for-funding-early-years' %}
 
-        {% set fundingRow = {
-          key: { text: "DfE scholarship funding" },
-          value: {
-            html: govukTag({
-              text: "Eligible",
-              classes: "govuk-tag--green"
-            })
-          },
-          actions: { items: [{ href: "/eligible-for-funding-early-years", text: "View" }] }
-        } %}
+      {% elseif data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] != 'Early years leadership' %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/not-eligible-for-funding-early-years-change-npq' %}
 
-      {% elseif
-        data['ofsted-number'] == 'An early years setting on the early years list'
-        and data['npq-funded'] != 'Early years leadership'
-      %}
-
-        {% set fundingRow = {
-          key: { text: "DfE scholarship funding" },
-          value: {
-            html: govukTag({
-              text: "Not eligible",
-              classes: "govuk-tag--red"
-            })
-          },
-          actions: { items: [{ href: "/not-eligible-for-funding-early-years-change-npq", text: "View" }] }
-        } %}
-
-      {% elseif
-        data['ofsted-number'] == 'An early years setting not on the early years list'
-      %}
-
-        {% set fundingRow = {
-          key: { text: "DfE scholarship funding" },
-          value: {
-            html: govukTag({
-              text: "Not eligible",
-              classes: "govuk-tag--red"
-            })
-          },
-          actions: { items: [{ href: "/not-eligible-for-funding-workplace-not-eligible", text: "View" }] }
-        } %}
-
-      {% elseif data['do-you-have-ofsted-number'] == 'No' %}
-
-      {% set fundingRow = {
-        key: { text: "DfE scholarship funding" },
-        value: {
-          html: govukTag({
-            text: "Not eligible",
-            classes: "govuk-tag--red"
-          })
-        },
-        actions: { items: [{ href: "/not-eligible-for-funding-workplace-not-eligible", text: "View" }] }
-      } %}
+      {% elseif data['ofsted-number'] == 'An early years setting not on the early years list' or data['do-you-have-ofsted-number'] == 'No' or data['workplace'] == 'Workplace not on any of the eligibility lists' %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/not-eligible-for-funding-workplace-not-eligible' %}
 
       {% elseif data['workplace'] == 'Workplace on one of the eligibility lists' %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/eligible-for-funding' %}
+      {% endif %}
+
+      {% if fundingStatus %}
+        {% set tagClass = (fundingStatus == 'Eligible' and 'govuk-tag--green') or 'govuk-tag--red' %}
 
         {% set fundingRow = {
           key: { text: "DfE scholarship funding" },
           value: {
             html: govukTag({
-              text: "Eligible",
-              classes: "govuk-tag--green"
+              text: fundingStatus,
+              classes: tagClass
             })
           },
-          actions: { items: [{ href: "/eligible-for-funding", text: "View" }] }
+          actions: { items: [{ href: fundingHref, text: "View" }] }
         } %}
-
-      {% elseif data['workplace'] == 'Workplace not on any of the eligibility lists' %}
-
-        {% set fundingRow = {
-          key: { text: "DfE scholarship funding" },
-          value: {
-            html: govukTag({
-              text: "Not eligible",
-              classes: "govuk-tag--red"
-            })
-          },
-          actions: { items: [{ href: "/not-eligible-for-funding-workplace-not-eligible", text: "View" }] }
-        } %}
-
       {% endif %}
 
       <!--Show a row outlining the chosen funding source if this question was answered-->
@@ -139,6 +86,7 @@
         } %}
       {% endif %}
 
+      <!--Build the check answers table-->
       {{ govukSummaryList({
         rows: [
           {
