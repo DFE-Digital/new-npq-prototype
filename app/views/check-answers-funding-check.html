@@ -124,6 +124,23 @@
         } %}
       {% endif %}
 
+      {% set workplaceRow = null %}
+
+      {% if data['workplace'] %}
+        {% set workplaceRow = {
+          key: { text: "Workplace" },
+          value: { text: data['workplace'] },
+          actions: {
+            items: [
+              {
+                href: "/workplace-funding-check",
+                text: "Change",
+                visuallyHiddenText: "workplace"
+              }
+            ]
+          }
+        } %}
+      {% endif %}
 
       {{ govukSummaryList({
         rows: [
@@ -195,23 +212,7 @@
               ]
             }
           },
-          {
-            key: {
-              text: "Workplace"
-            },
-            value: {
-              text: data['workplace']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/workplace-funding-check",
-                  text: "Change",
-                  visuallyHiddenText: "Question 2"
-                }
-              ]
-            }
-          },
+          workplaceRow,
           fundingRow,
           fundingSourceRow,
           {

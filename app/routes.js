@@ -55,6 +55,14 @@ router.post('/england-funding-check-answer', function (req, res) {
 
 router.post('/setting-funding-check-answer', function (req, res) {
 
+    // Clear downstream answers when setting changes
+    delete req.session.data['workplace'];
+    delete req.session.data['publicly-funded-nursery'];
+    delete req.session.data['publicly-funded-hospital-school'];
+    delete req.session.data['do-you-have-ofsted-number'];
+    delete req.session.data['ofsted-number'];
+    delete req.session.data['funding-source-not-funded'];
+
   var setting = req.session.data['setting-funding-check']
 
   const schoolsDropdown = [
