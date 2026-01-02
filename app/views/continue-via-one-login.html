@@ -1,0 +1,36 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+      Continue to register through GOV.UK One Login
+    </h1>
+
+      <p class="govuk-body">Before you can register for your NPQ you need to create an account or sign in through GOV.UK One Login.</p>
+
+      <p class="govuk-body">This is so that we can verify your identity before sending your registration to your NPQ provider.</p>
+
+      <form action="/one-login-start" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Continue to GOV.UK One Login"
+        }) }}
+
+      </form>
+  </div>
+
+{% endblock %}

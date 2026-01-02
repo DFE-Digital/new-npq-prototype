@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-l">
-        Continue to register
+        Check your answers
       </h1>
 
       <!--Show different tags and links on the funding row depending on the funding outcome-->
@@ -219,20 +219,16 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m">
-        Verify your identity
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">
+        Continue to register
       </h2>
 
-      <p>
-        You’ll be redirected to check your identity via DfE Identity. You can still check or change your answers before submitting your registration.
-      </p>
+      <p>You can still check or change your answers later.</p>
 
-      <form action="/confirmation" method="post" novalidate>
-
+      <form action="/continue-via-one-login" method="post" novalidate>
         {{ govukButton({
           text: "Continue"
         }) }}
-
       </form>
 
     </div>
