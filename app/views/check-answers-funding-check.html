@@ -67,6 +67,43 @@
         } %}
       {% endif %}
 
+      <!--Show publicly funded nursery row if applicable-->
+      {% set publiclyFundedNurseryRow = null %}
+
+      {% if data['publicly-funded-nursery'] %}
+        {% set publiclyFundedNurseryRow = {
+          key: { text: "Publicly funded nursery" },
+          value: { text: data['publicly-funded-nursery'] },
+          actions: { items: [{ href: "/nursery-funding-check", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show Ofsted row if applicable-->
+      {% set ofstedNumberRow = null %}
+
+      {% if data['do-you-have-ofsted-number'] %}
+        {% set ofstedValue %}
+          {{ data['do-you-have-ofsted-number'] }}
+          {% if data['do-you-have-ofsted-number'] == 'Yes' and data['ofsted-number'] %}
+             - {{ data['ofsted-number'] }}
+          {% endif %}
+        {% endset %}
+
+        {% set ofstedNumberRow = {
+          key: { text: "Registered with Ofsted" },
+          value: { html: ofstedValue },
+          actions: {
+            items: [
+              {
+                href: "/ofsted-number-funding-check",
+                text: "Change"
+              }
+            ]
+          }
+        } %}
+      {% endif %}
+
+
       <!--Show a row outlining the selected workplace if this question was answered-->
       {% set workplaceRow = null %}
 
@@ -157,6 +194,8 @@
               ]
             }
           },
+          publiclyFundedNurseryRow,
+          ofstedNumberRow,
           workplaceRow,
           fundingRow,
           fundingSourceRow,
