@@ -1,0 +1,236 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+      <!--Show different tags and links on the funding row depending on the funding outcome-->
+      {% set fundingRow = null %}
+      {% set fundingStatus = null %}
+      {% set fundingHref = null %}
+
+      {% if data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] == 'Early years leadership' %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/eligible-for-funding-early-years' %}
+
+      {% elseif data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] != 'Early years leadership' %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/not-eligible-for-funding-early-years-change-npq' %}
+
+      {% elseif data['ofsted-number'] == 'An early years setting not on the early years list' or data['do-you-have-ofsted-number'] == 'No' or data['workplace'] == 'Workplace not on any of the eligibility lists' %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/not-eligible-for-funding-workplace-not-eligible' %}
+
+      {% elseif data['workplace'] == 'Workplace on one of the eligibility lists' %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/eligible-for-funding' %}
+      {% endif %}
+
+      {% if fundingStatus %}
+        {% set tagClass = (fundingStatus == 'Eligible' and 'govuk-tag--green') or 'govuk-tag--red' %}
+
+        {% set fundingRow = {
+          key: { text: "DfE scholarship funding" },
+          value: {
+            html: govukTag({
+              text: fundingStatus,
+              classes: tagClass
+            })
+          },
+          actions: { items: [{ href: fundingHref, text: "View" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a row outlining the chosen funding source if this question was answered-->
+      {% set fundingSourceRow = null %}
+
+      {% if data['funding-source-not-funded'] %}
+        {% set fundingSourceRow = {
+          key: { text: "Funding source" },
+          value: { text: data['funding-source-not-funded'] },
+          actions: { items: [{ href: "/funding-source-not-funded", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show publicly funded nursery row if applicable-->
+      {% set publiclyFundedNurseryRow = null %}
+
+      {% if data['publicly-funded-nursery'] %}
+        {% set publiclyFundedNurseryRow = {
+          key: { text: "Publicly funded nursery" },
+          value: { text: data['publicly-funded-nursery'] },
+          actions: { items: [{ href: "/nursery-funding-check", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show Ofsted row if applicable-->
+      {% set ofstedNumberRow = null %}
+
+      {% if data['do-you-have-ofsted-number'] %}
+        {% set ofstedValue %}
+          {{ data['do-you-have-ofsted-number'] }}
+          {% if data['do-you-have-ofsted-number'] == 'Yes' and data['ofsted-number'] %}
+             - {{ data['ofsted-number'] }}
+          {% endif %}
+        {% endset %}
+
+        {% set ofstedNumberRow = {
+          key: { text: "Registered with Ofsted" },
+          value: { html: ofstedValue },
+          actions: {
+            items: [
+              {
+                href: "/ofsted-number-funding-check",
+                text: "Change"
+              }
+            ]
+          }
+        } %}
+      {% endif %}
+
+
+      <!--Show a row outlining the selected workplace if this question was answered-->
+      {% set workplaceRow = null %}
+
+      {% if data['workplace'] %}
+        {% set workplaceRow = {
+          key: { text: "Workplace" },
+          value: { text: data['workplace'] },
+          actions: {
+            items: [
+              {
+                href: "/workplace-funding-check",
+                text: "Change",
+                visuallyHiddenText: "workplace"
+              }
+            ]
+          }
+        } %}
+      {% endif %}
+
+      <!--Build the check answers table-->
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Course start"
+            },
+            value: {
+              text: data['course-start']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/course-start",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Working in England"
+            },
+            value: {
+              text: data['england']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/england-funding-check",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Course"
+            },
+            value: {
+              text: data['npq-funded']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/select-npq-funding-check",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Setting"
+            },
+            value: {
+              text: data['setting-funding-check']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/setting-funding-check",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          publiclyFundedNurseryRow,
+          ofstedNumberRow,
+          workplaceRow,
+          fundingRow,
+          fundingSourceRow,
+          {
+            key: {
+              text: "Provider"
+            },
+            value: {
+              text: data['select-provider-funded']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/select-provider-funded",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">
+        Submit your registration
+      </h2>
+
+      <p>By submitting, you’re confirming that all the information you entered is correct.</p>
+
+      <form action="/" method="post" novalidate>
+        {{ govukButton({
+          text: "Submit"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

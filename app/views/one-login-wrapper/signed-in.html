@@ -16,21 +16,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
-      Continue through GOV.UK One Login
-    </h1>
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+        You’re signed in to GOV.UK One Login
+      </h1>
 
-      <p class="govuk-body">You need to create an account or sign in through GOV.UK One Login before you can submit your NPQ registration.</p>
+      <p class="govuk-body">You can now continue your NPQ registration.</p>
 
-      <p class="govuk-body">This allows us to verify your identity before sending your registration to your NPQ provider.</p>
-
-      <form action="/one-login/start" method="post" novalidate>
+      <form class="form" action="/check-answers-submit" method="post">
 
         {{ govukButton({
           text: "Continue"
         }) }}
 
       </form>
+
   </div>
 
 {% endblock %}
