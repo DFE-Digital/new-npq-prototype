@@ -1,3 +1,4 @@
+{% set serviceName = null %}
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
@@ -39,14 +40,20 @@
       </div>
 
       <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Create your GOV.UK One Login"
-        }) }}
 
-        {{ govukButton({
-          text: "Sign in",
-          classes: "govuk-button--secondary"
-        }) }}
+        <form class="form" action="/one-login-enter-email-create" method="post">
+          {{ govukButton({
+            text: "Create your GOV.UK One Login"
+          }) }}
+        </form>
+
+        <form class="form" action="/one-login-enter-email" method="post">
+          {{ govukButton({
+            text: "Sign in",
+            classes: "govuk-button--secondary"
+          }) }}
+        </form>
+
       </div>
 
       <p class="govuk-body">

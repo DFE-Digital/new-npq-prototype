@@ -1,0 +1,40 @@
+{% set serviceName = null %}
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Enter your email address to sign in to your GOV.UK One Login",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+  </div>
+
+{% endblock %}

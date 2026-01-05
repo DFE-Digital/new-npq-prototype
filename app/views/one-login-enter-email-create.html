@@ -1,0 +1,48 @@
+{% set serviceName = null %}
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Enter your email address",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+        <p class="govuk-body">
+          By continuing, you confirm that you agree to our <a target="_blank" rel="noopener noreferrer" href="/terms-and-conditions" class="govuk-link">terms and conditions (opens in a new tab)</a>.
+        </p>
+
+        <p class="govuk-body">
+          To find out how we use your personal information, see our <a target="_blank" rel="noopener noreferrer" href="/govuk-one-login-privacy-notice" class="govuk-link">privacy notice (opens in a new tab)</a>.
+        </p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+  </div>
+
+{% endblock %}
