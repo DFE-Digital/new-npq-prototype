@@ -9,6 +9,20 @@ const router = govukPrototypeKit.requests.setupRouter()
 router.post('/course-start-answer', function (req, res) {
 
     var startMonth = req.session.data['course-start']
+    const data = req.session.data;
+
+    delete data['check-funding'];
+    delete data['england'];
+    delete data['setting-funding-check'];
+    delete data['workplace'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['publicly-funded-nursery'];
+    delete data['funding-source-not-funded'];
+    delete data['select-provider-funded'];
+    delete data['select-provider'];
+    delete data['select-npq'];
+    delete data['npq-funded'];
 
     if (startMonth === "April 2026") {
         res.redirect('/select-npq')
@@ -23,12 +37,24 @@ router.all('/check-funding-answer', function (req, res) {
 
     const data = req.session.data || {};
 
+    delete data['england'];
+    delete data['setting-funding-check'];
+    delete data['workplace'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['publicly-funded-nursery'];
+    delete data['select-provider-funded'];
+    delete data['select-provider'];
+    delete data['select-npq'];
+    delete data['npq-funded'];
+
     if (req.query['check-funding'] === 'no') {
         data['check-funding'] = 'no';
     }
 
     else if (req.body['check-funding'] === 'yes') {
         data['check-funding'] = 'yes';
+        delete data['select-provider']
     }
 
     req.session.data = data;
@@ -43,15 +69,28 @@ router.all('/check-funding-answer', function (req, res) {
 
 router.post('/england-funding-check-answer', function (req, res) {
 
-    var workEngland = req.session.data['england']
+    const data = req.session.data;
 
-    if (workEngland === "Yes") {
-        res.redirect('/select-npq-funding-check')
+    // Clear all answers that depend on the "working in England" question
+    delete data['setting-funding-check'];
+    delete data['workplace'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['publicly-funded-nursery'];
+    delete data['select-provider-funded'];
+    delete data['select-provider'];
+    delete data['select-npq'];
+    delete data['npq-funded'];
+    delete data['funding-source-not-funded'];
+    delete data['funding-source'];
+
+    // Then redirect based on the current answer
+    if (data['england'] === "Yes") {
+        res.redirect('/select-npq-funding-check');
     } else {
-        res.redirect('/not-eligible-for-funding-england')
+        res.redirect('/not-eligible-for-funding-england');
     }
-
-})
+});
 
 router.post('/setting-funding-check-answer', function (req, res) {
 
@@ -131,6 +170,7 @@ router.post('/nursery-funding-check-answer', function (req, res) {
     delete data['funding-source-not-funded'];
     delete data['do-you-have-ofsted-number'];
     delete data['ofsted-number'];
+    delete data['select-provider-funded']
 
     if (publiclyFundedNursery === "Yes") {
         res.redirect('/workplace-funding-check');
@@ -179,6 +219,7 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
 
     // Clear dependent fields
     req.session.data['funding-source-not-funded'] = null;
+    req.session.data['select-provider-funded'] = null;
 
   if (doYouHaveOfstedNumber === 'Yes' && ofstedNumber === 'An early years setting on the early years list' && selectedNpqs === 'Early years leadership') {
     res.redirect('/eligible-for-funding-early-years')
