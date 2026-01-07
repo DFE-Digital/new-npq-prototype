@@ -227,11 +227,23 @@
 
     </div>
 
-    <div class="govuk-grid-column-one-third">
-        {{ govukButton({
-        text: "Register for another NPQ",
-        href: "/course-start"
-        }) }}
+<div class="govuk-grid-column-one-third">
+
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Register for another NPQ
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            {{ govukButton({
+              text: "Start now",
+              href: "/course-start",
+              isStartButton: true
+            }) }}
+          </ul>
+        </nav>
+      </aside>
+
     </div>
 
   </div>
