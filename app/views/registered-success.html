@@ -217,17 +217,21 @@
       }) }}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-7">
-        Apply with your provider
+        Next steps
       </h2>
 
       {% set courseName = data['npq-funded'] or data['select-npq'] %}
       <p>Your provider will email you with instructions about how to apply for the {{ courseName }} NPQ.</p>
 
-      <p>Once you’ve applied, they’ll check you meet the course suitability requirements.
+      <p>Once you’ve applied, they’ll:
 
-      {% if fundingStatus == 'Eligible' %}
-        <p class="govuk-body">They’ll also confirm whether a funded place is available.</p>
-      {% endif %}
+      <ul class="govuk-list govuk-list--bullet">
+        <li>check you meet the course suitability requirements</li>
+        {% if fundingStatus == 'Eligible' %}
+        <li>confirm whether a funded place is available</li>
+        {% endif %}
+        <li>confirm the course start date</li>
+      </ul>
 
     </div>
 
