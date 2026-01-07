@@ -188,6 +188,11 @@
           }
         },
         rows: [
+          {
+            key: { text: "Registration date" },
+            value: { html: '3 February 2026' },
+            actions: { items: [] }
+          },
           courseRow,
           courseFundingCheckRow,
           providerFundingCheckRow,
@@ -218,12 +223,11 @@
       {% set courseName = data['npq-funded'] or data['select-npq'] %}
       <p>Your provider will email you with instructions about how to apply for the {{ courseName }} NPQ.</p>
 
-      <p>Once you’ve applied, they will check:</p>
+      <p>Once you’ve applied, they’ll check you meet the course suitability requirements.
 
-      <ul class="govuk-list govuk-list--bullet">
-        <li>you meet the course suitability requirements</li>
-        <li>funding is available (if you’re eligible)</li>
-      </ul>
+      {% if fundingStatus == 'Eligible' %}
+        <p class="govuk-body">They’ll also confirm whether a funded place is available.</p>
+      {% endif %}
 
     </div>
 
