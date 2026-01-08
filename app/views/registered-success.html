@@ -216,14 +216,42 @@
         ]
       }) }}
 
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Your progress"
+          }
+        },
+        rows: [
+          {
+          key: {
+            text: "Registration status"
+          },
+          value: {
+          html: '
+            <strong class="govuk-tag govuk-tag--yellow">
+              Apply with provider
+            </strong>
+            <p class="govuk-hint govuk-!-margin-top-3 govuk-!-margin-bottom-0">
+              Your provider will email you with instructions about how to apply for the course.
+            </p>
+          '
+        },
+          actions: {
+            items: []
+          }
+        }
+
+        ]
+      }) }}
+
       <h2 class="govuk-heading-m govuk-!-margin-top-7">
         Next steps
       </h2>
 
       {% set courseName = data['npq-funded'] or data['select-npq'] %}
-      <p>Your provider will email you with instructions about how to apply for the {{ courseName }} NPQ.</p>
 
-      <p>Once you’ve applied, they’ll:
+      <p>Once you’ve applied with your provider, they’ll:
 
       <ul class="govuk-list govuk-list--bullet">
         <li>check you meet the course suitability requirements</li>
