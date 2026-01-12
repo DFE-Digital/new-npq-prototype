@@ -28,6 +28,10 @@
         {% set fundingStatus = 'Eligible' %}
         {% set fundingHref = '/funding-messages/eligible-for-funding-early-years' %}
 
+      {% elseif data['england'] == 'No' %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/funding-messages/not-eligible-for-funding-england' %}
+
       {% elseif data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] != 'Early years leadership' %}
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible-for-funding-early-years-change-npq' %}
@@ -56,7 +60,73 @@
         } %}
       {% endif %}
 
-      <!--Show a row outlining the chosen funding source if this question was answered-->
+      <!--Show a working in England row if applicable-->
+      {% set workingInEnglandRow = null %}
+
+      {% if data['england'] %}
+        {% set workingInEnglandRow = {
+          key: { text: "Working in England" },
+          value: { text: data['england'] },
+          actions: { items: [{ href: "/england-funding-check", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a course row (funding check route) if applicable-->
+      {% set courseFundingCheckRow = null %}
+
+      {% if data['npq-funded'] %}
+        {% set courseFundingCheckRow = {
+          key: { text: "Course" },
+          value: { text: data['npq-funded'] },
+          actions: { items: [{ href: "/select-npq-funding-check", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a course row (unfunded route) if applicable-->
+      {% set courseRow = null %}
+
+      {% if data['select-npq'] %}
+        {% set courseRow = {
+          key: { text: "Course" },
+          value: { text: data['select-npq'] },
+          actions: { items: [{ href: "/select-npq", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a provider row (funded route) if applicable-->
+      {% set providerFundingCheckRow = null %}
+
+      {% if data['select-provider-funded'] %}
+        {% set providerFundingCheckRow = {
+          key: { text: "Provider" },
+          value: { text: data['select-provider-funded'] },
+          actions: { items: [{ href: "/select-provider-funded", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a provider row (unfunded route) if applicable-->
+      {% set providerRow = null %}
+
+      {% if data['select-provider'] %}
+        {% set providerRow = {
+          key: { text: "Provider" },
+          value: { text: data['select-provider'] },
+          actions: { items: [{ href: "/select-provider", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a row outlining setting if applicable-->
+      {% set settingRow = null %}
+
+      {% if data['setting-funding-check'] %}
+        {% set settingRow = {
+          key: { text: "Setting" },
+          value: { text: data['setting-funding-check'] },
+          actions: { items: [{ href: "/setting-funding-check", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a funding source row (unfunded route) if applicable-->
       {% set fundingSourceRow = null %}
 
       {% if data['funding-source-not-funded'] %}
@@ -64,6 +134,17 @@
           key: { text: "Funding source" },
           value: { text: data['funding-source-not-funded'] },
           actions: { items: [{ href: "/funding-source-not-funded", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a funding source row (funding check route) if applicable-->
+      {% set fundingSourceCheckedFundingRow = null %}
+
+      {% if data['funding-source'] %}
+        {% set fundingSourceCheckedFundingRow = {
+          key: { text: "Funding source" },
+          value: { text: data['funding-source'] },
+          actions: { items: [{ href: "/funding-source", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -123,99 +204,34 @@
         } %}
       {% endif %}
 
+      <!--Add hint text for the course start row-->
+      {% set courseStartHint = '' %}
+      {% if data['course-start'] == 'April 2026' %}
+        {% set courseStartHint = '<p class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">DfE scholarship funding is not available</p>' %}
+      {% elseif data['check-funding'] != 'yes' and data['course-start'] == 'November 2026' %}
+        {% set courseStartHint = '<p class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">You’re continuing without DfE funding</p>' %}
+      {% endif %}
+
       <!--Build the check answers table-->
       {{ govukSummaryList({
         rows: [
           {
-            key: {
-              text: "Course start"
+              key: { text: "Course start" },
+              value: { html: data['course-start'] + courseStartHint },
+              actions: { items: [{ href: "/course-start", text: "Change", visuallyHiddenText: "course start" }] }
             },
-            value: {
-              text: data['course-start']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/course-start",
-                  text: "Change",
-                  visuallyHiddenText: "Question 2"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Working in England"
-            },
-            value: {
-              text: data['england']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/england-funding-check",
-                  text: "Change",
-                  visuallyHiddenText: "Question 2"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Course"
-            },
-            value: {
-              text: data['npq-funded']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/select-npq-funding-check",
-                  text: "Change",
-                  visuallyHiddenText: "Question 2"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Setting"
-            },
-            value: {
-              text: data['setting-funding-check']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/setting-funding-check",
-                  text: "Change",
-                  visuallyHiddenText: "Question 2"
-                }
-              ]
-            }
-          },
+          workingInEnglandRow,
+          courseFundingCheckRow,
+          settingRow,
           publiclyFundedNurseryRow,
           ofstedNumberRow,
           workplaceRow,
           fundingRow,
+          courseRow,
           fundingSourceRow,
-          {
-            key: {
-              text: "Provider"
-            },
-            value: {
-              text: data['select-provider-funded']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/select-provider-funded",
-                  text: "Change",
-                  visuallyHiddenText: "Question 3"
-                }
-              ]
-            }
-          }
+          providerFundingCheckRow,
+          providerRow,
+          fundingSourceCheckedFundingRow
         ]
       }) }}
 
