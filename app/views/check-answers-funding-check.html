@@ -34,11 +34,11 @@
 
       {% elseif data['ofsted-number'] == 'An early years setting not on the early years list' or data['do-you-have-ofsted-number'] == 'No' or data['workplace'] == 'Workplace not on any of the eligibility lists' %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/not-eligible-for-funding-workplace-not-eligible' %}
+        {% set fundingHref = '/funding-messages/not-eligible-for-funding-workplace-not-eligible' %}
 
       {% elseif data['workplace'] == 'Workplace on one of the eligibility lists' %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/eligible-for-funding' %}
+        {% set fundingHref = '/funding-messages/eligible-for-funding' %}
       {% endif %}
 
       {% if fundingStatus %}

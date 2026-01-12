@@ -88,7 +88,7 @@ router.post('/england-funding-check-answer', function (req, res) {
     if (data['england'] === "Yes") {
         res.redirect('/select-npq-funding-check');
     } else {
-        res.redirect('/not-eligible-for-funding-england');
+        res.redirect('/funding-messages/not-eligible-for-funding-england');
     }
 });
 
@@ -204,9 +204,9 @@ router.post('/workplace-funding-check-answer', function (req, res) {
     var workplaceCategory = req.session.data['workplace']
 
     if (workplaceCategory === "Workplace on one of the eligibility lists") {
-        res.redirect('/eligible-for-funding')
+        res.redirect('/funding-messages/eligible-for-funding')
     } else {
-        res.redirect('/not-eligible-for-funding-workplace-not-eligible')
+        res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible')
     }
 
 })
