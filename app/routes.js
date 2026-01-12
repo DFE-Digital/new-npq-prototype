@@ -222,11 +222,11 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
     req.session.data['select-provider-funded'] = null;
 
   if (doYouHaveOfstedNumber === 'Yes' && ofstedNumber === 'An early years setting on the early years list' && selectedNpqs === 'Early years leadership') {
-    res.redirect('/eligible-for-funding-early-years')
+    res.redirect('/funding-messages/eligible-for-funding-early-years')
   } else if (doYouHaveOfstedNumber === 'Yes' && ofstedNumber === 'An early years setting on the early years list' && selectedNpqs !== 'Early years leadership') {
-    res.redirect('/not-eligible-for-funding-early-years-change-npq')
+    res.redirect('/funding-messages/not-eligible-for-funding-early-years-change-npq')
   } else {
-    res.redirect('/not-eligible-for-funding-workplace-not-eligible')
+    res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible')
   }
 
 })
