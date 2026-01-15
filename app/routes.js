@@ -86,7 +86,7 @@ router.post('/england-funding-check-answer', function (req, res) {
 
     // Then redirect based on the current answer
     if (data['england'] === "Yes") {
-        res.redirect('/select-npq-funding-check');
+        res.redirect('/funding-check/select-npq');
     } else {
         res.redirect('/funding-messages/not-eligible-for-funding-england');
     }
@@ -140,7 +140,7 @@ router.post('/setting-funding-check-answer', function (req, res) {
     ]
 
   if (schoolsDropdown.includes(setting)) {
-    res.redirect('/workplace-funding-check')
+    res.redirect('/funding-check/workplace')
   } else if (ofsted.includes(setting)) {
     res.redirect('/ofsted-number-funding-check')
   } else if (role.includes(setting)) {
@@ -173,7 +173,7 @@ router.post('/nursery-funding-check-answer', function (req, res) {
     delete data['select-provider-funded']
 
     if (publiclyFundedNursery === "Yes") {
-        res.redirect('/workplace-funding-check');
+        res.redirect('/funding-check/workplace');
     } else {
         res.redirect('/ofsted-number-funding-check');
     }
@@ -186,7 +186,7 @@ router.post('/hospital-school-funding-check-answer', function (req, res) {
     var publiclyFundedHospitalSchool = req.session.data['publicly-funded-hospital-school']
 
     if (publiclyFundedHospitalSchool === "Yes") {
-        res.redirect('/workplace-funding-check')
+        res.redirect('/funding-check/workplace')
     } else {
         res.redirect('/employer-funding-check')
     }

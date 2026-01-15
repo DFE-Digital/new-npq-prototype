@@ -67,7 +67,7 @@
         {% set workingInEnglandRow = {
           key: { text: "Working in England" },
           value: { text: data['england'] },
-          actions: { items: [{ href: "/england-funding-check", text: "Change" }] }
+          actions: { items: [{ href: "/funding-check/england", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -78,7 +78,7 @@
         {% set courseFundingCheckRow = {
           key: { text: "Course" },
           value: { text: data['npq-funded'] },
-          actions: { items: [{ href: "/select-npq-funding-check", text: "Change" }] }
+          actions: { items: [{ href: "/funding-check/select-npq", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -100,7 +100,7 @@
         {% set providerFundingCheckRow = {
           key: { text: "Provider" },
           value: { text: data['select-provider-funded'] },
-          actions: { items: [{ href: "/select-provider-funded", text: "Change" }] }
+          actions: { items: [{ href: "/funded-follow-up/provider", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -122,7 +122,7 @@
         {% set settingRow = {
           key: { text: "Setting" },
           value: { text: data['setting-funding-check'] },
-          actions: { items: [{ href: "/setting-funding-check", text: "Change" }] }
+          actions: { items: [{ href: "/funding-check/setting", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -195,7 +195,7 @@
           actions: {
             items: [
               {
-                href: "/workplace-funding-check",
+                href: "/funding-check/workplace",
                 text: "Change",
                 visuallyHiddenText: "workplace"
               }
