@@ -202,9 +202,45 @@ router.post('/workplace-funding-check-answer', function (req, res) {
     req.session.data['ofsted-number'] = null;
 
     var workplaceCategory = req.session.data['workplace']
+    var selectedNPQ = req.session.data['npq-funded']
+
+    var disadvantagedMaintainedNurseryIneligible = [
+        "Leading behaviour and culture",
+        "Leading literacy",
+        "Leading teaching",
+        "Leading primary mathematics",
+        "Senior leadership",
+        "Executive leadership"
+    ]
+
+    var disadvantagedMaintainedNurseryEligible = [
+        "Early years leadership",
+        "Leading teacher development",
+    ]
+
+    var publiclyFundedNurseryEligible = [
+        "Headship",
+        "SENCO",
+    ]
 
     if (workplaceCategory === "Workplace on one of the eligibility lists") {
         res.redirect('/funding-messages/eligible-for-funding')
+
+    } else if (workplaceCategory === "A maintained nursery school from the disadvantaged list" &&
+        disadvantagedMaintainedNurseryIneligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/funding-messages/not-eligible-for-funding-early-years-change-npq')
+
+    } else if (workplaceCategory === "A maintained nursery school from the disadvantaged list" &&
+        disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/funding-messages/eligible-for-funding-disadvantaged-maintained-nursery')
+
+    } else if (workplaceCategory === "A maintained nursery school from the disadvantaged list" &&
+        publiclyFundedNurseryEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/funding-messages/eligible-for-funding-publicly-funded-nursery')
+
     } else {
         res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible')
     }

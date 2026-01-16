@@ -24,6 +24,25 @@
       {% set fundingStatus = null %}
       {% set fundingHref = null %}
 
+      {% set maintainedNurseryIneligible = [
+        "Leading behaviour and culture",
+        "Leading literacy",
+        "Leading teaching",
+        "Leading primary mathematics",
+        "Senior leadership",
+        "Executive leadership"
+      ] %}
+
+      {% set maintainedNurseryEligible = [
+        "Early years leadership",
+        "Leading teacher development"
+      ] %}
+
+      {% set publiclyFundedNurseryEligible = [
+        "Headship",
+        "SENCO"
+      ] %}
+
       {% if data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] == 'Early years leadership' %}
         {% set fundingStatus = 'Eligible' %}
         {% set fundingHref = '/funding-messages/eligible-for-funding-early-years' %}
@@ -31,6 +50,28 @@
       {% elseif data['england'] == 'No' %}
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible-for-funding-england' %}
+
+      {% elseif
+        data['workplace'] == 'A maintained nursery school from the disadvantaged list'
+        and data['npq-funded'] in maintainedNurseryIneligible
+      %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/funding-messages/not-eligible-for-funding-early-years-change-npq' %}
+
+      {% elseif
+        data['workplace'] == 'A maintained nursery school from the disadvantaged list'
+        and data['npq-funded'] in maintainedNurseryEligible
+      %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/funding-messages/eligible-for-funding-disadvantaged-maintained-nursery' %}
+
+      {% elseif
+        data['workplace'] == 'A maintained nursery school from the disadvantaged list'
+        and data['npq-funded'] in publiclyFundedNurseryEligible
+      %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/funding-messages/eligible-for-funding-publicly-funded-nursery' %}
+
 
       {% elseif data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] != 'Early years leadership' %}
         {% set fundingStatus = 'Not eligible' %}

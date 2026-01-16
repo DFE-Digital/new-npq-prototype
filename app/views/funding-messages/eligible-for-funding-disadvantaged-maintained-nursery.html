@@ -27,10 +27,10 @@
         </div>
 
       <p class="govuk-body govuk-!-margin-top-6">
-        You’re eligible for DfE scholarship funding for the {{ data['npq-funded'] }} NPQ because your workplace is listed as one of the highly disadvantaged early years settings.
+        You’re eligible for DfE scholarship funding for the {{ data['npq-funded'] }} NPQ because your workplace is listed as a highly disadvantaged maintained nursery.
       </p>
 
-      <form class="form" action="/select-provider-funded" method="post">
+      <form class="form" action="/funded-follow-up/provider" method="post">
 
         {{ govukButton({
           text: "Continue to register"
