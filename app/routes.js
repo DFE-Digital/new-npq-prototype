@@ -50,9 +50,7 @@ router.all('/check-funding-answer', function (req, res) {
 
     if (req.query['check-funding'] === 'no') {
         data['check-funding'] = 'no';
-    }
-
-    else if (req.body['check-funding'] === 'yes') {
+    } else if (req.body['check-funding'] === 'yes') {
         data['check-funding'] = 'yes';
         delete data['select-provider']
     }
@@ -102,21 +100,21 @@ router.post('/setting-funding-check-answer', function (req, res) {
     delete req.session.data['ofsted-number'];
     delete req.session.data['funding-source-not-funded'];
 
-  var setting = req.session.data['setting-funding-check']
+    var setting = req.session.data['setting-funding-check']
 
-  const schoolsDropdown = [
-    'School',
-    'Academy trust',
-    '16 to 19 setting',
-    'Preschool class or nursery - part of a school',
-    'Secure children’s home or training centre',
-  ]
+    const schoolsDropdown = [
+        'School',
+        'Academy trust',
+        '16 to 19 setting',
+        'Preschool class or nursery - part of a school',
+        'Secure children’s home or training centre',
+    ]
 
-   const ofsted = [
-    'Private nursery',
-    'Childminding setting',
-    'Other - early years',
-  ]
+    const ofsted = [
+        'Private nursery',
+        'Childminding setting',
+        'Other - early years',
+    ]
 
     const role = [
         'Virtual school',
@@ -139,23 +137,23 @@ router.post('/setting-funding-check-answer', function (req, res) {
         'As a lead mentor for an accredited ITT provider',
     ]
 
-  if (schoolsDropdown.includes(setting)) {
-    res.redirect('/funding-check/workplace')
-  } else if (ofsted.includes(setting)) {
-    res.redirect('/ofsted-number-funding-check')
-  } else if (role.includes(setting)) {
-    res.redirect('/role-funding-check')
-  } else if (employer.includes(setting)) {
-    res.redirect('/employer-funding-check')
-  } else if (hospital.includes(setting)) {
-    res.redirect('/hospital-school-funding-check')
-  } else if (nursery.includes(setting)) {
-    res.redirect('/nursery-funding-check')
-  } else if (teacherTrainingProvider.includes(setting)) {
-      res.redirect('/ITT-provider-funding-check')
-  } else {
-    res.redirect('/not-eligible-for-funding-other')
-  }
+    if (schoolsDropdown.includes(setting)) {
+        res.redirect('/funding-check/workplace')
+    } else if (ofsted.includes(setting)) {
+        res.redirect('/funding-check/ofsted')
+    } else if (role.includes(setting)) {
+        res.redirect('/role-funding-check')
+    } else if (employer.includes(setting)) {
+        res.redirect('/employer-funding-check')
+    } else if (hospital.includes(setting)) {
+        res.redirect('/hospital-school-funding-check')
+    } else if (nursery.includes(setting)) {
+        res.redirect('/nursery-funding-check')
+    } else if (teacherTrainingProvider.includes(setting)) {
+        res.redirect('/ITT-provider-funding-check')
+    } else {
+        res.redirect('/not-eligible-for-funding-other')
+    }
 
 })
 
@@ -175,7 +173,7 @@ router.post('/nursery-funding-check-answer', function (req, res) {
     if (publiclyFundedNursery === "Yes") {
         res.redirect('/funding-check/workplace');
     } else {
-        res.redirect('/ofsted-number-funding-check');
+        res.redirect('/funding-check/ofsted');
     }
 
 });
@@ -249,20 +247,32 @@ router.post('/workplace-funding-check-answer', function (req, res) {
 
 router.post('/ofsted-number-funding-check-answer', function (req, res) {
 
-  const doYouHaveOfstedNumber = req.session.data['do-you-have-ofsted-number']
-  const ofstedNumber = req.session.data['ofsted-number']
-  const selectedNpqs = req.session.data['npq-funded']
+    const doYouHaveOfstedNumber = req.session.data['do-you-have-ofsted-number'];
+    const ofstedNumber = req.session.data['ofsted-number'];
+    const selectedNpqs = req.session.data['npq-funded'];
 
     // Clear dependent fields
     req.session.data['funding-source-not-funded'] = null;
     req.session.data['select-provider-funded'] = null;
 
-  if (doYouHaveOfstedNumber === 'Yes' && ofstedNumber === 'An early years setting on the early years list' && selectedNpqs === 'Early years leadership') {
-    res.redirect('/funding-messages/eligible-for-funding-early-years')
-  } else if (doYouHaveOfstedNumber === 'Yes' && ofstedNumber === 'An early years setting on the early years list' && selectedNpqs !== 'Early years leadership') {
-    res.redirect('/funding-messages/not-eligible-for-funding-early-years-change-npq')
-  } else {
-    res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible')
-  }
+    const eligibleNpqs = ['Early years leadership', 'Leading teacher development'];
 
-})
+    if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'A childcare agency or childminder on the disadvantaged list' &&
+        eligibleNpqs.includes(selectedNpqs)
+    ) {
+        res.redirect('/funding-messages/eligible-for-funding-early-years');
+
+    } else if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'A childcare agency or childminder on the disadvantaged list' &&
+        !eligibleNpqs.includes(selectedNpqs)
+    ) {
+        res.redirect('/funding-messages/not-eligible-for-funding-childminder-change-npq');
+
+    } else {
+        res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible');
+    }
+
+});
