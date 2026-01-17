@@ -43,9 +43,17 @@
         "SENCO"
       ] %}
 
-      {% if data['ofsted-number'] == 'An EY setting or maintained nursery school from the disadvantaged list' and data['npq-funded'] == 'Early years leadership' %}
+      {% set eligibleChildminderNpqs = ['Early years leadership', 'Leading teacher development'] %}
+
+      {% if data['ofsted-number'] == 'A childcare agency or childminder on the disadvantaged list' and
+            data['npq-funded'] in eligibleChildminderNpqs %}
         {% set fundingStatus = 'Eligible' %}
         {% set fundingHref = '/funding-messages/eligible-for-funding-early-years' %}
+
+      {% elseif data['ofsted-number'] == 'A childcare agency or childminder on the disadvantaged list' and
+              data['npq-funded'] not in eligibleChildminderNpqs %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/funding-messages/not-eligible-for-funding-childminder-change-npq' %}
 
       {% elseif data['england'] == 'No' %}
         {% set fundingStatus = 'Not eligible' %}
