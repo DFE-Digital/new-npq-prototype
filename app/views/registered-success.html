@@ -54,7 +54,7 @@
         "SENCO"
       ] %}
 
-      {% if data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] == 'Early years leadership' %}
+      {% if data['ofsted-number'] == 'An EY setting or maintained nursery school from the disadvantaged list' and data['npq-funded'] == 'Early years leadership' %}
         {% set fundingStatus = 'Eligible' %}
         {% set fundingHref = '/funding-messages/eligible-for-funding-early-years' %}
 
@@ -63,21 +63,21 @@
         {% set fundingHref = '/funding-messages/not-eligible-for-funding-england' %}
 
       {% elseif
-        data['workplace'] == 'A maintained nursery school from the disadvantaged list'
+        data['workplace'] == 'An EY setting or maintained nursery school from the disadvantaged list'
         and data['npq-funded'] in maintainedNurseryIneligible
       %}
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible-for-funding-early-years-change-npq' %}
 
       {% elseif
-        data['workplace'] == 'A maintained nursery school from the disadvantaged list'
+        data['workplace'] == 'An EY setting or maintained nursery school from the disadvantaged list'
         and data['npq-funded'] in maintainedNurseryEligible
       %}
         {% set fundingStatus = 'Eligible' %}
         {% set fundingHref = '/funding-messages/eligible-for-funding-disadvantaged-maintained-nursery' %}
 
       {% elseif
-        data['workplace'] == 'A maintained nursery school from the disadvantaged list'
+        data['workplace'] == 'An EY setting or maintained nursery school from the disadvantaged list'
         and data['npq-funded'] in publiclyFundedNurseryEligible
       %}
         {% set fundingStatus = 'Eligible' %}
@@ -91,7 +91,7 @@
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible-for-funding-workplace-not-eligible' %}
 
-      {% elseif data['workplace'] == 'Workplace on one of the eligibility lists' %}
+      {% elseif data['workplace'] == 'A workplace on either the schools, 16-19 or RISE list' %}
         {% set fundingStatus = 'Eligible' %}
         {% set fundingHref = '/funding-messages/eligible-for-funding' %}
       {% endif %}

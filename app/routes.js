@@ -223,20 +223,20 @@ router.post('/workplace-funding-check-answer', function (req, res) {
         "SENCO",
     ]
 
-    if (workplaceCategory === "Workplace on one of the eligibility lists") {
+    if (workplaceCategory === "A workplace on either the schools, 16-19 or RISE list") {
         res.redirect('/funding-messages/eligible-for-funding')
 
-    } else if (workplaceCategory === "A maintained nursery school from the disadvantaged list" &&
+    } else if (workplaceCategory === "An EY setting or maintained nursery school from the disadvantaged list" &&
         disadvantagedMaintainedNurseryIneligible.includes(selectedNPQ)
     ) {
         res.redirect('/funding-messages/not-eligible-for-funding-early-years-change-npq')
 
-    } else if (workplaceCategory === "A maintained nursery school from the disadvantaged list" &&
+    } else if (workplaceCategory === "An EY setting or maintained nursery school from the disadvantaged list" &&
         disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
     ) {
         res.redirect('/funding-messages/eligible-for-funding-disadvantaged-maintained-nursery')
 
-    } else if (workplaceCategory === "A maintained nursery school from the disadvantaged list" &&
+    } else if (workplaceCategory === "An EY setting or maintained nursery school from the disadvantaged list" &&
         publiclyFundedNurseryEligible.includes(selectedNPQ)
     ) {
         res.redirect('/funding-messages/eligible-for-funding-publicly-funded-nursery')
