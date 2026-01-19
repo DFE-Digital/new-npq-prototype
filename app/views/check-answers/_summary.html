@@ -1,36 +1,4 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block beforeContent %}
-  {{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.back()"
-}) }}
-{% endblock %}
-
-{% block content %}
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-      <h1 class="govuk-heading-l">
-        Your
-        {% if data['npq-funded'] %}
-          {{ data['npq-funded'] }}
-        {% elif data['select-npq'] %}
-          {{ data['select-npq'] }}
-        {% endif %}
-        registration
-      </h1>
-
-      <div class="govuk-inset-text">
-        <a href="#" class="govuk-link">Update your personal details</a>
-      </div>
-
-       <!--Show different tags and links on the funding row depending on the funding outcome-->
+      <!--Show different tags and links on the funding row depending on the funding outcome-->
       {% set fundingRow = null %}
       {% set fundingStatus = null %}
       {% set fundingHref = null %}
@@ -110,7 +78,6 @@
       {% elseif data['workplace'] == 'A publicly funded: school, 16-19-setting, nursery, hospital school' and data['npq-funded'] not in publiclyFundedEligible%}
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible-for-funding-workplace-not-eligible' %}
-
       {% endif %}
 
       {% if fundingStatus %}
@@ -135,7 +102,7 @@
         {% set workingInEnglandRow = {
           key: { text: "Working in England" },
           value: { text: data['england'] },
-          actions: { items: [] }
+          actions: { items: [{ href: "/funding-check/england", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -146,7 +113,7 @@
         {% set courseFundingCheckRow = {
           key: { text: "Course" },
           value: { text: data['npq-funded'] },
-          actions: { items: [{ href: "#", text: "Change" }] }
+          actions: { items: [{ href: "/funding-check/select-npq", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -157,7 +124,7 @@
         {% set courseRow = {
           key: { text: "Course" },
           value: { text: data['select-npq'] },
-          actions: { items: [{ href: "#", text: "Change" }] }
+          actions: { items: [{ href: "/select-npq", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -168,7 +135,7 @@
         {% set providerFundingCheckRow = {
           key: { text: "Provider" },
           value: { text: data['select-provider-funded'] },
-          actions: { items: [{ href: "#", text: "Change" }] }
+          actions: { items: [{ href: "/funded-follow-up/provider", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -179,7 +146,7 @@
         {% set providerRow = {
           key: { text: "Provider" },
           value: { text: data['select-provider'] },
-          actions: { items: [{ href: "#", text: "Change" }] }
+          actions: { items: [{ href: "/select-provider", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -190,7 +157,40 @@
         {% set settingRow = {
           key: { text: "Setting" },
           value: { text: data['setting-funding-check'] },
-          actions: { items: [] }
+          actions: { items: [{ href: "/funding-check/setting", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a funding source row (unfunded route) if applicable-->
+      {% set fundingSourceRow = null %}
+
+      {% if data['funding-source-not-funded'] %}
+        {% set fundingSourceRow = {
+          key: { text: "Funding source" },
+          value: { text: data['funding-source-not-funded'] },
+          actions: { items: [{ href: "/funding-source-not-funded", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show a funding source row (funding check route) if applicable-->
+      {% set fundingSourceCheckedFundingRow = null %}
+
+      {% if data['funding-source'] %}
+        {% set fundingSourceCheckedFundingRow = {
+          key: { text: "Funding source" },
+          value: { text: data['funding-source'] },
+          actions: { items: [{ href: "/funding-source", text: "Change" }] }
+        } %}
+      {% endif %}
+
+      <!--Show publicly funded nursery row if applicable-->
+      {% set publiclyFundedNurseryRow = null %}
+
+      {% if data['publicly-funded-nursery'] %}
+        {% set publiclyFundedNurseryRow = {
+          key: { text: "Publicly funded nursery" },
+          value: { text: data['publicly-funded-nursery'] },
+          actions: { items: [{ href: "/nursery-funding-check", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -210,10 +210,15 @@
           value: { html: ofstedValue },
           actions: {
             items: [
+              {
+                href: "/funding-check/ofsted",
+                text: "Change"
+              }
             ]
           }
         } %}
       {% endif %}
+
 
       <!--Show a row outlining the selected workplace if this question was answered-->
       {% set workplaceRow = null %}
@@ -224,6 +229,11 @@
           value: { text: data['workplace'] },
           actions: {
             items: [
+              {
+                href: "/funding-check/workplace",
+                text: "Change",
+                visuallyHiddenText: "workplace"
+              }
             ]
           }
         } %}
@@ -234,111 +244,28 @@
       {% if data['course-start'] == 'April 2026' %}
         {% set courseStartHint = '<p class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">DfE scholarship funding is not available</p>' %}
       {% elseif data['check-funding'] != 'yes' and data['course-start'] == 'November 2026' %}
-        {% set courseStartHint = '<p class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">You registered without DfE funding</p>' %}
+        {% set courseStartHint = '<p class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">You’re continuing without DfE funding</p>' %}
       {% endif %}
 
       <!--Build the check answers table-->
       {{ govukSummaryList({
-        card: {
-          title: {
-            text: "Registration details"
-          }
-        },
         rows: [
           {
-            key: { text: "Registration date" },
-            value: { html: '3 February 2026' },
-            actions: { items: [] }
-          },
-          courseRow,
-          courseFundingCheckRow,
-          providerFundingCheckRow,
-          providerRow,
-          fundingRow,
-          {
-            key: { text: "Course start" },
-            value: { html: data['course-start'] + courseStartHint },
-            actions: { items: [] }
-          },
+              key: { text: "Course start" },
+              value: { html: data['course-start'] + courseStartHint },
+              actions: { items: [{ href: "/course-start", text: "Change", visuallyHiddenText: "course start" }] }
+            },
           workingInEnglandRow,
+          courseFundingCheckRow,
           settingRow,
           publiclyFundedNurseryRow,
           ofstedNumberRow,
           workplaceRow,
-          {
-            key: { text: "Registration ID" },
-            value: { html: '2ed8-1837-fg37-7l94' },
-            actions: { items: [] }
-          }
+          fundingRow,
+          courseRow,
+          fundingSourceRow,
+          providerFundingCheckRow,
+          providerRow,
+          fundingSourceCheckedFundingRow
         ]
       }) }}
-
-      {{ govukSummaryList({
-        card: {
-          title: {
-            text: "Your progress"
-          }
-        },
-        rows: [
-          {
-          key: {
-            text: "Registration status"
-          },
-          value: {
-          html: '
-            <strong class="govuk-tag govuk-tag--yellow">
-              Apply with provider
-            </strong>
-            <p class="govuk-hint govuk-!-margin-top-3 govuk-!-margin-bottom-0">
-              Your provider will email you with instructions about how to apply for the course.
-            </p>
-          '
-        },
-          actions: {
-            items: []
-          }
-        }
-
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-7">
-        Next steps
-      </h2>
-
-      {% set courseName = data['npq-funded'] or data['select-npq'] %}
-
-      <p>Once you’ve applied with your provider, they’ll:
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>check you meet the course suitability requirements</li>
-        {% if fundingStatus == 'Eligible' %}
-        <li>confirm whether a funded place is available</li>
-        {% endif %}
-        <li>confirm the course start date</li>
-      </ul>
-
-    </div>
-
-<div class="govuk-grid-column-one-third">
-
-      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-        <h2 class="govuk-heading-m" id="subsection-title">
-          Register for another NPQ
-        </h2>
-        <nav role="navigation" aria-labelledby="subsection-title">
-          <ul class="govuk-list govuk-!-font-size-16">
-            {{ govukButton({
-              text: "Start now",
-              href: "/course-start",
-              isStartButton: true
-            }) }}
-          </ul>
-        </nav>
-      </aside>
-
-    </div>
-
-  </div>
-
-{% endblock %}
