@@ -38,7 +38,7 @@
         "Leading teacher development"
       ] %}
 
-      {% set publiclyFundedNurseryEligible = [
+      {% set publiclyFundedEligible = [
         "Headship",
         "SENCO"
       ] %}
@@ -75,7 +75,7 @@
 
       {% elseif
         data['workplace'] == 'Maintained nursery school - disadvantaged list'
-        and data['npq-funded'] in publiclyFundedNurseryEligible
+        and data['npq-funded'] in publiclyFundedEligible
       %}
         {% set fundingStatus = 'Eligible' %}
         {% set fundingHref = '/funding-messages/eligible/publicly-funded-nursery' %}
@@ -92,6 +92,10 @@
       {% elseif data['workplace'] == 'A workplace on either the schools, 16-19 or RISE list' %}
         {% set fundingStatus = 'Eligible' %}
         {% set fundingHref = '/funding-messages/eligible-for-funding' %}
+
+      {% elseif data['workplace'] == 'A publicly funded: school, 16-19-setting, nursery, hospital school' and data['npq-funded'] in publiclyFundedEligible%}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/funding-messages/eligible/publicly-funded-setting' %}
       {% endif %}
 
       {% if fundingStatus %}
