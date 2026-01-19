@@ -224,20 +224,20 @@ router.post('/workplace-funding-check-answer', function (req, res) {
     if (workplaceCategory === "A workplace on either the schools, 16-19 or RISE list") {
         res.redirect('/funding-messages/eligible-for-funding')
 
-    } else if (workplaceCategory === "An EY setting or maintained nursery school from the disadvantaged list" &&
+    } else if (workplaceCategory === "Maintained nursery school - disadvantaged list" &&
         disadvantagedMaintainedNurseryIneligible.includes(selectedNPQ)
     ) {
-        res.redirect('/funding-messages/not-eligible-for-funding-early-years-change-npq')
+        res.redirect('/funding-messages/not-eligible/maintained-nursery-disadvantaged-list')
 
-    } else if (workplaceCategory === "An EY setting or maintained nursery school from the disadvantaged list" &&
+    } else if (workplaceCategory === "Maintained nursery school - disadvantaged list" &&
         disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
     ) {
-        res.redirect('/funding-messages/eligible-for-funding-disadvantaged-maintained-nursery')
+        res.redirect('/funding-messages/eligible/maintained-nursery-disadvantaged-list')
 
-    } else if (workplaceCategory === "An EY setting or maintained nursery school from the disadvantaged list" &&
+    } else if (workplaceCategory === "Maintained nursery school - disadvantaged list" &&
         publiclyFundedNurseryEligible.includes(selectedNPQ)
     ) {
-        res.redirect('/funding-messages/eligible-for-funding-publicly-funded-nursery')
+        res.redirect('/funding-messages/eligible/publicly-funded-nursery')
 
     } else {
         res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible')
