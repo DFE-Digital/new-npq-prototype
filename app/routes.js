@@ -244,6 +244,11 @@ router.post('/workplace-funding-check-answer', function (req, res) {
     ) {
         res.redirect('/funding-messages/eligible/publicly-funded-setting')
 
+    } else if (workplaceCategory === "A publicly funded: school, 16-19-setting, nursery, hospital school" &&
+        !publiclyFundedEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/funding-messages/not-eligible/publicly-funded-setting')
+
     } else {
         res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible')
     }

@@ -109,7 +109,7 @@
 
       {% elseif data['workplace'] == 'A publicly funded: school, 16-19-setting, nursery, hospital school' and data['npq-funded'] not in publiclyFundedEligible%}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/funding-messages/not-eligible-for-funding-workplace-not-eligible' %}
+        {% set fundingHref = '/funding-messages/not-eligible/publicly-funded-setting' %}
 
       {% endif %}
 
