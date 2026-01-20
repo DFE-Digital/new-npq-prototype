@@ -1,0 +1,187 @@
+{% extends "layouts/main.njk" %}
+
+{% block pageTitle %}
+  Early Years Leadership Diagram – {{ serviceName }}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">Who is eligible for each NPQ</h1>
+
+  {% set diagramStyle = "margin-bottom: 3rem;" %} {# Add spacing between diagrams #}
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[Early years leadership]
+
+      NPQ --> A[RISE schools]
+      NPQ --> B[Disadvantaged schools]
+      NPQ --> C[Disadvantaged 16-19 settings]
+      NPQ --> D[Disadvantaged early years settings including maintained nurseries]
+
+      class NPQ mainBox;
+      class A,B,C,D subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[Leading teacher development]
+
+      NPQ --> A[RISE schools]
+      NPQ --> B[Disadvantaged schools]
+      NPQ --> C[Disadvantaged 16-19 settings]
+      NPQ --> D[Disadvantaged early years settings including maintained nurseries]
+      NPQ --> E[ITT lead mentors]
+
+      class NPQ mainBox;
+      class A,B,C,D,E subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[Executive leadership]
+
+      NPQ --> A[RISE schools]
+      NPQ --> B[Disadvantaged schools]
+      NPQ --> C[Disadvantaged 16-19 settings]
+
+      class NPQ mainBox;
+      class A,B,C subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[Senior leadership]
+
+      NPQ --> A[RISE schools]
+      NPQ --> B[Disadvantaged schools]
+      NPQ --> C[Disadvantaged 16-19 settings]
+
+      class NPQ mainBox;
+      class A,B,C subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[Leading primary maths]
+
+      NPQ --> A[RISE schools]
+      NPQ --> B[Disadvantaged schools]
+      NPQ --> C[Disadvantaged 16-19 settings]
+
+      class NPQ mainBox;
+      class A,B,C subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[Leading literacy]
+
+      NPQ --> A[RISE schools]
+      NPQ --> B[Disadvantaged schools]
+      NPQ --> C[Disadvantaged 16-19 settings]
+
+      class NPQ mainBox;
+      class A,B,C subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[Leading behaviour and culture]
+
+      NPQ --> A[RISE schools]
+      NPQ --> B[Disadvantaged schools]
+      NPQ --> C[Disadvantaged 16-19 settings]
+
+      class NPQ mainBox;
+      class A,B,C subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[Leading teaching]
+
+      NPQ --> A[RISE schools]
+      NPQ --> B[Disadvantaged schools]
+      NPQ --> C[Disadvantaged 16-19 settings]
+
+      class NPQ mainBox;
+      class A,B,C subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[SENCO]
+
+      NPQ --> A[Young offender institutions]
+      NPQ --> B[Hospital schools]
+      NPQ --> C[Publicly funded schools]
+      NPQ --> D[Publicly funded nurseries]
+      NPQ --> E[Publicly funded 16-19 settings]
+      NPQ --> F[Some local authority roles]
+      NPQ --> G[RISE schools]
+
+      class NPQ mainBox;
+      class A,B,C,D,E,F,G subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[Headship]
+
+      NPQ --> A[Young offender institutions]
+      NPQ --> B[Hospital schools]
+      NPQ --> C[Publicly funded schools]
+      NPQ --> D[Publicly funded nurseries]
+      NPQ --> E[Publicly funded 16-19 settings]
+      NPQ --> F[Some local authority roles]
+      NPQ --> G[RISE schools]
+
+      class NPQ mainBox;
+      class A,B,C,D,E,F,G subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+  <div class="mermaid" style="{{ diagramStyle }}">
+    graph TD
+      NPQ[EHCO]
+
+      NPQ --> A[In your first 5 years of headship in England in a state-funded school or 16 to 19 organisation - currently doing or have done the NPQH]
+
+      class NPQ mainBox;
+      class A subBox;
+
+      classDef mainBox fill:#FFD700,stroke:#333,stroke-width:2px;
+      classDef subBox fill:#87CEFA,stroke:#333,stroke-width:1px;
+  </div>
+
+{% endblock %}
