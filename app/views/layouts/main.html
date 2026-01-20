@@ -16,6 +16,8 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% endblock %}
 
 {% block bodyEnd %}
+{{ super() }}
+
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script>
     mermaid.initialize({ startOnLoad: true });
