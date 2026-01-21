@@ -25,7 +25,7 @@ router.post('/course-start-answer', function (req, res) {
     delete data['npq-funded'];
 
     if (startMonth === "April 2026") {
-        res.redirect('/select-npq')
+        res.redirect('/unfunded-path/select-npq')
     } else {
         res.redirect('/check-funding-start')
     }
@@ -57,7 +57,7 @@ router.all('/check-funding-answer', function (req, res) {
 
     req.session.data = data;
 
-    res.render('select-npq', {
+    res.render('unfunded-path/select-npq', {
         data: data,
         serviceName: 'NPQ service'
     })

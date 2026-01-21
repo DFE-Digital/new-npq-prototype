@@ -124,7 +124,7 @@
         {% set courseRow = {
           key: { text: "Course" },
           value: { text: data['select-npq'] },
-          actions: { items: [{ href: "/select-npq", text: "Change" }] }
+          actions: { items: [{ href: "/unfunded-path/select-npq", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -146,7 +146,7 @@
         {% set providerRow = {
           key: { text: "Provider" },
           value: { text: data['select-provider'] },
-          actions: { items: [{ href: "/select-provider", text: "Change" }] }
+          actions: { items: [{ href: "/unfunded-path/select-provider", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -168,7 +168,7 @@
         {% set fundingSourceRow = {
           key: { text: "Funding source" },
           value: { text: data['funding-source-not-funded'] },
-          actions: { items: [{ href: "/funding-source-not-funded", text: "Change" }] }
+          actions: { items: [{ href: "/funded-follow-up/funding-source", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -179,7 +179,7 @@
         {% set fundingSourceCheckedFundingRow = {
           key: { text: "Funding source" },
           value: { text: data['funding-source'] },
-          actions: { items: [{ href: "/funding-source", text: "Change" }] }
+          actions: { items: [{ href: "/unfunded-path/funding-source", text: "Change" }] }
         } %}
       {% endif %}
 
