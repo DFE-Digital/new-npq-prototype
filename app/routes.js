@@ -279,7 +279,7 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
         ofstedNumber === 'A childcare agency or childminder on the disadvantaged list' &&
         !eligibleNpqs.includes(selectedNpqs)
     ) {
-        res.redirect('/funding-messages/not-eligible-for-funding-childminder-change-npq');
+        res.redirect('/funding-messages/not-eligible/childcare-agency-childminder');
 
     } else {
         res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible');
