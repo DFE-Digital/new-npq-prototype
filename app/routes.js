@@ -142,17 +142,17 @@ router.post('/setting-funding-check-answer', function (req, res) {
     } else if (ofsted.includes(setting)) {
         res.redirect('/funding-check/ofsted')
     } else if (role.includes(setting)) {
-        res.redirect('/role-funding-check')
+        res.redirect('/funding-check/role')
     } else if (employer.includes(setting)) {
-        res.redirect('/employer-funding-check')
+        res.redirect('/funding-check/employer')
     } else if (hospital.includes(setting)) {
-        res.redirect('/hospital-school-funding-check')
+        res.redirect('/funding-check/hospital-school')
     } else if (nursery.includes(setting)) {
-        res.redirect('/nursery-funding-check')
+        res.redirect('/funding-check/nursery')
     } else if (teacherTrainingProvider.includes(setting)) {
         res.redirect('/ITT-provider-funding-check')
     } else {
-        res.redirect('/not-eligible-for-funding-other')
+        res.redirect('/funding-messages/not-eligible/other')
     }
 
 })
@@ -222,7 +222,7 @@ router.post('/workplace-funding-check-answer', function (req, res) {
     ]
 
     if (workplaceCategory === "A workplace on either the schools, 16-19 or RISE list") {
-        res.redirect('/funding-messages/eligible-for-funding')
+        res.redirect('/funding-messages/eligible/schools-16-to-19-rise')
 
     } else if (workplaceCategory === "Maintained nursery school - disadvantaged list" &&
         disadvantagedMaintainedNurseryIneligible.includes(selectedNPQ)

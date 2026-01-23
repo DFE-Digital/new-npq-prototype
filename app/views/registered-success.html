@@ -101,7 +101,7 @@
 
       {% elseif data['workplace'] == 'A workplace on either the schools, 16-19 or RISE list' %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/funding-messages/eligible-for-funding' %}
+        {% set fundingHref = '/funding-messages/eligible/schools-16-to-19-rise' %}
 
       {% elseif data['workplace'] == 'A publicly funded: school, 16-19-setting, nursery, hospital school' and data['npq-funded'] in publiclyFundedEligible%}
         {% set fundingStatus = 'Eligible' %}
@@ -308,7 +308,7 @@
 
       {% set courseName = data['npq-funded'] or data['select-npq'] %}
 
-      <p>Once you’ve applied with your provider, they’ll:
+      <p>Once you’ve applied with your provider, they’ll:</p>
 
       <ul class="govuk-list govuk-list--bullet">
         <li>check you meet the course suitability requirements</li>

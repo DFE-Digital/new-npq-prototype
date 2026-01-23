@@ -69,7 +69,7 @@
 
       {% elseif data['workplace'] == 'A workplace on either the schools, 16-19 or RISE list' %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/funding-messages/eligible-for-funding' %}
+        {% set fundingHref = '/funding-messages/eligible/schools-16-to-19-rise' %}
 
       {% elseif data['workplace'] == 'A publicly funded: school, 16-19-setting, nursery, hospital school' and data['npq-funded'] in publiclyFundedEligible%}
         {% set fundingStatus = 'Eligible' %}
@@ -190,7 +190,7 @@
         {% set publiclyFundedNurseryRow = {
           key: { text: "Publicly funded nursery" },
           value: { text: data['publicly-funded-nursery'] },
-          actions: { items: [{ href: "/nursery-funding-check", text: "Change" }] }
+          actions: { items: [{ href: "/funding-check/nursery", text: "Change" }] }
         } %}
       {% endif %}
 
