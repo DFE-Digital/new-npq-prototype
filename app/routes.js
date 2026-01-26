@@ -86,7 +86,7 @@ router.post('/england-funding-check-answer', function (req, res) {
     if (data['england'] === "Yes") {
         res.redirect('/funding-check/select-npq');
     } else {
-        res.redirect('/funding-messages/not-eligible-for-funding-england');
+        res.redirect('/funding-messages/not-eligible/england');
     }
 });
 
