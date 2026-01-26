@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <h1 class="govuk-heading-l" style="margin: 0;">
+                You cannot register for {{ data['npq-funded'] }}
+            </h1>
+        </div>
+
+        <p class="govuk-body govuk-!-margin-top-6">
+            This is because you do not meet the suitability criteria.
+        </p>
+
+        <div class="govuk-button-group" style="align-items: center;">
+
+            <form class="form" action="/funding-check/select-npq" method="post" style="display:inline">
+                {{ govukButton({
+                text: "Choose another NPQ"
+                }) }}
+            </form>
+
+            <a class="govuk-link" href="/">
+                Exit
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

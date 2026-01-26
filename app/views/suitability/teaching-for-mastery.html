@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Check your suitability
+      </span>
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+        Have you taken the primary maths Teaching for Mastery programme?
+      </h1>
+
+      <form class="form" action="/teaching-for-mastery-answer" method="post">
+
+          {{ govukRadios({
+            name: "teaching-for-mastery",
+            fieldset: {
+              legend: {
+                text: "Have you taken the primary maths Teaching for Mastery programme?",
+                classes: "govuk-visually-hidden"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                  hint: {
+                  text: "Select yes as long as you’ve done at least a year of the course"
+                  }
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

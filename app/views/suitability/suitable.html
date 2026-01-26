@@ -1,0 +1,40 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <h1 class="govuk-heading-l" style="margin: 0;">
+                You meet the suitability criteria
+            </h1>
+        </div>
+
+        <p class="govuk-body govuk-!-margin-top-6">
+            When you apply with your provider, they’ll ask you to demonstrate your suitability for the course.
+        </p>
+
+        <form class="form" action="/funded-follow-up/provider" method="post">
+
+            {{ govukButton({
+            text: "Continue to register"
+            }) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

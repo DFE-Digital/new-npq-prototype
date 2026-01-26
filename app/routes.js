@@ -285,4 +285,45 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
         res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible');
     }
 
-});
+})
+
+
+router.post('/funded-answer', function (req, res) {
+
+    const npq = req.session.data['npq-funded']
+
+    if (npq === 'Leading primary mathematics') {
+        res.redirect('/suitability/teaching-for-mastery')
+    } else {
+        res.redirect('/funded-follow-up/provider')
+    }
+
+})
+
+router.post('/teaching-for-mastery-answer', function (req, res) {
+
+    const teachingForMastery = req.session.data['teaching-for-mastery']
+
+    if (teachingForMastery === 'Yes') {
+        res.redirect('/suitability/suitable')
+    } else {
+        res.redirect('/suitability/understanding-mastery-approaches')
+    }
+
+})
+
+router.post('/understanding-mastery-approaches-answer', function (req, res) {
+
+    const understandingMasteryApproaches = req.session.data['understanding-mastery-approaches']
+
+    if (understandingMasteryApproaches === 'Yes') {
+        res.redirect('/suitability/suitable')
+    } else {
+        res.redirect('/suitability/cannot-register')
+    }
+
+})
+
+
+
+;
