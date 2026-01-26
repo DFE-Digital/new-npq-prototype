@@ -150,7 +150,7 @@ router.post('/setting-funding-check-answer', function (req, res) {
     } else if (nursery.includes(setting)) {
         res.redirect('/funding-check/nursery')
     } else if (teacherTrainingProvider.includes(setting)) {
-        res.redirect('/ITT-provider-funding-check')
+        res.redirect('/funding-check/ITT-provider')
     } else {
         res.redirect('/funding-messages/not-eligible/other')
     }
@@ -250,7 +250,7 @@ router.post('/workplace-funding-check-answer', function (req, res) {
         res.redirect('/funding-messages/not-eligible/publicly-funded-setting')
 
     } else {
-        res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible')
+        res.redirect('/funding-messages/not-eligible/workplace-not-eligible')
     }
 
 })
@@ -272,7 +272,7 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
         ofstedNumber === 'A childcare agency or childminder on the disadvantaged list' &&
         eligibleNpqs.includes(selectedNpqs)
     ) {
-        res.redirect('/funding-messages/eligible-for-funding-early-years');
+        res.redirect('/funding-messages/eligible/childcare-agency-childminder');
 
     } else if (
         doYouHaveOfstedNumber === 'Yes' &&

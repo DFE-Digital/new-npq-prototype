@@ -27,7 +27,7 @@
       {% if data['ofsted-number'] == 'A childcare agency or childminder on the disadvantaged list' and
             data['npq-funded'] in eligibleChildminderNpqs %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/funding-messages/eligible-for-funding-early-years' %}
+        {% set fundingHref = '/funding-messages/eligible/childcare-agency-childminder' %}
 
       {% elseif data['ofsted-number'] == 'A childcare agency or childminder on the disadvantaged list' and
               data['npq-funded'] not in eligibleChildminderNpqs %}
@@ -65,7 +65,7 @@
 
       {% elseif data['ofsted-number'] == 'An early years setting not on the early years list' or data['do-you-have-ofsted-number'] == 'No' or data['workplace'] == 'Workplace not on any of the eligibility lists' %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/funding-messages/not-eligible-for-funding-workplace-not-eligible' %}
+        {% set fundingHref = '/funding-messages/not-eligible/workplace-not-eligible' %}
 
       {% elseif data['workplace'] == 'A workplace on either the schools, 16-19 or RISE list' %}
         {% set fundingStatus = 'Eligible' %}
