@@ -90,6 +90,17 @@ router.post('/england-funding-check-answer', function (req, res) {
     }
 });
 
+
+router.post('/select-npq-answer', function (req, res) {
+
+    if (req.session.data['npq-funded'] === 'Early headship coaching offer') {
+        res.redirect('/funding-check/ehco');
+    } else {
+        res.redirect('/funding-check/setting');
+    }
+
+})
+
 router.post('/setting-funding-check-answer', function (req, res) {
 
     // Clear downstream answers when setting changes
