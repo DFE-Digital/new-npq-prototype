@@ -288,7 +288,7 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
 })
 
 
-router.post('/funded-answer', function (req, res) {
+router.post('/maths-suitability-answer', function (req, res) {
 
     const npq = req.session.data['npq-funded']
 
@@ -296,6 +296,18 @@ router.post('/funded-answer', function (req, res) {
         res.redirect('/suitability/teaching-for-mastery')
     } else {
         res.redirect('/funded-follow-up/provider')
+    }
+
+})
+
+router.post('/maths-suitability-not-funded-answer', function (req, res) {
+
+    const npq = req.session.data['npq-funded']
+
+    if (npq === 'Leading primary mathematics') {
+        res.redirect('/suitability/teaching-for-mastery')
+    } else {
+        res.redirect('/funded-follow-up/funding-source')
     }
 
 })
@@ -324,6 +336,20 @@ router.post('/understanding-mastery-approaches-answer', function (req, res) {
 
 })
 
+router.post('/suitable-answer', function(req, res) {
+    const npq = req.session.data['npq-funded'];
+    const workplace = req.session.data['workplace'];
+
+    if (
+        npq === 'Leading primary mathematics' &&
+        workplace === 'Maintained nursery school - disadvantaged list'
+    ) {
+        return res.redirect('/funded-follow-up/funding-source');
+    }
+
+    res.redirect('/funded-follow-up/provider');
+});
 
 
-;
+
+

@@ -30,22 +30,12 @@
       </p>
 
       <p>
-        However, your workplace is listed as a highly disadvantaged maintained nursery, so you would be eligible for the following NPQs:
+        However, your workplace is listed as a highly disadvantaged maintained nursery, so you would be eligible for the Early years leadership NPQ.
       </p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Early years leadership</li>
-        <li>Leading teacher development</li>
-      </ul>
 
       <p>
-        As a publicly funded nursery, you would also be eligible for the following NPQs:
+        As a publicly funded nursery, you would also be eligible for the SENCO and Headship NPQs.
       </p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>SENCO</li>
-        <li>Headship</li>
-      </ul>
 
       <p>
         You can go back to
@@ -53,11 +43,23 @@
         if you prefer.
       </p>
 
-      <form class="form" action="/funded-follow-up/funding-source" method="post">
+      {% if data['npq-funded'] == "Leading primary mathematics" %}
+      <p class="govuk-body">
+        Alternatively, continue to check your suitability for the Leading primary mathematics NPQ.
+      </p>
+      {% endif %}
 
-        {{ govukButton({
-          text: "Continue to register"
-        }) }}
+      <form class="form" action="/maths-suitability-not-funded-answer" method="post">
+
+        {% if data['npq-funded'] == "Leading primary mathematics" %}
+          {{ govukButton({
+            text: "Continue to check suitability"
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Continue to register"
+          }) }}
+        {% endif %}
 
       </form>
 
