@@ -208,12 +208,12 @@ router.post('/workplace-funding-check-answer', function (req, res) {
         "Leading teaching",
         "Leading primary mathematics",
         "Senior leadership",
+        "Leading teacher development",
         "Executive leadership"
     ]
 
     var disadvantagedMaintainedNurseryEligible = [
         "Early years leadership",
-        "Leading teacher development",
     ]
 
     var publiclyFundedEligible = [
