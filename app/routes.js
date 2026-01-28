@@ -245,6 +245,17 @@ router.post('/workplace-funding-check-answer', function (req, res) {
     ) {
         res.redirect('/funding-messages/eligible/maintained-nursery-disadvantaged-list')
 
+    } else if (workplaceCategory === "Early years organisation - disadvantaged list" &&
+        disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/funding-messages/eligible/early-years-disadvantage-list')
+
+    } else if (
+        workplaceCategory === "Early years organisation - disadvantaged list" &&
+        !disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/funding-messages/not-eligible/early-years-disadvantage-list')
+
     } else if (workplaceCategory === "Maintained nursery school - disadvantaged list" &&
         publiclyFundedEligible.includes(selectedNPQ)
     ) {

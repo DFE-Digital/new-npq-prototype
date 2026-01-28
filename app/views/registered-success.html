@@ -91,6 +91,20 @@
         {% set fundingStatus = 'Eligible' %}
         {% set fundingHref = '/funding-messages/eligible/publicly-funded-nursery' %}
 
+      {% elseif
+        data['workplace'] == 'Early years organisation - disadvantaged list'
+        and data['npq-funded'] in maintainedNurseryEligible
+      %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/funding-messages/eligible/early-years-disadvantage-list' %}
+
+      {% elseif
+        data['workplace'] == 'Early years organisation - disadvantaged list'
+        and data['npq-funded'] not in maintainedNurseryEligible
+      %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/funding-messages/not-eligible/early-years-disadvantage-list' %}
+
       {% elseif data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] != 'Early years leadership' %}
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible/maintained-nursery-disadvantaged-list' %}
