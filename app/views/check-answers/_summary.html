@@ -77,7 +77,7 @@
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible/maintained-nursery-disadvantaged-list' %}
 
-      {% elseif data['ofsted-number'] == 'An early years setting not on the early years list' or data['do-you-have-ofsted-number'] == 'No' or data['workplace'] == 'Workplace not on any of the eligibility lists' %}
+      {% elseif data['ofsted-number'] == 'An early years setting not on the early years list' or data['do-you-have-ofsted-number'] == 'No' or data['workplace'] == 'Workplace not on any of the eligibility lists and not one of the settings eligible for SENCO and Headship' %}
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible/workplace-not-eligible' %}
 
