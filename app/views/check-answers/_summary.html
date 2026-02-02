@@ -92,6 +92,28 @@
       {% elseif data['workplace'] == 'A publicly funded: school, 16-19-setting, nursery, hospital school' and data['npq-funded'] not in publiclyFundedEligible%}
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible/publicly-funded-setting' %}
+
+      {% elseif
+        data['workplace'] == 'Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship'
+        and data['npq-funded'] in maintainedNurseryIneligible
+      %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/funding-messages/not-eligible/early-years-disadvantage-list-senco-headship' %}
+
+      {% elseif
+        data['workplace'] == 'Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship'
+        and data['npq-funded'] in publiclyFundedEligible
+      %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/funding-messages/eligible/publicly-funded-setting' %}
+
+      {% elseif
+        data['workplace'] == 'Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship'
+        and data['npq-funded'] in maintainedNurseryEligible
+      %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/funding-messages/eligible/early-years-disadvantage-list' %}
+
       {% endif %}
 
       {% if fundingStatus %}
