@@ -271,6 +271,21 @@ router.post('/workplace-funding-check-answer', function (req, res) {
     ) {
         res.redirect('/funding-messages/not-eligible/publicly-funded-setting')
 
+    } else if (workplaceCategory === "Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship" &&
+        disadvantagedMaintainedNurseryIneligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/funding-messages/not-eligible/early-years-disadvantage-list-senco-headship')
+
+    } else if (workplaceCategory === "Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship" &&
+        publiclyFundedEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/funding-messages/eligible/publicly-funded-setting')
+
+    } else if (workplaceCategory === "Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship" &&
+        disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/funding-messages/eligible/early-years-disadvantage-list')
+
     } else {
         res.redirect('/funding-messages/not-eligible/workplace-not-eligible')
     }
