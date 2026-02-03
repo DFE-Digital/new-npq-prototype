@@ -24,7 +24,7 @@ router.post('/course-start-answer', function (req, res) {
     delete data['select-npq'];
     delete data['npq-funded'];
 
-    if (startMonth === "April 2026") {
+    if (startMonth === "No, I already started in Spring") {
         res.redirect('/unfunded-path/select-npq')
     } else {
         res.redirect('/check-funding-start')
