@@ -117,13 +117,13 @@ router.post('/setting-funding-check-answer', function (req, res) {
         'School',
         'Academy trust',
         '16 to 19 setting',
-        'Preschool class or nursery - part of a school',
+        'Preschool class',
         'Secure children’s home or training centre',
     ]
 
     const ofsted = [
         'Private nursery',
-        'Childminding setting',
+        'Childcare',
         'Other - early years',
     ]
 
