@@ -54,7 +54,7 @@
         "SENCO"
       ] %}
 
-      {% set eligibleChildminderNpqs = ['Early years leadership', 'Leading teacher development'] %}
+      {% set eligibleChildminderNpqs = ['Early years leadership'] %}
 
       {% if data['ofsted-number'] == 'A childcare agency or childminder on the disadvantaged list' and
             data['npq-funded'] in eligibleChildminderNpqs %}
@@ -65,6 +65,16 @@
               data['npq-funded'] not in eligibleChildminderNpqs %}
         {% set fundingStatus = 'Not eligible' %}
         {% set fundingHref = '/funding-messages/not-eligible/childcare-agency-childminder' %}
+
+      {% elseif data['ofsted-number'] == 'An early years setting on the disadvantaged list' and
+            data['npq-funded'] not in eligibleChildminderNpqs %}
+        {% set fundingStatus = 'Not eligible' %}
+        {% set fundingHref = '/funding-messages/not-eligible/early-years-disadvantage-list' %}
+
+      {% elseif data['ofsted-number'] == 'An early years setting on the disadvantaged list' and
+            data['npq-funded'] in eligibleChildminderNpqs %}
+        {% set fundingStatus = 'Eligible' %}
+        {% set fundingHref = '/funding-messages/eligible/early-years-disadvantage-list' %}
 
       {% elseif data['england'] == 'No' %}
         {% set fundingStatus = 'Not eligible' %}

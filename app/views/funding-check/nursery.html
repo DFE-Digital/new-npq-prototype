@@ -20,7 +20,7 @@
         Check your funding eligibility
       </span>
       <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
-        Do you work in a publicly funded nursery?
+        What early years setting do you work in?
       </h1>
 
       <form class="form" action="/nursery-funding-check-answer" method="post">
@@ -29,18 +29,30 @@
               name: "publicly-funded-nursery",
               fieldset: {
                 legend: {
-                  text: "Do you work in a publicly funded nursery?",
+                  text: "What early years setting do you work in?",
                   classes: "govuk-visually-hidden"
                 }
               },
             items: [
               {
-                value: "Yes",
-                text: "Yes"
+                value: "Local authority-maintained nursery",
+                text: "Local authority-maintained nursery"
               },
               {
-                value: "No",
-                text: "No"
+                value: "Pre-school class or nursery that’s part of a school (maintained or independent)",
+                text: "Pre-school class or nursery that’s part of a school (maintained or independent)"
+              },
+              {
+                value: "Private nursery",
+                text: "Private nursery"
+              },
+              {
+                value: "Childminding",
+                text: "Childminding"
+              },
+              {
+                value: "Other",
+                text: "Other"
               }
             ]
           }) }}

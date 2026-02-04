@@ -141,7 +141,7 @@ router.post('/setting-funding-check-answer', function (req, res) {
     ]
 
     const nursery = [
-        'Nursery',
+        'Early years',
     ]
 
     const teacherTrainingProvider = [
@@ -181,8 +181,10 @@ router.post('/nursery-funding-check-answer', function (req, res) {
     delete data['ofsted-number'];
     delete data['select-provider-funded']
 
-    if (publiclyFundedNursery === "Yes") {
-        res.redirect('/funding-check/workplace');
+    if (publiclyFundedNursery === "Local authority-maintained nursery" || publiclyFundedNursery === "Pre-school class or nursery that’s part of a school (maintained or independent)") {
+        res.redirect('/funding-check/workplace')
+    } else if (publiclyFundedNursery === "Private nursery" || publiclyFundedNursery === "Childcare") {
+        res.redirect('/funding-check/ofsted');
     } else {
         res.redirect('/funding-check/ofsted');
     }
@@ -302,7 +304,7 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
     req.session.data['funding-source-not-funded'] = null;
     req.session.data['select-provider-funded'] = null;
 
-    const eligibleNpqs = ['Early years leadership', 'Leading teacher development'];
+    const eligibleNpqs = ['Early years leadership'];
 
     if (
         doYouHaveOfstedNumber === 'Yes' &&
@@ -317,6 +319,20 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
         !eligibleNpqs.includes(selectedNpqs)
     ) {
         res.redirect('/funding-messages/not-eligible/childcare-agency-childminder');
+
+    } else if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'An early years setting on the disadvantaged list' &&
+        eligibleNpqs.includes(selectedNpqs)
+    ) {
+        res.redirect('/funding-messages/eligible/early-years-disadvantage-list');
+
+    } else if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'An early years setting on the disadvantaged list' &&
+        !eligibleNpqs.includes(selectedNpqs)
+    ) {
+        res.redirect('/funding-messages/not-eligible/early-years-disadvantage-list');
 
     } else {
         res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible');
