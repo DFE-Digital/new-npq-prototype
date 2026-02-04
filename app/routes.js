@@ -305,6 +305,7 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
     req.session.data['select-provider-funded'] = null;
 
     const eligibleNpqs = ['Early years leadership'];
+    const publiclyFundedNPQs = ['SENCO', 'Headship'];
 
     if (
         doYouHaveOfstedNumber === 'Yes' &&
@@ -333,6 +334,34 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
         !eligibleNpqs.includes(selectedNpqs)
     ) {
         res.redirect('/funding-messages/not-eligible/early-years-disadvantage-list');
+
+    } else if (
+      doYouHaveOfstedNumber === 'Yes' &&
+      ofstedNumber === 'An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship' &&
+      (
+        eligibleNpqs.includes(selectedNpqs)
+      )
+    ) {
+      res.redirect('/funding-messages/eligible/early-years-disadvantage-list');
+
+    } else if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship' &&
+        (
+          publiclyFundedNPQs.includes(selectedNpqs)
+        )
+    ) {
+        res.redirect('/funding-messages/eligible/publicly-funded-setting');
+
+    } else if (
+      doYouHaveOfstedNumber === 'Yes' &&
+      ofstedNumber === 'An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship' &&
+      (
+        !eligibleNpqs.includes(selectedNpqs) ||
+        !publiclyFundedNPQs.includes(selectedNpqs)
+      )
+    ) {
+      res.redirect('/funding-messages/not-eligible/early-years-disadvantage-list-senco-headship');
 
     } else {
         res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible');
