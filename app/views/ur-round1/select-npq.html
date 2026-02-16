@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Check your funding eligibility
+      </span>
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+        Select your NPQ
+      </h1>
+
+      <form class="form" action="/ur1-select-npq" method="post">
+
+        {{ govukRadios({
+              name: "ur1-npq",
+              fieldset: {
+                legend: {
+                  text: "Select your NPQ",
+                  classes: "govuk-visually-hidden"
+                }
+              },
+            items: [
+              {
+                value: "ur1-Leading behaviour and culture",
+                text: "Leading behaviour and culture"
+              },
+              {
+                value: "ur1-Leading literacy",
+                text: "Leading literacy"
+              },
+              {
+                value: "ur1-Leading teaching",
+                text: "Leading teaching"
+              },
+              {
+                value: "ur1-Leading teacher development",
+                text: "Leading teacher development"
+              },
+              {
+                value: "ur1-Leading primary mathematics",
+                text: "Leading primary mathematics"
+              },
+              {
+                value: "ur1-Senior leadership",
+                text: "Senior leadership"
+              },
+              {
+                value: "ur1-Headship",
+                text: "Headship"
+              },
+              {
+                value: "ur1-Executive leadership",
+                text: "Executive leadership"
+              },
+              {
+                value: "ur1-Early years leadership",
+                text: "Early years leadership"
+              },
+              {
+                value: "ur1-SENCO",
+                text: "SENCO"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "ur1-Early headship coaching offer",
+                text: "Early headship coaching offer",
+                hint: {
+                  text: "Networking and support if you're in your first 5 years of headship"
+                }
+              }
+            ]
+          }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

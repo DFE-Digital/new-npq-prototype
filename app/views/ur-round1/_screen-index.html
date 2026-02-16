@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+
+<h1 class="govuk-heading-l">
+UR round 1: Elegibility checker
+  </h1>
+
+
+  <p>Feburary 2026</p>
+
+  <p>
+    <a href="https://lucid.app/lucidspark/35eb8f9a-dc28-4387-8e3c-652e13f0ee29/edit?invitationId=inv_595074a0-0940-4d6c-9d15-78393d995228&page=0_0#" target="blank">Lucid board</a>
+    <br>
+    <a href="https://lucid.app/lucidspark/35eb8f9a-dc28-4387-8e3c-652e13f0ee29/edit?viewport_loc=97478%2C67963%2C58336%2C28378%2C0_0&invitationId=inv_595074a0-0940-4d6c-9d15-78393d995228" target="blank">Prototype map (same board)</a>
+  </p>
+
+
+  <p>
+    For our first round of UR, we will be testing the eligibility checker.
+    <br>
+    <br>
+    The goal is understanding the following:
+  </p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>how well do users understand the questions in the EC</li>
+  <li>can users get through the EC easily, both for a simple, happy path and a more niche, complex scenario?</li>
+  <li>validate content surrounding the spring cohort</li>
+</ul>
+
+ 
+<div class="govuk-!-padding-bottom-3"></div>
+
+ <table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Link</th>
+      <th scope="col" class="govuk-table__header">Description</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+
+    
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="start">Start page: select scenario</a></td>
+      <td class="govuk-table__cell">Prototype only. Lets user select the scenario.</td>
+    </tr>
+    
+    </tbody>
+    </table>
+   
+
+
+    
+  
+{% endblock %}

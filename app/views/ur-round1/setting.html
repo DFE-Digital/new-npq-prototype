@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Check your funding eligibility
+    </span>
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+      What setting do you work in?
+    </h1>
+
+    <form class="form" action="/ur1-setting" method="post">
+
+      {{ govukRadios({
+        name: "ur1-setting",
+        fieldset: {
+          legend: {
+            text: "What setting do you work in?",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "Early years",
+            text: "Early years",
+              hint: {
+              text: "Such as nurseries, preschools, playgroups, childcare"
+            }
+          },
+          { value: "School", text: "School" },
+          { value: "16 to 19 setting", text: "16 to 19 setting" },
+          { value: "Academy trust", text: "Academy trust" },
+          { value: "Working across schools", text: "Local authority - working across schools" },
+          { value: "Virtual school", text: "Virtual school" },
+          { value: "Hospital school", text: "Hospital school" },
+          { value: "Young offender institution", text: "Young offender institution" },
+          { value: "Secure children’s home or training centre", text: "Secure children’s home or training centre" },
+          { value: "As a lead mentor for an accredited ITT provider", text: "Initial teacher training (ITT) - as a lead mentor" },
+          { divider: "or" },
+          { value: "Other", text: "Other" }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

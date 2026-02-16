@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Check your funding eligibility
+      </span>
+
+      <h1 class="govuk-heading-l">
+        Your workplace
+      </h1>
+
+      <p class="govuk-body">
+        Search for your workplace using any combination of postcode, workplace name, URN or street name.
+      </p>
+
+      <p class="govuk-body">
+        If you work for a trust, search for one of its schools.
+      </p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            If you cannot find your workplace
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">You can:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                check its details on
+                <a href="https://get-information-schools.service.gov.uk/Search?SelectedTab=Establishments"
+                   class="govuk-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                   Get information about schools (opens in a new tab)
+                </a>
+              </li>
+              <li>
+                <a href="not-in-prototype" class="govuk-link">check your workplace setting</a>
+              </li>
+            </ul>
+        </div>
+      </details>
+
+  <form class="form" action="/ur1-workplace" method="post">
+
+  {{ xGovukAutocomplete({
+    id: "ur1-workplace",
+    name: "ur1-workplace",
+    allowEmpty: false,
+    label: {
+      classes: "govuk-label--m",
+      isPageHeading: false,
+      text: "Search for your workplace"
+    },
+    items: [
+      { text: "The Aldgate School", value: "test1" },
+      { text: "West Hampstead Primary School", value: "test2" },
+      { text: "Christ Church School", value: "test3" },
+      { text: "Greenfield High School", value: "scenario1" },
+      { text: "St Mary's Kilburn Church of England Primary School", value: "test4" },
+      { text: "Regent High School", value: "test5" },
+      { text: "London Fields Primary School", value: "test6" },
+      { text: "Princess May Primary School", value: "test7" },
+      { text: "Little Acorns Nursery", value: "scenario2" }
+    ]
+  }) }}
+
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+</form>
+    </div>
+  </div>
+{% endblock %}
