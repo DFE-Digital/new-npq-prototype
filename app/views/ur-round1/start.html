@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/ur1-scenario1-answer" method="post">
+
+          {{ govukRadios({
+            name: "ur1-start",
+            fieldset: {
+              legend: {
+                text: "Select your scenario",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "ur1-scenario1",
+                text: "Scenario 1"
+              },
+              {
+                value: "ur1-scenario2",
+                text: "Scenario 2"
+              }
+            ]
+          }) }}
+
+       {{ govukButton({
+  text: "Start",
+  isStartButton: true
+    }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

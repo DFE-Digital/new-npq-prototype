@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-l">Not in prototype</h1>
+
+          <p>
+            No worries, you haven't done anything wrong.
+          </p>
+
+          <p class="govuk-body govuk-!-padding-bottom-2">
+          Click the button at the bottom of the page to go back to the scenario.</p>
+
+       {{ govukButton({
+  text: "Go back",
+  href: "javascript:window.history.back()"
+    }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-l">End of scenario</h1>
+
+          <p>
+           Pause here and listen to the researcher.
+          </p>
+
+          <p class="govuk-body govuk-!-padding-bottom-2">
+          When prompted, click the button below to continue the scenario.</p>
+
+       {{ govukButton({
+  text: "Continue",
+  href: "start"
+    }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

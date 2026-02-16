@@ -434,4 +434,99 @@ router.post('/suitable-answer', function(req, res) {
 
 
 
+/// EC Round 1 UR
 
+//scenario selection
+router.post("/ur1-scenario1-answer", function (req, res) {
+  const data = req.session.data;
+    
+    if (data['ur1-start'] === "ur1-scenario1") {
+        res.redirect('/ur-round1/course-start');
+    } else {
+        res.redirect('/ur-round1/course-start');
+    }
+});
+
+//cohort selection
+router.post("/ur1-cohort-answer", function (req, res) {
+  const data = req.session.data;
+    
+    if (data['ur1-cohort'] === "autumn") {
+        res.redirect('/ur-round1/england');
+    } else {
+        res.redirect('/ur-round1/not-in-prototype');
+    }
+});
+
+
+//work in england
+router.post("/ur1-work-in-england-answer", function (req, res) {
+  const data = req.session.data;
+    
+    if (data['ur1-england'] === "Yes") {
+        res.redirect('/ur-round1/select-npq');
+    } else {
+        res.redirect('/ur-round1/not-in-prototype');
+    }
+});
+
+// select npq
+router.post("/ur1-select-npq", function (req, res) {
+  const data = req.session.data;
+  const selectedNpq = data['ur1-npq'];
+    
+    if (selectedNpq === "ur1-Leading teaching" || selectedNpq === "ur1-SENCO") {
+        res.redirect('/ur-round1/setting');
+    } else if (selectedNpq === "ur1-Early years leadership") {
+        res.redirect('/ur-round1/early-years-setting');
+    } else {
+        res.redirect('/ur-round1/not-in-prototype');
+    }
+});
+
+// select setting
+router.post('/ur1-setting', function (req, res) {
+
+    const setting = req.session.data['ur1-setting']
+
+    if (setting === "Early years") {
+        res.redirect('/ur-round1/early-years-setting')
+    } else if (setting === "School") {
+        res.redirect('/ur-round1/workplace')
+    } else {
+        res.redirect('/ur-round1/not-in-prototype')
+    }
+
+})
+
+// select workplace
+router.post('/ur1-workplace', function (req, res) {
+
+    const workplaceValue = req.session.data['ur1-workplace']
+
+    if (workplaceValue === "scenario1") {
+        res.redirect('/ur-round1/eligible1')
+    } else if (workplaceValue === "scenario2") {
+        res.redirect('/ur-round1/not-eligible-early-years')
+    } else {
+        res.redirect('/ur-round1/not-in-prototype')
+    }
+})
+
+
+// Early years setting
+router.post('/ur1-early-years-answer', function (req, res) {
+
+    const eaWorkplaceValue = req.session.data['ur1-early-years']
+
+    if (eaWorkplaceValue === "Local authority-maintained nursery") {
+        res.redirect('/ur-round1/workplace')
+    } 
+    else if (eaWorkplaceValue === "Pre-school class or nursery that's part of a school (maintained or independent)")
+    {
+        res.redirect('/ur-round1/workplace')
+    }
+    else {
+        res.redirect('/ur-round1/ofsted')
+    }
+})
