@@ -18,17 +18,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-          <h1 class="govuk-heading-l">Not in prototype</h1>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+          <h1 class="govuk-heading-l" style="margin: 0;">
+            DfE scholarship funding
+          </h1>
+          {{ govukTag({
+            text: "Eligible",
+            classes: "govuk-tag--red"
+          }) }}
+      </div>
 
+<br>
           <p>
-            No worries, you haven't done anything wrong.
+            You’re not eligible for DfE scholarship funding because you do not work in England.
           </p>
 
-          <p class="govuk-body govuk-!-padding-bottom-2">
-          Click the button at the bottom of the page to go back to the scenario.</p>
-
        {{ govukButton({
-  text: "Go back",
+  text: "Continue to register",
   href: "javascript:window.history.back()"
     }) }}
 
