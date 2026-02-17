@@ -530,3 +530,24 @@ router.post('/ur1-early-years-answer', function (req, res) {
         res.redirect('/ur-round1/ofsted')
     }
 })
+
+// Early years Ofsted
+router.post('/ur1-ofsted-answer', function (req, res) {
+
+  const hasOfsted = req.session.data['ur1-ofsted']
+  const ofstedNumber = req.session.data['ofsted-number']
+
+  if (hasOfsted === "No") {
+    return res.redirect('/ur-round1/not-in-prototype')
+  }
+
+  if (ofstedNumber === "AB11111111") {
+    return res.redirect('/ur-round1/early-years-eligible')
+  }
+
+  if (ofstedNumber === "XX88888888") {
+    return res.redirect('/ur-round1/early-years-ineligible')
+  }
+
+  return res.redirect('/ur-round1/not-in-prototype')
+})

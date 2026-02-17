@@ -32,11 +32,11 @@
       Is your workplace registered with Ofsted?
     </h1>
 
-      <form class="form" action="/ofsted-number-funding-check-answer" method="post">
+      <form class="form" action="/ur1-ofsted-answer" method="post">
 
         {% set ofstedNumberInput %}
           {{ xGovukAutocomplete({
-            id: "ofsted-number",
+           id: "ofsted-number",
             name: "ofsted-number",
             allowEmpty: false,
             label: {
@@ -46,13 +46,15 @@
             items: [
               { text: "A childcare agency or childminder on the disadvantaged list", value: "A childcare agency or childminder on the disadvantaged list" },
               { text: "An early years setting on the disadvantaged list", value: "An early years setting on the disadvantaged list" },
-              { text: "An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship", value: "An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship" }
+              { text: "An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship", value: "An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship" },
+              { text: "AB11111111", value: "AB11111111" },
+              { text: "XX88888888", value: "XX88888888" }
             ]
           }) }}
         {% endset %}
 
         {{ govukRadios({
-          name: "do-you-have-ofsted-number",
+          name: "ur1-ofsted",
           fieldset: {
             legend: {
               text: "Do you have an Ofsted unique reference number?",
@@ -61,19 +63,16 @@
             }
           },
           items: [
-            {
-              value: "Yes",
-              text: "Yes",
-              checked: false,
-              conditional: {
-                html: ofstedNumberInput
+              {
+                value: "Yes",
+                text: "Yes",
+                conditional: { html: ofstedNumberInput }
+              },
+              {
+                value: "No",
+                text: "No"
               }
-            },
-            {
-              value: "No",
-              text: "No"
-            }
-          ]
+            ]
         }) }}
 
         {{ govukButton({
