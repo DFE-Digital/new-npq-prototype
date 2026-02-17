@@ -441,9 +441,9 @@ router.post("/ur1-scenario1-answer", function (req, res) {
   const data = req.session.data;
     
     if (data['ur1-start'] === "ur1-scenario1") {
-        res.redirect('/ur-round1/course-start');
+        res.redirect('/ur-round1/start-page');
     } else {
-        res.redirect('/ur-round1/course-start');
+        res.redirect('/ur-round1/start-page');
     }
 });
 
