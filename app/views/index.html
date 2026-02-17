@@ -5,13 +5,57 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
+ <h1 class="govuk-heading-l">Main screen index for current prototypes</h1>
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
 
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
-    </h1>
+
+  <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-caption-xl">UR round 1: Eligibility checker</caption>
+       <caption class="govuk-table__caption govuk-caption-s">February 2026</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+           <th scope="col" class="govuk-table__header" width="15%">Link</th>
+          <th scope="col" class="govuk-table__header" width="25%">Status</th>
+          <th scope="col" class="govuk-table__header">Changelog</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+             <a href="ur-round1/_screen-index.html">Full screen index</a>
+             
+          </td>
+          <td class="govuk-table__cell">
+            <span class="govuk-tag govuk-tag--blue">
+            Designs completed, pending some CD changes.
+            </span>
+         
+          </td>
+          <td class="govuk-table__cell">
+            <p>
+             Designs created to check the eligibility checker on NPQ. This has been made to check whether users understand the content and if the changes made can be easily navigated.
+          </p>
+          <p>
+        
+        <div class="govuk-inset-text">
+              <i>
+             February 2025
+            </i> 
+            <br><br>
+            IxD complete, CD pending.
+            </div>
+          </td>
+        </tr>
+
+        </tbody>
+        </table>
+
+
+    
+    
+    <h1 class="govuk-heading-l">Older prototypes</h1>
+
 
     <ul class="govuk-list">
       <li>
@@ -22,6 +66,7 @@
       </li>
     </ul>
 
+{% include "govuk-prototype-kit/includes/homepage-top.njk" %}
   </div>
 </div>
 
