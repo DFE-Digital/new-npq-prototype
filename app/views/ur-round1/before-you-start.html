@@ -11,6 +11,11 @@
   },
   html: 'This is a prototype used for testing.'
 }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -28,7 +33,7 @@
             <ul class="govuk-list govuk-list--bullet">
             <li>the NPQ course you want to take and the provider you'll use</li>
             <li>the address of your workplace</li>
-            <li>an Ofsted URN if you work in early years or childcare</li>
+            <li>an Ofsted unique reference number (URN) if you work in early years or childcare</li>
           </ul>
           <p class="govuk-body govuk-!-padding-bottom-3"></p>
 
