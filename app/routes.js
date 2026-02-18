@@ -478,7 +478,7 @@ router.post("/ur1-previous-funding-answer", function (req, res) {
     if (data['ur1-previous-funding'] === "Yes") {
         res.redirect('/ur-round1/previous-funding-ineligible');
     } else {
-        res.redirect('/ur-round1/workplace');
+        res.redirect('/ur-round1/setting');
     }
 });
 
@@ -487,11 +487,9 @@ router.post("/ur1-select-npq", function (req, res) {
   const data = req.session.data;
   const selectedNpq = data['ur1-npq'];
     
-    if (selectedNpq === "ur1-Leading teaching" || selectedNpq === "ur1-SENCO") {
-        res.redirect('/ur-round1/previous-funding');
-    } else if (selectedNpq === "ur1-Early years leadership") {
-        res.redirect('/ur-round1/early-years-setting');
-    } else {
+    if (selectedNpq === "ur1-Leading teaching" || selectedNpq === "ur1-SENCO" || selectedNpq === "ur1-Early years leadership") {
+        res.redirect('/ur-round1/previous-funding'); } 
+     else {
         res.redirect('/ur-round1/not-in-prototype');
     }
 });
@@ -550,7 +548,7 @@ router.post('/ur1-ofsted-answer', function (req, res) {
   const ofstedNumber = req.session.data['ofsted-number']
 
   if (hasOfsted === "No") {
-    return res.redirect('/ur-round1/not-in-prototype')
+    return res.redirect('/ur-round1/early-years-ineligible-no-ofsted')
   }
 
   if (ofstedNumber === "AB11111111") {
