@@ -13,22 +13,34 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
+<div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-        You’re not eligible for DfE scholarship funding
-      </h1>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+          <h1 class="govuk-heading-l" style="margin: 0;">
+            DfE scholarship funding
+          </h1>
+          {{ govukTag({
+            text: "Not eligible",
+            classes: "govuk-tag--red"
+          }) }}
+      </div>
 
-         <form class="form" action="interstitial" method="post">
+      <p class="govuk-body govuk-!-margin-top-6">
+        <strong>You’re not eligible for DfE scholarship funding for the [Leading Teaching] course.</strong>
+This is because your workplace is not listed as one of the highly disadvantaged schools or 16 to 19 settings.<br><br>
 
-        <p>
-          This is because you do not work in one of the eligible settings such as publicly funded schools.
-        </p>
+However, your workplace is listed as a highly disadvantaged early years setting, so you would be eligible for the Early years leadership NPQ.<br><br>
 
-        <p>
-          If this doesn’t sound right, <a href="/setting-funding-check" class="govuk-link">check your workplace setting</a>, or <a href="https://www.gov.uk/government/publications/funding-for-national-professional-qualifications-npqs/funding-for-national-professional-qualifications-npqs" class="govuk-link">learn more about who is eligible for funding</a>.
-        </p>
+Your workplace also counts as one of the settings eligible for the SENCO and Headship NPQs.
+
+<p class="govuk-body">
+  You can go back to <a href="https://new-npq-prototype-c51933b0b125.herokuapp.com/funding-check/select-npq" class="govuk-link">change your NPQ </a>if you wish.
+</p>
+
+ 
+
+      </p>
 
         {{ govukButton({
           text: "Continue to register"
