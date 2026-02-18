@@ -470,13 +470,25 @@ router.post("/ur1-work-in-england-answer", function (req, res) {
     }
 });
 
+
+// previous funding
+router.post("/ur1-previous-funding-answer", function (req, res) {
+  const data = req.session.data;
+    
+    if (data['ur1-previous-funding'] === "Yes") {
+        res.redirect('/ur-round1/workplace');
+    } else {
+        res.redirect('/ur-round1/not-in-prototype');
+    }
+});
+
 // select npq
 router.post("/ur1-select-npq", function (req, res) {
   const data = req.session.data;
   const selectedNpq = data['ur1-npq'];
     
     if (selectedNpq === "ur1-Leading teaching" || selectedNpq === "ur1-SENCO") {
-        res.redirect('/ur-round1/setting');
+        res.redirect('/ur-round1/previous-funding');
     } else if (selectedNpq === "ur1-Early years leadership") {
         res.redirect('/ur-round1/early-years-setting');
     } else {
