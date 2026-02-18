@@ -11,6 +11,11 @@
   },
   html: 'This is a prototype used for testing.'
 }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 {% endblock %}
 
 {% block content %}

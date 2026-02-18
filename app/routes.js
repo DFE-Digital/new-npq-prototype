@@ -466,7 +466,7 @@ router.post("/ur1-work-in-england-answer", function (req, res) {
     if (data['ur1-england'] === "Yes") {
         res.redirect('/ur-round1/select-npq');
     } else {
-        res.redirect('/ur-round1/not-in-prototype');
+        res.redirect('/ur-round1/england-ineligible');
     }
 });
 
@@ -476,9 +476,9 @@ router.post("/ur1-previous-funding-answer", function (req, res) {
   const data = req.session.data;
     
     if (data['ur1-previous-funding'] === "Yes") {
-        res.redirect('/ur-round1/workplace');
+        res.redirect('/ur-round1/previous-funding-ineligible');
     } else {
-        res.redirect('/ur-round1/not-in-prototype');
+        res.redirect('/ur-round1/workplace');
     }
 });
 
