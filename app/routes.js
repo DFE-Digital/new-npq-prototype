@@ -487,7 +487,7 @@ router.post("/ur1-select-npq", function (req, res) {
   const data = req.session.data;
   const selectedNpq = data['ur1-npq'];
     
-    if (selectedNpq === "ur1-Leading teaching" || selectedNpq === "ur1-SENCO" || selectedNpq === "ur1-Early years leadership") {
+    if (selectedNpq === "Leading teaching" || selectedNpq === "SENCO" || selectedNpq === "Early years leadership") {
         res.redirect('/ur-round1/previous-funding'); } 
      else {
         res.redirect('/ur-round1/not-in-prototype');

@@ -15,6 +15,7 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="interstitial" method="post">
 
       <div style="display: flex; align-items: center; gap: 1rem;">
           <h1 class="govuk-heading-l" style="margin: 0;">
@@ -27,7 +28,7 @@
       </div>
 
       <p class="govuk-body govuk-!-margin-top-6">
-        <strong>You’re not eligible for DfE scholarship funding for the [Leading Teaching] course.</strong>
+        <strong>You’re not eligible for DfE scholarship funding for the {{ data ['ur1-npq'] }} course.</strong>
 This is because your workplace is not listed as one of the highly disadvantaged schools or 16 to 19 settings.<br><br>
 
 However, your workplace is listed as a highly disadvantaged early years setting, so you would be eligible for the Early years leadership NPQ.<br><br>
