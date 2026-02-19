@@ -452,7 +452,7 @@ router.post("/ur1-cohort-answer", function (req, res) {
   const data = req.session.data;
     
     if (data['ur1-cohort'] === "autumn") {
-        res.redirect('/ur-round1/before-you-start');
+        res.redirect('/ur-round1/check-funding-start');
     } else {
         res.redirect('/ur-round1/not-in-prototype');
     }
