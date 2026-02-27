@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+          <h1 class="govuk-heading-l">Before you start</h1>
+
+          <p>
+           You'll need:
+          </p>
+          <p class="govuk-body govuk-!-padding-bottom-1"></p>
+            <ul class="govuk-list govuk-list--bullet">
+            <li>the NPQ course you want to take and the provider you'll use</li>
+            <li>the address of your workplace</li>
+            <li>an Ofsted unique reference number (URN) if you work in early years or childcare</li>
+          </ul>
+          <p class="govuk-body govuk-!-padding-bottom-3"></p>
+
+       {{ govukButton({
+  text: "Continue",
+  href: "england"
+    }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

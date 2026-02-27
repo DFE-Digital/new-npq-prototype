@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Check your funding eligibility
+    </span>
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+      Is your workplace registered with Ofsted?
+    </h1>
+
+      <form class="form" action="/ur1-ofsted-answer" method="post">
+
+        {% set ofstedNumberInput %}
+          {{ xGovukAutocomplete({
+           id: "ofsted-number",
+            name: "ofsted-number",
+            allowEmpty: false,
+            label: {
+              text: "Enter your Ofsted unique reference number",
+              classes: "govuk-label--s"
+            },
+            items: [
+              { text: "A childcare agency or childminder on the disadvantaged list", value: "A childcare agency or childminder on the disadvantaged list" },
+              { text: "An early years setting on the disadvantaged list", value: "An early years setting on the disadvantaged list" },
+              { text: "An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship", value: "An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship" },
+              { text: "AB11111111", value: "AB11111111" },
+              { text: "XX88888888", value: "XX88888888" }
+            ]
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "ur1-ofsted",
+          fieldset: {
+            legend: {
+              text: "Do you have an Ofsted unique reference number?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl govuk-visually-hidden"
+            }
+          },
+          items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                conditional: { html: ofstedNumberInput }
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
