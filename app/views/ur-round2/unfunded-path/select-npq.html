@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/ur-round2/unfunded-path/select-provider" method="post">
+
+          {{ govukRadios({
+            name: "select-npq",
+            fieldset: {
+              legend: {
+                text: "Select your NPQ",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "Leading behaviour and culture",
+                text: "Leading behaviour and culture"
+              },
+              {
+                value: "Leading literacy",
+                text: "Leading literacy"
+              },
+              {
+                value: "Leading teaching",
+                text: "Leading teaching"
+              },
+              {
+                value: "Leading teacher development",
+                text: "Leading teacher development"
+              },
+              {
+                value: "Leading primary mathematics",
+                text: "Leading primary mathematics"
+              },
+              {
+                value: "Senior leadership",
+                text: "Senior leadership"
+              },
+              {
+                value: "Headship",
+                text: "Headship"
+              },
+              {
+                value: "Executive leadership",
+                text: "Executive leadership"
+              },
+              {
+                value: "Early years leadership",
+                text: "Early years leadership"
+              },
+              {
+                value: "SENCO",
+                text: "SENCO"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "Early headship coaching offer",
+                text: "Early headship coaching offer",
+                hint: {
+                  text: "Networking and support if you’re in your first 5 years of headship"
+                }
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
