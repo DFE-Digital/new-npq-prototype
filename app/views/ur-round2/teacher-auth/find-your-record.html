@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Find your teaching record – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <div class="moj-interruption-card">
+      <div class="moj-interruption-card__content">
+        <h1 class="moj-interruption-card__heading">Find your teaching record</h1>
+        <div class="moj-interruption-card__body">
+          <p> You’ve signed in with GOV.UK One Login and verified your identity.</p>
+          <p>We’ll ask for your National Insurance number or teacher reference number (TRN) to find your teaching record.</p>
+          <p>New home address: 9 Elm Street, Whitney-on-Wye, Hereford, HR3 6EH</p>
+          <p>You can go back to undo this change.</p>
+        </div>
+        <div class="govuk-button-group moj-interruption-card__actions">
+          <a href="#" role="button" draggable="false" class="govuk-button govuk-button--inverse" data-module="govuk-button">
+            Continue
+          </a>
+          <a class="govuk-link govuk-link--inverse" href="#">Go back to application</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="govuk-inset-text govuk-!-padding-8" style="background-color:#1d70b8; color:white; border:none;">
+      
+      <h1 class="govuk-heading-l" style="color:white;">
+        Find your teaching record
+      </h1>
+
+      <p class="govuk-body" style="color:white;">
+        You’ve signed in with GOV.UK One Login and verified your identity.
+      </p>
+
+      <p class="govuk-body" style="color:white;">
+        We’ll ask for your National Insurance number or teacher reference number (TRN) to find your teaching record.
+      </p>
+
+      <p class="govuk-body govuk-!-margin-bottom-6" style="color:white;">
+        You’ll only need to do this once.
+      </p>
+
+      <a href="/national-insurance" role="button" draggable="false"
+         class="govuk-button govuk-button--secondary"
+         data-module="govuk-button">
+        Find your teaching record
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

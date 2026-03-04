@@ -561,3 +561,426 @@ router.post('/ur1-ofsted-answer', function (req, res) {
 
   return res.redirect('/ur-round1/not-in-prototype')
 })
+
+
+/// EC Round 2 UR
+
+router.post('/ur-round2/course-start-answer', function (req, res) {
+
+    var startMonth = req.session.data['course-start']
+    const data = req.session.data;
+
+    delete data['check-funding'];
+    delete data['england'];
+    delete data['setting-funding-check'];
+    delete data['workplace'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['publicly-funded-nursery'];
+    delete data['funding-source-not-funded'];
+    delete data['select-provider-funded'];
+    delete data['select-provider'];
+    delete data['select-npq'];
+    delete data['npq-funded'];
+
+    if (startMonth === "No, I already started in Spring") {
+        res.redirect('/ur-round2/unfunded-path/select-npq')
+    } else {
+        res.redirect('/ur-round2/check-funding-start')
+    }
+
+})
+
+
+router.all('/ur-round2/check-funding-answer', function (req, res) {
+
+    const data = req.session.data || {};
+
+    delete data['england'];
+    delete data['setting-funding-check'];
+    delete data['workplace'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['publicly-funded-nursery'];
+    delete data['select-provider-funded'];
+    delete data['select-provider'];
+    delete data['select-npq'];
+    delete data['npq-funded'];
+
+    if (req.query['check-funding'] === 'no') {
+        data['check-funding'] = 'no';
+    } else if (req.body['check-funding'] === 'yes') {
+        data['check-funding'] = 'yes';
+        delete data['select-provider']
+    }
+
+    req.session.data = data;
+
+    res.render('ur-round2/unfunded-path/select-npq', {
+        data: data,
+        serviceName: 'NPQ service'
+    })
+
+})
+
+
+router.post('/ur-round2/england-funding-check-answer', function (req, res) {
+
+    const data = req.session.data;
+
+    delete data['setting-funding-check'];
+    delete data['workplace'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['publicly-funded-nursery'];
+    delete data['select-provider-funded'];
+    delete data['select-provider'];
+    delete data['select-npq'];
+    delete data['npq-funded'];
+    delete data['funding-source-not-funded'];
+    delete data['funding-source'];
+
+    if (data['england'] === "Yes") {
+        res.redirect('/ur-round2/funding-check/select-npq');
+    } else {
+        res.redirect('/ur-round2/funding-messages/not-eligible/england');
+    }
+});
+
+
+router.post('/ur-round2/select-npq-answer', function (req, res) {
+
+    if (req.session.data['npq-funded'] === 'Early headship coaching offer') {
+        res.redirect('/ur-round2/funding-check/ehco');
+    } else {
+        res.redirect('/ur-round2/funding-check/setting');
+    }
+
+})
+
+router.post('/ur-round2/setting-funding-check-answer', function (req, res) {
+
+    delete req.session.data['workplace'];
+    delete req.session.data['publicly-funded-nursery'];
+    delete req.session.data['publicly-funded-hospital-school'];
+    delete req.session.data['do-you-have-ofsted-number'];
+    delete req.session.data['ofsted-number'];
+    delete req.session.data['funding-source-not-funded'];
+
+    var setting = req.session.data['setting-funding-check']
+
+    const schoolsDropdown = [
+        'School',
+        'Academy trust',
+        '16 to 19 setting',
+        'Preschool class',
+        'Secure children’s home or training centre',
+    ]
+
+    const ofsted = [
+        'Private nursery',
+        'Childcare',
+        'Other - early years',
+    ]
+
+    const role = [
+        'Virtual school',
+        'Working across schools',
+    ]
+
+    const employer = [
+        'Young offender institution',
+    ]
+
+    const hospital = [
+        'Hospital school',
+    ]
+
+    const nursery = [
+        'Early years',
+    ]
+
+    const teacherTrainingProvider = [
+        'As a lead mentor for an accredited ITT provider',
+    ]
+
+    if (schoolsDropdown.includes(setting)) {
+        res.redirect('/ur-round2/funding-check/workplace')
+    } else if (ofsted.includes(setting)) {
+        res.redirect('/ur-round2/funding-check/ofsted')
+    } else if (role.includes(setting)) {
+        res.redirect('/ur-round2/funding-check/role')
+    } else if (employer.includes(setting)) {
+        res.redirect('/ur-round2/funding-check/employer')
+    } else if (hospital.includes(setting)) {
+        res.redirect('/ur-round2/funding-check/hospital-school')
+    } else if (nursery.includes(setting)) {
+        res.redirect('/ur-round2/funding-check/nursery')
+    } else if (teacherTrainingProvider.includes(setting)) {
+        res.redirect('/ur-round2/funding-check/ITT-provider')
+    } else {
+        res.redirect('/ur-round2/funding-messages/not-eligible/other')
+    }
+
+})
+
+
+router.post('/ur-round2/nursery-funding-check-answer', function (req, res) {
+
+    const data = req.session.data;
+    const publiclyFundedNursery = data['publicly-funded-nursery'];
+
+    delete data['workplace'];
+    delete data['funding-source-not-funded'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['select-provider-funded']
+
+    if (publiclyFundedNursery === "Local authority-maintained nursery" || publiclyFundedNursery === "Pre-school class or nursery that’s part of a school (maintained or independent)") {
+        res.redirect('/ur-round2/funding-check/workplace')
+    } else if (publiclyFundedNursery === "Private nursery" || publiclyFundedNursery === "Childcare") {
+        res.redirect('/ur-round2/funding-check/ofsted');
+    } else {
+        res.redirect('/ur-round2/funding-check/ofsted');
+    }
+
+});
+
+
+router.post('/ur-round2/hospital-school-funding-check-answer', function (req, res) {
+
+    var publiclyFundedHospitalSchool = req.session.data['publicly-funded-hospital-school']
+
+    if (publiclyFundedHospitalSchool === "Yes") {
+        res.redirect('/ur-round2/funding-check/workplace')
+    } else {
+        res.redirect('/ur-round2/funding-check/employer')
+    }
+
+})
+
+
+router.post('/ur-round2/workplace-funding-check-answer', function (req, res) {
+
+    req.session.data['funding-source-not-funded'] = null;
+    req.session.data['do-you-have-ofsted-number'] = null;
+    req.session.data['ofsted-number'] = null;
+
+    var workplaceCategory = req.session.data['workplace']
+    var selectedNPQ = req.session.data['npq-funded']
+
+    var disadvantagedMaintainedNurseryIneligible = [
+        "Leading behaviour and culture",
+        "Leading literacy",
+        "Leading teaching",
+        "Leading primary mathematics",
+        "Senior leadership",
+        "Leading teacher development",
+        "Executive leadership"
+    ]
+
+    var disadvantagedMaintainedNurseryEligible = [
+        "Early years leadership",
+    ]
+
+    var publiclyFundedEligible = [
+        "Headship",
+        "SENCO",
+    ]
+
+    if (workplaceCategory === "A workplace on either the schools, 16-19 or RISE list") {
+        res.redirect('/ur-round2/funding-messages/eligible/schools-16-to-19-rise')
+
+    } else if (workplaceCategory === "Maintained nursery school - disadvantaged list" &&
+        disadvantagedMaintainedNurseryIneligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/not-eligible/maintained-nursery-disadvantaged-list')
+
+    } else if (workplaceCategory === "Maintained nursery school - disadvantaged list" &&
+        disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/eligible/maintained-nursery-disadvantaged-list')
+
+    } else if (workplaceCategory === "Early years organisation - disadvantaged list" &&
+        disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/eligible/early-years-disadvantage-list')
+
+    } else if (
+        workplaceCategory === "Early years organisation - disadvantaged list" &&
+        !disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/not-eligible/early-years-disadvantage-list')
+
+    } else if (workplaceCategory === "Maintained nursery school - disadvantaged list" &&
+        publiclyFundedEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/eligible/publicly-funded-nursery')
+
+    } else if (workplaceCategory === "A publicly funded: school, 16-19-setting, nursery, hospital school" &&
+        publiclyFundedEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/eligible/publicly-funded-setting')
+
+    } else if (workplaceCategory === "A publicly funded: school, 16-19-setting, nursery, hospital school" &&
+        !publiclyFundedEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/not-eligible/publicly-funded-setting')
+
+    } else if (workplaceCategory === "Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship" &&
+        disadvantagedMaintainedNurseryIneligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/not-eligible/early-years-disadvantage-list-senco-headship')
+
+    } else if (workplaceCategory === "Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship" &&
+        publiclyFundedEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/eligible/publicly-funded-setting')
+
+    } else if (workplaceCategory === "Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship" &&
+        disadvantagedMaintainedNurseryEligible.includes(selectedNPQ)
+    ) {
+        res.redirect('/ur-round2/funding-messages/eligible/early-years-disadvantage-list')
+
+    } else {
+        res.redirect('/ur-round2/funding-messages/not-eligible/workplace-not-eligible')
+    }
+
+})
+
+router.post('/ur-round2/ofsted-number-funding-check-answer', function (req, res) {
+
+    const doYouHaveOfstedNumber = req.session.data['do-you-have-ofsted-number'];
+    const ofstedNumber = req.session.data['ofsted-number'];
+    const selectedNpqs = req.session.data['npq-funded'];
+
+    req.session.data['funding-source-not-funded'] = null;
+    req.session.data['select-provider-funded'] = null;
+
+    const eligibleNpqs = ['Early years leadership'];
+    const publiclyFundedNPQs = ['SENCO', 'Headship'];
+
+    if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'A childcare agency or childminder on the disadvantaged list' &&
+        eligibleNpqs.includes(selectedNpqs)
+    ) {
+        res.redirect('/ur-round2/funding-messages/eligible/childcare-agency-childminder');
+
+    } else if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'A childcare agency or childminder on the disadvantaged list' &&
+        !eligibleNpqs.includes(selectedNpqs)
+    ) {
+        res.redirect('/ur-round2/funding-messages/not-eligible/childcare-agency-childminder');
+
+    } else if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'An early years setting on the disadvantaged list' &&
+        eligibleNpqs.includes(selectedNpqs)
+    ) {
+        res.redirect('/ur-round2/funding-messages/eligible/early-years-disadvantage-list');
+
+    } else if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'An early years setting on the disadvantaged list' &&
+        !eligibleNpqs.includes(selectedNpqs)
+    ) {
+        res.redirect('/ur-round2/funding-messages/not-eligible/early-years-disadvantage-list');
+
+    } else if (
+      doYouHaveOfstedNumber === 'Yes' &&
+      ofstedNumber === 'An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship' &&
+      (
+        eligibleNpqs.includes(selectedNpqs)
+      )
+    ) {
+      res.redirect('/ur-round2/funding-messages/eligible/early-years-disadvantage-list');
+
+    } else if (
+        doYouHaveOfstedNumber === 'Yes' &&
+        ofstedNumber === 'An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship' &&
+        (
+          publiclyFundedNPQs.includes(selectedNpqs)
+        )
+    ) {
+        res.redirect('/ur-round2/funding-messages/eligible/publicly-funded-setting');
+
+    } else if (
+      doYouHaveOfstedNumber === 'Yes' &&
+      ofstedNumber === 'An early years setting on the disadvantaged list but also one of the settings eligible for SENCO and Headship' &&
+      (
+        !eligibleNpqs.includes(selectedNpqs) ||
+        !publiclyFundedNPQs.includes(selectedNpqs)
+      )
+    ) {
+      res.redirect('/ur-round2/funding-messages/not-eligible/early-years-disadvantage-list-senco-headship');
+
+    } else {
+        res.redirect('/ur-round2/funding-messages/not-eligible/workplace-not-eligible');
+    }
+
+})
+
+
+router.post('/ur-round2/maths-suitability-answer', function (req, res) {
+
+    const npq = req.session.data['npq-funded']
+
+    if (npq === 'Leading primary mathematics') {
+        res.redirect('/ur-round2/suitability/teaching-for-mastery')
+    } else {
+        res.redirect('/ur-round2/funded-follow-up/provider')
+    }
+
+})
+
+router.post('/ur-round2/maths-suitability-not-funded-answer', function (req, res) {
+
+    const npq = req.session.data['npq-funded']
+
+    if (npq === 'Leading primary mathematics') {
+        res.redirect('/ur-round2/suitability/teaching-for-mastery')
+    } else {
+        res.redirect('/ur-round2/funded-follow-up/funding-source')
+    }
+
+})
+
+router.post('/ur-round2/teaching-for-mastery-answer', function (req, res) {
+
+    const teachingForMastery = req.session.data['teaching-for-mastery']
+
+    if (teachingForMastery === 'Yes') {
+        res.redirect('/ur-round2/suitability/suitable')
+    } else {
+        res.redirect('/ur-round2/suitability/understanding-mastery-approaches')
+    }
+
+})
+
+router.post('/ur-round2/understanding-mastery-approaches-answer', function (req, res) {
+
+    const understandingMasteryApproaches = req.session.data['understanding-mastery-approaches']
+
+    if (understandingMasteryApproaches === 'Yes') {
+        res.redirect('/ur-round2/suitability/suitable')
+    } else {
+        res.redirect('/ur-round2/suitability/cannot-register')
+    }
+
+})
+
+router.post('/ur-round2/suitable-answer', function(req, res) {
+    const npq = req.session.data['npq-funded'];
+    const workplace = req.session.data['workplace'];
+
+    if (
+        npq === 'Leading primary mathematics' &&
+        workplace === 'Maintained nursery school - disadvantaged list'
+    ) {
+        return res.redirect('/ur-round2/funded-follow-up/funding-source');
+    }
+
+    res.redirect('/ur-round2/funded-follow-up/provider');
+});

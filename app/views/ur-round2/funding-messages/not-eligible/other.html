@@ -1,0 +1,48 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        You’re not eligible for DfE scholarship funding
+      </h1>
+
+      <form class="form" action="/ur-round2/funded-follow-up/funding-source" method="post">
+
+        <p>
+          This is because you do not work in one of the eligible settings such as publicly funded schools.
+        </p>
+
+        <p>
+          If this doesn’t sound right, <a href="/ur-round2/funding-check/setting" class="govuk-link">check your workplace setting</a>, or <a href="https://www.gov.uk/government/publications/funding-for-national-professional-qualifications-npqs/funding-for-national-professional-qualifications-npqs" class="govuk-link">learn more about who is eligible for funding</a>.
+        </p>
+
+        {{ govukButton({
+          text: "Continue to register"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
