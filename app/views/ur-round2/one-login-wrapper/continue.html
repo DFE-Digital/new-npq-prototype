@@ -22,36 +22,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-    <span class="govuk-caption-l">
-      Check your funding eligibility
-    </span>
-
     <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
-      Who is your ITT provider?
+      Continue through GOV.UK One Login
     </h1>
 
-      <form class="form" action="/ur-round2/path/of/next/page" method="post">
+      <p class="govuk-body">You need to create an account or sign in through GOV.UK One Login before you can submit your NPQ registration.</p>
 
-        {% from "govuk/components/input/macro.njk" import govukInput %}
+      <p class="govuk-body">This allows us to verify your identity before sending your registration to your NPQ provider.</p>
 
-        {{ govukInput({
-          label: {
-            text: "Who is your ITT provider?",
-            classes: "govuk-label--xl govuk-visually-hidden",
-            isPageHeading: true
-          },
-          id: "event-name",
-          name: "eventName"
-        }) }}
-
+      <form action="signed-in" method="post" novalidate>
 
         {{ govukButton({
           text: "Continue"
         }) }}
 
       </form>
-
-    </div>
   </div>
 
 {% endblock %}

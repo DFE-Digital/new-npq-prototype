@@ -1,0 +1,228 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+
+<h1 class="govuk-heading-l">
+UR round 2: Setting page iterations & TeacherAuth
+  </h1>
+
+
+  <p>March 2026</p>
+
+  <p>
+    <a href="#" target="blank">Research board</a>
+    <br>
+    <a href="#" target="blank">Prototype map</a>
+  </p>
+
+
+ 
+<div class="govuk-!-padding-bottom-3"></div>
+
+ <table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Link</th>
+      <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Status</th>
+      <th scope="col" class="govuk-table__header">Description</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        <a href="start">Start page</a>
+    </td>
+      <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--yellow">
+          Updated
+        </strong>
+    </td>
+        <td class="govuk-table__cell">
+            Content updated
+        </td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="course-start">Cohort selection</a></td>
+      <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Autumn or spring cohort</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="check-funding-start">Check funding</a></td>
+            <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Check funding</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="funding-check/england">Do you work in England?</a></td>
+            <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Work in England</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="funding-check/select-npq">Select NPQ</a></td>
+            <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--yellow">
+          Updated
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Content updated</td>
+    </tr>
+
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="funding-check/setting">Select setting</a></td>
+           <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--yellow">
+          Updated
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Content updated</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="funding-check/workplace">Workplace</a></td>
+           <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Workplace</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="funding-messages/not-eligible/workplace-not-eligible">Funding outcome: not eligible</a></td>
+       <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Kick out screen: not eligible due to workplace</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="funding-messages/eligible/schools-16-to-19-rise">Funding outcome: eligible</a></td>
+               <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Eligible (disadvantaged/RISE/etc)</td>
+    </tr>
+
+        <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="funded-follow-up/provider">Provider selection</a></td>
+               <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Select your provider</td>
+    </tr>
+
+            <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="check-answers/continue">Check answers 1</a></td>
+               <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Checking answers before continuing to OneLogin</td>
+    </tr>
+
+                <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="one-login-wrapper/continue">OneLogin handoff</a></td>
+               <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Continue through GOV.UK OneLogin</td>
+    </tr>
+
+                    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="one-login-wrapper/signed-in">OneLogin handoff: logged in</a></td>
+               <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Interstitial screen telling the user they're now logged into OneLogin</td>
+    </tr>
+
+                <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="check-answers/submit">Check answers 2</a></td>
+               <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Checking answers before continuing to TeacherAuth</td>
+    </tr>
+
+  </tbody>
+</table>
+   
+<div class="govuk-!-padding-bottom-3"></div>
+<h2 class="govuk-heading-m">
+TeacherAuth screens
+  </h2>
+
+
+ <table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Link</th>
+      <th scope="col" class="govuk-table__header">Description</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="teacher-auth/find-your-record">Find your record</a></td>
+      <td class="govuk-table__cell">Page with the blue interruption banner</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="teacher-auth/national-insurance">NINO</a></td>
+      <td class="govuk-table__cell">NINO question</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="teacher-auth/trn">TRN</a></td>
+      <td class="govuk-table__cell">TRN question</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="teacher-auth/matched-success">Match successful</a></td>
+      <td class="govuk-table__cell">End page with banner</td>
+    </tr>
+
+  </tbody>
+</table>
+
+{% endblock %}

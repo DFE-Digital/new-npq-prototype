@@ -6,3 +6,5 @@
 window.GOVUKPrototypeKit.documentReady(() => {
   // Add JavaScript here
 })
+import * as MOJFrontend from "@ministryofjustice/frontend"
+MOJFrontend.initAll()
