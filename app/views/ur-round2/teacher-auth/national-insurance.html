@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Do you have a National Insurance number? – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/ur-round2/trn-answer" method="post">
+
+      {{ govukRadios({
+        name: "has-national-insurance",
+        fieldset: {
+          legend: {
+            text: "Do you have a teacher reference number (TRN)?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes"
+          },
+          {
+            value: "No",
+            text: "No"
+          }
+        ]
+      }) }}
+
+    {% set trnDetails %}
+<p class="govuk-body">
+  A teacher reference number (TRN) is a 7-digit number that uniquely identifies you in the education sector in England.
+</p>
+
+<p class="govuk-body">
+  You'll have a TRN if you:
+</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>hold qualified teacher status (QTS) in England or Wales</li>
+  <li>hold early years teacher status (EYTS) in England</li>
+  <li>hold a national professional qualification (NPQ)</li>
+  <li>are working towards QTS, EYTS or an NPQ</li>
+  <li>contribute to the Teachers' Pension Scheme in England or Wales</li>
+  <li>have a relevant restriction in relation to teaching in England</li>
+</ul>
+
+<p class="govuk-body">
+  You may not have one yet if you work in early years, further education or qualified as a teacher outside of England.
+</p>
+
+<p class="govuk-body">
+  <a class="govuk-link" href="#">Learn about TRNs, including how to request one or find a lost TRN (opens in a new tab)</a>.
+</p>
+{% endset %}
+
+{{ govukDetails({
+  summaryText: "What is a TRN?",
+  html: trnDetails
+}) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

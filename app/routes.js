@@ -984,3 +984,39 @@ router.post('/ur-round2/suitable-answer', function(req, res) {
 
     res.redirect('/ur-round2/funded-follow-up/provider');
 });
+
+router.post('/ur-round2/echo-answer', function (req, res) {
+    if (req.session.data['ehco'] === 'Yes') {
+        res.redirect('/ur-round2/funded-follow-up/provider')
+    } else {
+        res.redirect('/ur-round2/funded-follow-up/funding-source')
+    }
+})
+
+router.post('/ur-round2/path/of/next/page', function (req, res) {
+    res.redirect('/ur-round2/not-in-prototype')
+})
+
+router.post('/ur-round2/national-insurance-answer', function (req, res) {
+    if (req.session.data['has-national-insurance'] === 'Yes') {
+        res.redirect('/ur-round2/teacher-auth/matched-success')
+    } else {
+        res.redirect('/ur-round2/teacher-auth/national-insurance')
+    }
+})
+
+router.post('/ur-round2/trn-answer', function (req, res) {
+    if (req.session.data['has-national-insurance'] === 'Yes') {
+        res.redirect('/ur-round2/teacher-auth/matched-success')
+    } else {
+        res.redirect('/ur-round2/not-in-prototype')
+    }
+})
+
+router.post('/ur-round2/teacher-auth/find-your-record', function (req, res) {
+    res.redirect('/ur-round2/teacher-auth/find-your-record')
+})
+
+router.post('/ur-round2/teacher-auth/matched-success', function (req, res) {
+    res.redirect('/ur-round2/teacher-auth/matched-success')
+})
