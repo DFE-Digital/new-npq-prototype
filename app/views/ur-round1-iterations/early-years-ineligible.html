@@ -28,21 +28,25 @@
       </div>
 
       <p class="govuk-body govuk-!-margin-top-6">
-        <strong>You’re not eligible for DfE scholarship funding for the {{ data ['ur1-npq'] }} course.</strong>
-This is because your workplace is not listed as one of the highly disadvantaged schools or 16 to 19 settings.<br><br>
+        You’re not eligible for DfE scholarship funding for the {{ data ['ur1-npq'] }} course because you do not meet the <a href="https://www.gov.uk/government/publications/funding-for-national-professional-qualifications-npqs" class="govuk-link govuk-link--no-underline">funding criteria</a>.<br><br>
 
-However, your workplace is listed as a highly disadvantaged early years setting, so you would be eligible for the SENCO or headship NPQ.<br>
+However, you are eligible for funding for either the Headship or the Special educational needs co-ordinator (SENCO) courses.<br>
 
-<p class="govuk-body">
-  You can go back to <a href="select-npq" class="govuk-link">change your NPQ</a> if you wish.
-</p>
+<h2 class="govuk-heading-m govuk-!-margin-top-6">What you can do next</h2>
+
+<p class="govuk-body">You can either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>continue to register for {{ data ['ur1-npq'] }} course without DfE funding (you or your workplace would need to cover the cost), or</li>
+  <li>go back and <a href="select-npq" class="govuk-link govuk-link--no-underline">choose the Headship or SENCO course</a> to register for instead</li>
+</ul>
 
  
 
       </p>
 
         {{ govukButton({
-          text: "Continue to register"
+          text: "Register without DfE funding"
         }) }}
 
       </form>
