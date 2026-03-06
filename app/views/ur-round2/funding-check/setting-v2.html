@@ -9,7 +9,7 @@
   tag: {
     text: "Prototype"
   },
-  html: 'This is a prototype used for testing.  <a class="govuk-link" href="/ur-round2/funding-check/setting-v2">Show version 2</a>'
+  html: 'This is a prototype used for testing. <a class="govuk-link" href="/ur-round2/funding-check/setting">Show version 1</a>'
 }) }}
   {{ govukBackLink({
     text: "Back",
@@ -21,6 +21,17 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    {% if schoolSettingError %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: schoolSettingError.text,
+            href: "#school-setting"
+          }
+        ]
+      }) }}
+    {% endif %}
 
     <span class="govuk-caption-l">
       Check your funding eligibility
@@ -31,7 +42,29 @@
     </h1>
 
     <form class="form" action="/ur-round2/setting-funding-check-answer" method="post">
-   <h2 class="govuk-heading-m">Mainstream settings</h2>
+      {% set schoolOptionsHtml %}
+        {{ govukRadios({
+          name: "school-setting",
+          errorMessage: schoolSettingError,
+          fieldset: {
+            legend: {
+              text: "Which type of school?",
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            { value: "Primary school", text: "Primary school (5 to 11)" },
+            { value: "Secondary school", text: "Secondary school (11 to 16)" },
+            {
+              value: "Post 16 provider",
+              text: "Post-16 provider (16 to 19)",
+              hint: {
+                text: "Sixth forms, further education colleges"
+              }
+            }
+          ]
+        }) }}
+      {% endset %}
 
       {{ govukRadios({
         name: "ur1-setting",
@@ -49,70 +82,27 @@
               text: "Nurseries, preschools, playgroups, childminders"
             }
           },
-          { value: "Primary school", text: "Primary school" },
-          { value: "Secondary school", text: "Secondary school" },
-          { 
-            value: "Post 16 provider", 
-            text: "Post-16 provider (ages 16 to 19)",
-            hint: {
-              text: "Sixth forms, further education colleges"
+          {
+            value: "School",
+            text: "School",
+            conditional: {
+              html: schoolOptionsHtml
             }
-          }
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m">Specialist settings</h2>
-
-      {{ govukRadios({
-        name: "ur1-setting",
-        fieldset: {
-          legend: {
-            text: "",
-            classes: "govuk-visually-hidden"
-          }
-        },
-        items: [
-          { value: "Special school", text: "Special school or Special educational needs and disabilities (SEND) unit" },
+          },
+          { value: "Special school", text: "Special school or SEND unit" },
           {
             value: "Alternative provision",
             text: "Alternative provision (AP)",
             hint: {
               text: "Pupil referral units (PRUs), AP academies"
             }
-          }
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m">Multi-organisation roles</h2>
-
-      {{ govukRadios({
-        name: "ur1-setting",
-        fieldset: {
-          legend: {
-            text: "",
-            classes: "govuk-visually-hidden"
-          }
-        },
-        items: [
+          },
           { value: "Academy trust", text: "Academy trust" },
-          { value: "Working across schools", text: "Local authority – working across schools" }
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m">Other local authority settings</h2>
-
-      {{ govukRadios({
-        name: "ur1-setting",
-        fieldset: {
-          legend: {
-            text: "",
-            classes: "govuk-visually-hidden"
-          }
-        },
-        items: [
-          { value: "Secure children's home or training centre", text: "Secure children's home or training centre" },
+          { value: "Working across schools", text: "Local authority – working across schools" },
           { value: "Virtual school", text: "Virtual school" },
           { value: "Hospital school", text: "Hospital school" },
+          { value: "Secure children's home or training centre", text: "Secure children's home or training centre" },
+         
           { value: "As a lead mentor for an accredited ITT provider", text: "Initial teacher training (ITT) – as a lead mentor" },
           { value: "Other", text: "Other" }
         ]

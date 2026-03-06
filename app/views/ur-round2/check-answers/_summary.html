@@ -203,7 +203,7 @@
         {% set settingRow = {
           key: { text: "Setting" },
           value: { text: data['setting-funding-check'] },
-          actions: { items: [{ href: "/ur-round2/funding-check/setting", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2/funding-check/setting-v2", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -299,7 +299,7 @@
           {
               key: { text: "Autumn 2026 start" },
               value: { html: data['course-start'] + courseStartHint },
-              actions: { items: [{ href: "/course-start", text: "Change", visuallyHiddenText: "course start" }] }
+              actions: { items: [{ href: "/ur-round2/course-start", text: "Change", visuallyHiddenText: "course start" }] }
             },
           workingInEnglandRow,
           courseFundingCheckRow,
