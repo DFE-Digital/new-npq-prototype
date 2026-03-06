@@ -660,67 +660,107 @@ router.post('/ur-round2/select-npq-answer', function (req, res) {
 
 router.post('/ur-round2/setting-funding-check-answer', function (req, res) {
 
-    delete req.session.data['workplace'];
-    delete req.session.data['publicly-funded-nursery'];
-    delete req.session.data['publicly-funded-hospital-school'];
-    delete req.session.data['do-you-have-ofsted-number'];
-    delete req.session.data['ofsted-number'];
-    delete req.session.data['funding-source-not-funded'];
+    const data = req.session.data;
 
-    var setting = req.session.data['setting-funding-check']
+    delete data['workplace'];
+    delete data['publicly-funded-nursery'];
+    delete data['publicly-funded-hospital-school'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['funding-source-not-funded'];
+
+    // Support legacy and v2 setting inputs, then normalize for downstream pages.
+    const topLevelSetting = data['ur1-setting'] || data['setting-funding-check'];
+    const schoolSetting = data['school-setting'];
+    const requiresSchoolDetail = topLevelSetting === 'School' || topLevelSetting === 'Schools';
+
+    if (requiresSchoolDetail && !schoolSetting) {
+        return res.render('ur-round2/funding-check/setting-v2', {
+            schoolSettingError: { text: 'Select which type of school you work in' }
+        });
+    }
+
+    // School sub-types should follow the same route as "School".
+    const setting = requiresSchoolDetail ? 'School' : topLevelSetting;
+
+    data['setting-funding-check'] = setting;
+
+    if (!requiresSchoolDetail) {
+        delete data['school-setting'];
+    }
 
     const schoolsDropdown = [
         'School',
+        'Schools',
+        'Primary school',
+        'Secondary school',
+        'Post 16 provider',
+        'Post-16 provider',
+        'Special school',
+        'Alternative provision',
         'Academy trust',
         '16 to 19 setting',
         'Preschool class',
+        "Secure children's home or training centre",
         'Secure children’s home or training centre',
-    ]
+    ];
 
     const ofsted = [
         'Private nursery',
         'Childcare',
         'Other - early years',
-    ]
+    ];
 
     const role = [
         'Virtual school',
         'Working across schools',
-    ]
+    ];
 
     const employer = [
         'Young offender institution',
-    ]
+    ];
 
     const hospital = [
         'Hospital school',
-    ]
+    ];
 
     const nursery = [
         'Early years',
-    ]
+    ];
 
     const teacherTrainingProvider = [
         'As a lead mentor for an accredited ITT provider',
-    ]
+    ];
 
     if (schoolsDropdown.includes(setting)) {
-        res.redirect('/ur-round2/funding-check/workplace')
-    } else if (ofsted.includes(setting)) {
-        res.redirect('/ur-round2/funding-check/ofsted')
-    } else if (role.includes(setting)) {
-        res.redirect('/ur-round2/funding-check/role')
-    } else if (employer.includes(setting)) {
-        res.redirect('/ur-round2/funding-check/employer')
-    } else if (hospital.includes(setting)) {
-        res.redirect('/ur-round2/funding-check/hospital-school')
-    } else if (nursery.includes(setting)) {
-        res.redirect('/ur-round2/funding-check/nursery')
-    } else if (teacherTrainingProvider.includes(setting)) {
-        res.redirect('/ur-round2/funding-check/ITT-provider')
-    } else {
-        res.redirect('/ur-round2/funding-messages/not-eligible/other')
+        return res.redirect('/ur-round2/funding-check/workplace');
     }
+
+    if (ofsted.includes(setting)) {
+        return res.redirect('/ur-round2/funding-check/ofsted');
+    }
+
+    if (role.includes(setting)) {
+        return res.redirect('/ur-round2/funding-check/role');
+    }
+
+    if (employer.includes(setting)) {
+        return res.redirect('/ur-round2/funding-check/employer');
+    }
+
+    if (hospital.includes(setting)) {
+        return res.redirect('/ur-round2/funding-check/hospital-school');
+    }
+
+    if (nursery.includes(setting)) {
+        return res.redirect('/ur-round2/funding-check/nursery');
+    }
+
+    if (teacherTrainingProvider.includes(setting)) {
+        return res.redirect('/ur-round2/funding-check/ITT-provider');
+    }
+
+    res.redirect('/ur-round2/funding-messages/not-eligible/other');
 
 })
 
@@ -998,19 +1038,31 @@ router.post('/ur-round2/path/of/next/page', function (req, res) {
 })
 
 router.post('/ur-round2/national-insurance-answer', function (req, res) {
-    if (req.session.data['has-national-insurance'] === 'Yes') {
-        res.redirect('/ur-round2/teacher-auth/matched-success')
+    const data = req.session.data;
+    const hasNationalInsurance = data['has-national-insurance']
+    const nationalInsuranceNumber = (data['national-insurance-number'] || '').trim()
+
+    if (hasNationalInsurance === 'Yes') {
+        data['national-insurance-number'] = nationalInsuranceNumber
     } else {
-        res.redirect('/ur-round2/teacher-auth/national-insurance')
+        delete data['national-insurance-number']
     }
+
+    return res.redirect('/ur-round2/teacher-auth/trn')
 })
 
 router.post('/ur-round2/trn-answer', function (req, res) {
-    if (req.session.data['has-national-insurance'] === 'Yes') {
-        res.redirect('/ur-round2/teacher-auth/matched-success')
-    } else {
-        res.redirect('/ur-round2/not-in-prototype')
+    const data = req.session.data;
+    const hasTrn = data['has-trn'];
+    const trnNumber = (data['trn-number'] || '').trim();
+
+    if (hasTrn === 'Yes') {
+        data['trn-number'] = trnNumber;
+        return res.redirect('/ur-round2/teacher-auth/matched-success');
     }
+
+    delete data['trn-number'];
+    return res.redirect('/ur-round2/teacher-auth/continue-registration');
 })
 
 router.post('/ur-round2/teacher-auth/find-your-record', function (req, res) {

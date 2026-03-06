@@ -18,13 +18,28 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/ur-round2/trn-answer" method="post">
+    {% set ninoHtml %}
+      {{ govukInput({
+        id: "national-insurance-number",
+        name: "national-insurance-number",
+        label: {
+          text: "National Insurance Number"
+        },
+        hint: {
+          text: "It's on your National Insurance card, benefit letter, payslip or P60 (for example QQ 12 34 56 C)."
+        },
+        classes: "govuk-input--width-10",
+        value: data['national-insurance-number']
+      }) }}
+    {% endset %}
+
+    <form action="/ur-round2/national-insurance-answer" method="post">
 
       {{ govukRadios({
         name: "has-national-insurance",
         fieldset: {
           legend: {
-            text: "Do you have a teacher reference number (TRN)?",
+            text: "Do you have a National Insurance number?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--xl"
           }
@@ -32,7 +47,10 @@
         items: [
           {
             value: "Yes",
-            text: "Yes"
+            text: "Yes",
+            conditional: {
+              html: ninoHtml
+            }
           },
           {
             value: "No",
@@ -41,37 +59,20 @@
         ]
       }) }}
 
-    {% set trnDetails %}
-<p class="govuk-body">
-  A teacher reference number (TRN) is a 7-digit number that uniquely identifies you in the education sector in England.
-</p>
-
-<p class="govuk-body">
-  You'll have a TRN if you:
-</p>
-
-<ul class="govuk-list govuk-list--bullet">
-  <li>hold qualified teacher status (QTS) in England or Wales</li>
-  <li>hold early years teacher status (EYTS) in England</li>
-  <li>hold a national professional qualification (NPQ)</li>
-  <li>are working towards QTS, EYTS or an NPQ</li>
-  <li>contribute to the Teachers' Pension Scheme in England or Wales</li>
-  <li>have a relevant restriction in relation to teaching in England</li>
-</ul>
-
-<p class="govuk-body">
-  You may not have one yet if you work in early years, further education or qualified as a teacher outside of England.
-</p>
-
-<p class="govuk-body">
-  <a class="govuk-link" href="#">Learn about TRNs, including how to request one or find a lost TRN (opens in a new tab)</a>.
-</p>
-{% endset %}
-
-{{ govukDetails({
-  summaryText: "What is a TRN?",
-  html: trnDetails
-}) }}
+      {{ govukDetails({
+        summaryText: "What is a National Insurance number?",
+        html: "
+          <p class='govuk-body'>
+            A National Insurance number is a personal number used by HM Revenue and Customs (HMRC) to record the tax and National Insurance you pay.
+          </p>
+          <p class='govuk-body'>
+            You keep the same number for life, even if you move out of the UK.
+          </p>
+          <p class='govuk-body'>
+            It’s shown on UK documents such as your National Insurance card, benefit letter, payslip or P60.
+          </p>
+        "
+      }) }}
 
       {{ govukButton({
         text: "Continue"
