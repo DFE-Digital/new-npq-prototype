@@ -8,11 +8,22 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+      <form action="../check-answers/submit" method="post">
 
-        <h1 class="govuk-heading-l">
-      Check if you’re eligible for DfE scholarship funding
+        <h1 class="govuk-heading-xl">
+      Continue your registration
     </h1>
 
+    <p class="govuk-body">
+      You'll be given a teacher reference number (TRN) once you're enrolled on a course.
+    </p>
+
+    
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
   </div>
 </div>
 
