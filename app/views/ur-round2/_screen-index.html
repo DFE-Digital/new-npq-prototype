@@ -22,12 +22,18 @@ UR round 2: Setting page iterations & TeacherAuth
   <p>March 2026</p>
 
   <p>
-    <a href="#" target="blank">Research board</a>
+    <a href="https://lucid.app/lucidspark/35eb8f9a-dc28-4387-8e3c-652e13f0ee29/edit?viewport_loc=69925%2C104050%2C48000%2C23350%2C0_0&invitationId=inv_595074a0-0940-4d6c-9d15-78393d995228" target="blank">UR planning board</a>
     <br>
-    <a href="#" target="blank">Prototype map</a>
+    <a href="https://lucid.app/lucidspark/158d1b3a-e8ed-4c76-9250-3353b40307dd/edit?view_items=evpDEKysRrTI&page=0_0&invitationId=inv_6159bace-9e97-48bd-84cc-07ab4c380ab2" target="blank">Prototype map</a>
   </p>
 
+<p>
+  In the second round, we want to test two options for the setting page to get some insights on whether additional hint text will be deemed helpful by users.
+</p>
 
+<p>
+  We are also testing the TeacherAuth journey, particularly the TRN token path to check the content and if users understand the journey they are taking through OneLogin, TeacherAuth and back into the NPQ service.
+</p>
  
 <div class="govuk-!-padding-bottom-3"></div>
 
@@ -96,13 +102,23 @@ UR round 2: Setting page iterations & TeacherAuth
 
 
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell"><a href="funding-check/setting">Select setting</a></td>
+      <td class="govuk-table__cell"><a href="funding-check/setting">Select setting - option 1</a></td>
            <td class="govuk-table__cell">
         <strong class="govuk-tag govuk-tag--yellow">
           Updated
         </strong>
     </td>
       <td class="govuk-table__cell">Content updated</td>
+    </tr>
+
+        <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="funding-check/setting-v2">Select setting - option 2</a></td>
+           <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--yellow">
+          Updated
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Alternate version - slightly different content and design</td>
     </tr>
 
     <tr class="govuk-table__row">
@@ -185,6 +201,26 @@ UR round 2: Setting page iterations & TeacherAuth
       <td class="govuk-table__cell">Checking answers before continuing to TeacherAuth</td>
     </tr>
 
+                    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="check-answers/success">Success banner</a></td>
+               <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Success page following registration</td>
+    </tr>
+
+
+                    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="registered-success">NPQ submission / profile</a></td>
+               <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">User profile showing the user what they applied for</td>
+    </tr>
   </tbody>
 </table>
    
@@ -219,7 +255,12 @@ TeacherAuth screens
 
     <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="teacher-auth/matched-success">Match successful</a></td>
-      <td class="govuk-table__cell">End page with banner</td>
+      <td class="govuk-table__cell">End page with banner (happy path)</td>
+    </tr>
+
+     <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="teacher-auth/continue-registration">Continue registration</a></td>
+      <td class="govuk-table__cell">TRN token page and redirect</td>
     </tr>
 
   </tbody>
