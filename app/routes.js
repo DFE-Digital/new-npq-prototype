@@ -199,7 +199,7 @@ router.post('/hospital-school-funding-check-answer', function (req, res) {
     if (publiclyFundedHospitalSchool === "Yes") {
         res.redirect('/funding-check/workplace')
     } else {
-        res.redirect('/employer-funding-check')
+        res.redirect('/funding-check/employer')
     }
 
 })
@@ -364,7 +364,7 @@ router.post('/ofsted-number-funding-check-answer', function (req, res) {
       res.redirect('/funding-messages/not-eligible/early-years-disadvantage-list-senco-headship');
 
     } else {
-        res.redirect('/funding-messages/not-eligible-for-funding-workplace-not-eligible');
+        res.redirect('/funding-messages/not-eligible/workplace-not-eligible');
     }
 
 })
