@@ -32,21 +32,20 @@
         </div>
 
       <p class="govuk-body govuk-!-margin-top-6">
-        You’re not eligible for DfE scholarship funding for the {{ data['npq-funded'] }} NPQ because your workplace is not listed as one of the highly disadvantaged schools or 16 to 19 settings.
+        You’re not eligible for DfE scholarship funding for the {{ data['npq-funded'] }} course because your workplace is not listed as one of the highly disadvantaged schools or 16 to 19 settings.
       </p>
 
-      <p>
-        However, your workplace is listed as a highly disadvantaged early years setting, so you would be eligible for the Early years leadership NPQ.
-      </p>
-
-      <p>
-        Your workplace also counts as one of the settings eligible for the SENCO and Headship NPQs.
-      </p>
+      <p class="govuk-body">However, your workplace is listed as a highly disadvantaged early years setting, so you would be eligible for the following NPQ courses:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>Early years leadership</li>
+  <li>Special educational needs co-ordinator </li>
+  <li>Headship</li>
+</ul>
 
       <p>
         You can go back to
         <a href="/ur-round2/funding-check/select-npq" class="govuk-link">change your NPQ</a>
-        if you prefer.
+        if you wish.
       </p>
 
       {% if data['npq-funded'] == "Leading primary mathematics" %}
@@ -63,7 +62,7 @@
           }) }}
         {% else %}
           {{ govukButton({
-            text: "Continue to register"
+            text: "Register without DfE funding"
           }) }}
         {% endif %}
 
