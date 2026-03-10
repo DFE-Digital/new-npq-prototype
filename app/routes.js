@@ -658,6 +658,28 @@ router.post('/ur-round2/select-npq-answer', function (req, res) {
 
 })
 
+router.get('/ur-round2/funding-check/setting', function (req, res) {
+    const data = req.session.data;
+
+    // Ensure the setting page starts with no preselected options.
+    delete data['ur1-setting'];
+    delete data['setting-funding-check'];
+    delete data['school-setting'];
+
+    res.render('ur-round2/funding-check/setting');
+})
+
+router.get('/ur-round2/funding-check/setting-v2', function (req, res) {
+    const data = req.session.data;
+
+    // Ensure the setting page starts with no preselected options.
+    delete data['ur1-setting'];
+    delete data['setting-funding-check'];
+    delete data['school-setting'];
+
+    res.render('ur-round2/funding-check/setting-v2');
+})
+
 router.post('/ur-round2/setting-funding-check-answer', function (req, res) {
 
     const data = req.session.data;
