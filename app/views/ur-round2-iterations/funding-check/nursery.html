@@ -1,0 +1,78 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Check your funding eligibility
+      </span>
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+        What early years setting do you work in?
+      </h1>
+
+      <form class="form" action="/ur-round2/nursery-funding-check-answer" method="post">
+
+          {{ govukRadios({
+              name: "publicly-funded-nursery",
+              fieldset: {
+                legend: {
+                  text: "What early years setting do you work in?",
+                  classes: "govuk-visually-hidden"
+                }
+              },
+            items: [
+              {
+                value: "Local authority-maintained nursery",
+                text: "Local authority-maintained nursery"
+              },
+              {
+                value: "Pre-school class or nursery that’s part of a school (maintained or independent)",
+                text: "Pre-school class or nursery that’s part of a school (maintained or independent)"
+              },
+              {
+                value: "Private nursery",
+                text: "Private nursery"
+              },
+              {
+                value: "Childminding",
+                text: "Childminding"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "Other",
+                text: "Other"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

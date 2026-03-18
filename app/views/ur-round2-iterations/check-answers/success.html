@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Find your teaching record – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+   <div class="govuk-panel govuk-panel--confirmation">
+  <h1 class="govuk-panel__title">
+    Registration complete
+  </h1>
+   <div class="govuk-panel__body">
+    Your reference number<br><strong>HDJ2123F</strong>
+  </div>
+</div>
+
+ <p class="govuk-body">
+  We have sent you a confirmation email.
+ </p>
+
+    <h1 class="govuk-heading-m">
+      What happens next
+    </h1>
+
+     <p class="govuk-body">
+      We've sent your registration to {{ data['select-provider-funded'] }}, your provider.
+     </p>
+
+     <p class="govuk-body">
+      They will contact you and ask you to complete their application form.
+     </p>
+
+    <p class="govuk-body">
+      <a href="../registered-success">Review a summary of your registration</a>.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Do you have a National Insurance number? – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% set ninoHtml %}
+      {{ govukInput({
+        id: "national-insurance-number",
+        name: "national-insurance-number",
+        label: {
+          text: "National Insurance Number"
+        },
+        hint: {
+          text: "It's on your National Insurance card, benefit letter, payslip or P60 (for example QQ 12 34 56 C)."
+        },
+        classes: "govuk-input--width-10",
+        value: data['national-insurance-number']
+      }) }}
+    {% endset %}
+
+    <form action="/ur-round2/national-insurance-answer" method="post">
+
+      {{ govukRadios({
+        name: "has-national-insurance",
+        fieldset: {
+          legend: {
+            text: "Do you have a National Insurance number?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            conditional: {
+              html: ninoHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "What is a National Insurance number?",
+        html: "
+          <p class='govuk-body'>
+            A National Insurance number is a personal number used by HM Revenue and Customs (HMRC) to record the tax and National Insurance you pay.
+          </p>
+          <p class='govuk-body'>
+            You keep the same number for life, even if you move out of the UK.
+          </p>
+          <p class='govuk-body'>
+            It’s shown on UK documents such as your National Insurance card, benefit letter, payslip or P60.
+          </p>
+        "
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

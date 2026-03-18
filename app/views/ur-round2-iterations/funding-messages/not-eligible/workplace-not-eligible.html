@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <h1 class="govuk-heading-l" style="margin: 0;">
+          DfE scholarship funding
+        </h1>
+        {{ govukTag({
+          text: "Not Eligible",
+          classes: "govuk-tag--red"
+        }) }}
+      </div>
+
+      <form class="form" action="/ur-round2/funded-follow-up/funding-source" method="post">
+
+        <p class="govuk-body govuk-!-margin-top-6">
+          You’re not eligible for DfE scholarship funding for the [course_name] course because your workplace is not on the list of highly disadvantaged workplaces.
+        </p>
+
+        <p><a href="https://www.gov.uk/government/publications/funding-for-national-professional-qualifications-npqs/funding-for-national-professional-qualifications-npqs" class="govuk-link">Learn more about who is eligible for funding</a></p>
+        <h2 class="govuk-heading-m">What you can do next</h2>
+        <p class="govuk-body govuk-!-margin-top-6">
+        You can continue to register without DfE funding. However, you or your workplace would need to cover the cost.
+        </p>
+
+        {{ govukButton({
+          text: "Register without DfE funding"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

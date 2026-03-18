@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+          <h1 class="govuk-heading-l" style="margin: 0;">
+            DfE scholarship funding
+          </h1>
+          {{ govukTag({
+            text: "Eligible",
+            classes: "govuk-tag--green"
+          }) }}
+      </div>
+
+      <p class="govuk-body govuk-!-margin-top-6">
+        You’re eligible for DfE scholarship funding because your workplace is listed as one of the highly disadvantaged schools or 16 to 19 settings, or qualifies for regional improvement for standards and excellence (RISE) intervention.
+      </p>
+
+      {% if data['npq-funded'] == "Leading primary mathematics" %}
+      <p class="govuk-body">
+        However, you still need to check your suitability for Leading primary mathematics. The next questions will assess your suitability for the course.
+      </p>
+      {% endif %}
+
+      <form class="form" action="/ur-round2/maths-suitability-answer" method="post">
+
+        {% if data['npq-funded'] == "Leading primary mathematics" %}
+          {{ govukButton({
+            text: "Continue to check suitability"
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Continue to register"
+          }) }}
+        {% endif %}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
