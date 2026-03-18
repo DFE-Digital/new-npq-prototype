@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+      {% include "ur-round2/check-answers/_summary.html" %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">
+        Submit your registration
+      </h2>
+
+      <p>By submitting, you’re confirming that all the information you entered is correct.</p>
+
+      <form action="success" method="post" novalidate>
+        {{ govukButton({
+          text: "Submit"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

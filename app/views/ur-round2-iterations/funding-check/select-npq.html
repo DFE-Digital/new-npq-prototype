@@ -1,0 +1,111 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Check your funding eligibility
+      </span>
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+        Select your NPQ
+      </h1>
+
+      <form class="form" action="/ur-round2/select-npq-answer" method="post">
+
+          {{ govukRadios({
+              name: "npq-funded",
+              fieldset: {
+                legend: {
+                  text: "Select your NPQ",
+                  classes: "govuk-visually-hidden"
+                }
+              },
+             items: [
+              {
+                value: "Early years leadership",
+                text: "Early years leadership (EYL)"
+              },
+              {
+                value: "Executive leadership",
+                text: "Executive leadership (EL)"
+              },
+              {
+                value: "Headship",
+                text: "Headship (H)"
+              },
+              {
+                value: "Leading behaviour and culture",
+                text: "Leading behaviour and culture (LBC)"
+              },
+              {
+                value: "Leading literacy",
+                text: "Leading literacy (LL)"
+              },
+              {
+                value: "Leading primary mathematics",
+                text: "Leading primary mathematics (LPM)"
+              },
+              {
+                value: "Leading teaching",
+                text: "Leading teaching (LT)",
+                hint: {
+                  text: "Helps teachers lead teaching and learning for a subject, year group or phase"
+                }
+              },
+              {
+                value: "Leading teacher development",
+                text: "Leading teacher development (LTD)",
+                hint: { 
+                  text: "Helps teachers train and develop other teachers and support their professional growth"
+                }
+              },
+              {
+                value: "Senior leadership",
+                text: "Senior leadership (SL)"
+              },
+              {
+                value: "SENCO",
+                text: "Special educational needs co-ordinator (SENCO)"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "Early headship coaching offer",
+                text: "Early headship coaching offer (EHCO)",
+                hint: {
+                  text: "Networking and support if you're in your first 5 years of headship"
+                }
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+        You’re signed in to GOV.UK One Login
+      </h1>
+
+      <p class="govuk-body">You can now continue your registration.</p>
+
+      <form class="form" action="../teacher-auth/find-your-record" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+  </div>
+
+{% endblock %}
