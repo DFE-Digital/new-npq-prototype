@@ -1186,20 +1186,13 @@ router.post('/ur-round2-iterations/select-npq-answer', function (req, res) {
     if (req.session.data['npq-funded'] === 'Early headship coaching offer') {
         res.redirect('/ur-round2-iterations/funding-check/ehco');
     } else {
-        res.redirect('/ur-round2-iterations/funding-check/setting');
+        res.redirect('/ur-round2-iterations/funding-check/setting-v2');
     }
 
 })
 
 router.get('/ur-round2-iterations/funding-check/setting', function (req, res) {
-    const data = req.session.data;
-
-    // Ensure the setting page starts with no preselected options.
-    delete data['ur1-setting'];
-    delete data['setting-funding-check'];
-    delete data['school-setting'];
-
-    res.render('ur-round2-iterations/funding-check/setting');
+    res.redirect('/ur-round2-iterations/funding-check/setting-v2');
 })
 
 router.get('/ur-round2-iterations/funding-check/setting-v2', function (req, res) {
