@@ -13,7 +13,8 @@
 
 {% block content %}
 
-
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 <h1 class="govuk-heading-l">
 UR round 2: Setting page iterations & TeacherAuth
   </h1>
@@ -22,19 +23,40 @@ UR round 2: Setting page iterations & TeacherAuth
   <p>March 2026</p>
 
   <p>
+    <a href="https://educationgovuk.sharepoint.com/:p:/r/sites/TeacherServices/Shared%20Documents/Teacher%20Continuing%20Professional%20Development/Teacher%20CPD%20Team/NPQ/Research/User%20Research/NPQ%20Registration%202026%20UR%20Round%202%2011-13%20March%202026.pptx?d=w0b41e43aca9f4fbba4430aab9b98aa16&csf=1&web=1&e=f9XOLy">UR playback deck</a>
+    <br>
     <a href="https://lucid.app/lucidspark/35eb8f9a-dc28-4387-8e3c-652e13f0ee29/edit?viewport_loc=69925%2C104050%2C48000%2C23350%2C0_0&invitationId=inv_595074a0-0940-4d6c-9d15-78393d995228" target="blank">UR planning board</a>
     <br>
     <a href="https://lucid.app/lucidspark/158d1b3a-e8ed-4c76-9250-3353b40307dd/edit?view_items=evpDEKysRrTI&page=0_0&invitationId=inv_6159bace-9e97-48bd-84cc-07ab4c380ab2" target="blank">Prototype map</a>
   </p>
 
 <p>
-  In the second round, we want to test two options for the setting page to get some insights on whether additional hint text will be deemed helpful by users.
+  In the second round, we tested two versions of the settings page, as well as the TeacherAuth journey.
 </p>
 
 <p>
-  We are also testing the TeacherAuth journey, particularly the TRN token path to check the content and if users understand the journey they are taking through OneLogin, TeacherAuth and back into the NPQ service.
+  Users were split between two designs, so there was no clear winner between version 1 and 2. It however uncovered the fundamental issue of multiple options being applicable to some users.
+  <br>
+  <br>
+  After some investigation, UCD found out that:
+  <ul class="govuk-list govuk-list--bullet">
+    <li>
+      the settings page was not statistically relevant to any policy team - no essential data is gathered from it
+    </li>
+    <li>the page confused users, no matter how clear the content was to them since they may not perfectly fit the settings binary outlined on the page</li>
+  </ul>
 </p>
- 
+<p>
+  Our recommendation was to remove the page, putting the Workplace question first and then deal with the edge cases that don't fit into the path of least resistance which is what we'll be investigating in UR round 3.
+</p>
+
+<p>
+  This prototype contains content changes made to the eligibility checker that came out of round 2, just to improve comprehension and clarity across the NPQ service.
+</p>
+</div>
+
+
+   <div class="govuk-grid-column-full">
 <div class="govuk-!-padding-bottom-3"></div>
 
  <table class="govuk-table">
@@ -56,7 +78,7 @@ UR round 2: Setting page iterations & TeacherAuth
         </strong>
     </td>
         <td class="govuk-table__cell">
-            Content updated
+            Content updated following UR round 2 - minor content tweaks
         </td>
     </tr>
 
@@ -97,18 +119,18 @@ UR round 2: Setting page iterations & TeacherAuth
           Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Content updated</td>
+      <td class="govuk-table__cell">Content updated - reverted to previous version without acronyms due to UR findings</td>
     </tr>
 
 
     <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="funding-check/setting">Select setting - option 1</a></td>
            <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--yellow">
-          Updated
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
         </strong>
     </td>
-      <td class="govuk-table__cell">Content updated</td>
+      <td class="govuk-table__cell">No changes after testing. We decided to go forward with option 2 as that's the version that users seemed to prefer, even if just by a very small margin.</td>
     </tr>
 
         <tr class="govuk-table__row">
@@ -118,27 +140,27 @@ UR round 2: Setting page iterations & TeacherAuth
           Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Alternate version - slightly different content and design</td>
+      <td class="govuk-table__cell">Alternate version - slightly different content and design. This is the version we'll take forward.</td>
     </tr>
 
     <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="funding-check/workplace">Workplace</a></td>
            <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--grey">
-          No changes
+        <strong class="govuk-tag govuk-tag--yellow">
+         Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Workplace</td>
+      <td class="govuk-table__cell">Minor content updates</td>
     </tr>
 
     <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="funding-messages/not-eligible/workplace-not-eligible">Funding outcome: not eligible</a></td>
        <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--grey">
-          No changes
+        <strong class="govuk-tag govuk-tag--yellow">
+         Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Kick out screen: not eligible due to workplace</td>
+      <td class="govuk-table__cell">Kick out screen: not eligible due to workplace. Minor content updates.</td>
     </tr>
 
     <tr class="govuk-table__row">
@@ -154,72 +176,72 @@ UR round 2: Setting page iterations & TeacherAuth
         <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="funded-follow-up/provider">Provider selection</a></td>
                <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--grey">
-          No changes
+        <strong class="govuk-tag govuk-tag--yellow">
+        Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Select your provider</td>
+      <td class="govuk-table__cell">Minor content updates</td>
     </tr>
 
             <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="check-answers/continue">Check answers 1</a></td>
                <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--grey">
-          No changes
+        <strong class="govuk-tag govuk-tag--yellow">
+         Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Checking answers before continuing to OneLogin</td>
+      <td class="govuk-table__cell">Prototype only - Checking answers before continuing to OneLogin - minor content updates</td>
     </tr>
 
                 <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="one-login-wrapper/continue">OneLogin handoff</a></td>
                <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--grey">
-          No changes
+        <strong class="govuk-tag govuk-tag--yellow">
+         Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Continue through GOV.UK OneLogin</td>
+      <td class="govuk-table__cell">Prototype only - Continue through GOV.UK OneLogin - minor content updates</td>
     </tr>
 
                     <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="one-login-wrapper/signed-in">OneLogin handoff: logged in</a></td>
                <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--grey">
-          No changes
+        <strong class="govuk-tag govuk-tag--yellow">
+         Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Interstitial screen telling the user they're now logged into OneLogin</td>
+      <td class="govuk-table__cell">Prototype only - Interstitial screen telling the user they're now logged into OneLogin - minor content updates</td>
     </tr>
 
                 <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="check-answers/submit">Check answers 2</a></td>
                <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--grey">
-          No changes
+        <strong class="govuk-tag govuk-tag--yellow">
+         Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Checking answers before continuing to TeacherAuth</td>
+      <td class="govuk-table__cell">Checking answers before continuing to TeacherAuth - minor content updates</td>
     </tr>
 
                     <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="check-answers/success">Success banner</a></td>
                <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--grey">
-          No changes
+        <strong class="govuk-tag govuk-tag--yellow">
+          Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">Success page following registration</td>
+      <td class="govuk-table__cell">Success page following registration. Updated registration on banner to match live service.</td>
     </tr>
 
 
                     <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="registered-success">NPQ submission / profile</a></td>
                <td class="govuk-table__cell">
-        <strong class="govuk-tag govuk-tag--grey">
-          No changes
+        <strong class="govuk-tag govuk-tag--yellow">
+         Updated
         </strong>
     </td>
-      <td class="govuk-table__cell">User profile showing the user what they applied for</td>
+      <td class="govuk-table__cell">User profile showing the user what they applied for. Content update to some labels following user feedback.</td>
     </tr>
   </tbody>
 </table>
@@ -229,6 +251,7 @@ UR round 2: Setting page iterations & TeacherAuth
 TeacherAuth screens
   </h2>
 
+  <p>We have made some changes to the screens below and shared them with the TRS team. If we test this path again, we will liaise with them again to ensure we're testing the latest content.</p>
 
  <table class="govuk-table">
   <thead class="govuk-table__head">
@@ -265,5 +288,6 @@ TeacherAuth screens
 
   </tbody>
 </table>
-
+</div>
+</div>
 {% endblock %}
