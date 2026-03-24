@@ -32,7 +32,7 @@
       }) }}
     {% endset %}
 
-    <form action="/ur-round2/trn-answer" method="post">
+    <form action="/ur-round2-iterations/trn-answer" method="post">
 
       {{ govukRadios({
         name: "has-trn",
@@ -53,14 +53,19 @@
           },
           {
             value: "No",
-            text: "No"
+             text: "No, I've never received one"
           }
         ]
-      }) }}
+      }) }}  
+       
+ <p class="govuk-body">
+  If you cannot remember or find your TRN use the <a href="https://find-a-lost-trn.education.gov.uk/start" class="govuk-link">Find a lost TRN service (opens in a new tab)</a>.
+</p>
+ {% set trnDetails %}
 
-    {% set trnDetails %}
+    
 <p class="govuk-body">
-  A teacher reference number (TRN) is a 7-digit number that uniquely identifies you in the education sector in England.
+   It is a 7-digit number that uniquely identifies you in the education sector in England.
 </p>
 
 <p class="govuk-body">
@@ -78,10 +83,6 @@
 
 <p class="govuk-body">
   You may not have one yet if you work in early years, further education or are qualified as a teacher outside of England.
-</p>
-
-<p class="govuk-body">
-  <a class="govuk-link" href="https://www.gov.uk/guidance/teacher-reference-number-trn">Learn about TRNs, including how to request one or find a lost TRN (opens in a new tab)</a>.
 </p>
 {% endset %}
 

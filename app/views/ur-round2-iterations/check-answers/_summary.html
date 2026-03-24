@@ -27,102 +27,102 @@
       {% if data['ofsted-number'] == 'A childcare agency or childminder on the disadvantaged list' and
             data['npq-funded'] in eligibleChildminderNpqs %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/eligible/childcare-agency-childminder' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/eligible/childcare-agency-childminder' %}
 
       {% elseif data['ofsted-number'] == 'A childcare agency or childminder on the disadvantaged list' and
               data['npq-funded'] not in eligibleChildminderNpqs %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/not-eligible/childcare-agency-childminder' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/not-eligible/childcare-agency-childminder' %}
 
       {% elseif data['ofsted-number'] == 'An early years setting on the disadvantaged list' and
             data['npq-funded'] not in eligibleChildminderNpqs %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/not-eligible/early-years-disadvantage-list' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/not-eligible/early-years-disadvantage-list' %}
 
       {% elseif data['ofsted-number'] == 'An early years setting on the disadvantaged list' and
             data['npq-funded'] in eligibleChildminderNpqs %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/eligible/early-years-disadvantage-list' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/eligible/early-years-disadvantage-list' %}
 
       {% elseif data['england'] == 'No' %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/not-eligible/england' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/not-eligible/england' %}
 
       {% elseif
         data['workplace'] == 'Maintained nursery school - disadvantaged list'
         and data['npq-funded'] in maintainedNurseryIneligible
       %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/not-eligible/maintained-nursery-disadvantaged-list' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/not-eligible/maintained-nursery-disadvantaged-list' %}
 
       {% elseif
         data['workplace'] == 'Maintained nursery school - disadvantaged list'
         and data['npq-funded'] in maintainedNurseryEligible
       %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/eligible/maintained-nursery-disadvantaged-list' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/eligible/maintained-nursery-disadvantaged-list' %}
 
       {% elseif
         data['workplace'] == 'Maintained nursery school - disadvantaged list'
         and data['npq-funded'] in publiclyFundedEligible
       %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/eligible/publicly-funded-nursery' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/eligible/publicly-funded-nursery' %}
 
       {% elseif
         data['workplace'] == 'Early years organisation - disadvantaged list'
         and data['npq-funded'] in maintainedNurseryEligible
       %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/eligible/early-years-disadvantage-list' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/eligible/early-years-disadvantage-list' %}
 
       {% elseif
         data['workplace'] == 'Early years organisation - disadvantaged list'
         and data['npq-funded'] not in maintainedNurseryEligible
       %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/not-eligible/early-years-disadvantage-list' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/not-eligible/early-years-disadvantage-list' %}
 
       {% elseif data['ofsted-number'] == 'An early years setting on the early years list' and data['npq-funded'] != 'Early years leadership' %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/not-eligible/maintained-nursery-disadvantaged-list' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/not-eligible/maintained-nursery-disadvantaged-list' %}
 
       {% elseif data['ofsted-number'] == 'An early years setting not on the early years list' or data['do-you-have-ofsted-number'] == 'No' or data['workplace'] == 'Workplace not on any of the eligibility lists and not one of the settings eligible for SENCO and Headship' %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/not-eligible/workplace-not-eligible' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/not-eligible/workplace-not-eligible' %}
 
       {% elseif data['workplace'] == 'A workplace on either the schools, 16-19 or RISE list' %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/eligible/schools-16-to-19-rise' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/eligible/schools-16-to-19-rise' %}
 
       {% elseif data['workplace'] == 'A publicly funded: school, 16-19-setting, nursery, hospital school' and data['npq-funded'] in publiclyFundedEligible%}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/eligible/publicly-funded-setting' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/eligible/publicly-funded-setting' %}
 
       {% elseif data['workplace'] == 'A publicly funded: school, 16-19-setting, nursery, hospital school' and data['npq-funded'] not in publiclyFundedEligible%}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/not-eligible/publicly-funded-setting' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/not-eligible/publicly-funded-setting' %}
 
       {% elseif
         data['workplace'] == 'Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship'
         and data['npq-funded'] in maintainedNurseryIneligible
       %}
         {% set fundingStatus = 'Not eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/not-eligible/early-years-disadvantage-list-senco-headship' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/not-eligible/early-years-disadvantage-list-senco-headship' %}
 
       {% elseif
         data['workplace'] == 'Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship'
         and data['npq-funded'] in publiclyFundedEligible
       %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/eligible/publicly-funded-setting' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/eligible/publicly-funded-setting' %}
 
       {% elseif
         data['workplace'] == 'Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship'
         and data['npq-funded'] in maintainedNurseryEligible
       %}
         {% set fundingStatus = 'Eligible' %}
-        {% set fundingHref = '/ur-round2/funding-messages/eligible/early-years-disadvantage-list' %}
+        {% set fundingHref = '/ur-round2-iterations/funding-messages/eligible/early-years-disadvantage-list' %}
 
       {% endif %}
 
@@ -148,7 +148,7 @@
         {% set workingInEnglandRow = {
           key: { text: "Working in England" },
           value: { text: data['england'] },
-          actions: { items: [{ href: "/ur-round2/funding-check/england", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2-iterations/funding-check/england", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -159,7 +159,7 @@
         {% set courseFundingCheckRow = {
           key: { text: "Course" },
           value: { text: data['npq-funded'] },
-          actions: { items: [{ href: "/ur-round2/funding-check/select-npq", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2-iterations/funding-check/select-npq", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -170,7 +170,7 @@
         {% set courseRow = {
           key: { text: "Course" },
           value: { text: data['select-npq'] },
-          actions: { items: [{ href: "/ur-round2/unfunded-path/select-npq", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2-iterations/unfunded-path/select-npq", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -181,7 +181,7 @@
         {% set providerFundingCheckRow = {
           key: { text: "Provider" },
           value: { text: data['select-provider-funded'] },
-          actions: { items: [{ href: "/ur-round2/funded-follow-up/provider", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2-iterations/funded-follow-up/provider", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -192,7 +192,7 @@
         {% set providerRow = {
           key: { text: "Provider" },
           value: { text: data['select-provider'] },
-          actions: { items: [{ href: "/ur-round2/unfunded-path/select-provider", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2-iterations/unfunded-path/select-provider", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -203,7 +203,7 @@
         {% set settingRow = {
           key: { text: "Setting" },
           value: { text: data['setting-funding-check'] },
-          actions: { items: [{ href: "/ur-round2/funding-check/setting-v2", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2-iterations/funding-check/setting-v2", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -214,7 +214,7 @@
         {% set fundingSourceRow = {
           key: { text: "Funding source" },
           value: { text: data['funding-source-not-funded'] },
-          actions: { items: [{ href: "/ur-round2/funded-follow-up/funding-source", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2-iterations/funded-follow-up/funding-source", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -225,7 +225,7 @@
         {% set fundingSourceCheckedFundingRow = {
           key: { text: "Funding source" },
           value: { text: data['funding-source'] },
-          actions: { items: [{ href: "/ur-round2/unfunded-path/funding-source", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2-iterations/unfunded-path/funding-source", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -236,7 +236,7 @@
         {% set publiclyFundedNurseryRow = {
           key: { text: "Publicly funded nursery" },
           value: { text: data['publicly-funded-nursery'] },
-          actions: { items: [{ href: "/ur-round2/funding-check/nursery", text: "Change" }] }
+          actions: { items: [{ href: "/ur-round2-iterations/funding-check/nursery", text: "Change" }] }
         } %}
       {% endif %}
 
@@ -257,7 +257,7 @@
           actions: {
             items: [
               {
-                href: "/ur-round2/funding-check/ofsted",
+                href: "/ur-round2-iterations/funding-check/ofsted",
                 text: "Change"
               }
             ]
@@ -276,7 +276,7 @@
           actions: {
             items: [
               {
-                href: "/ur-round2/funding-check/workplace",
+                href: "/ur-round2-iterations/funding-check/workplace",
                 text: "Change",
                 visuallyHiddenText: "workplace"
               }
@@ -299,7 +299,7 @@
           {
               key: { text: "Autumn 2026 start" },
               value: { html: data['course-start'] + courseStartHint },
-              actions: { items: [{ href: "/ur-round2/course-start", text: "Change", visuallyHiddenText: "course start" }] }
+              actions: { items: [{ href: "/ur-round2-iterations/course-start", text: "Change", visuallyHiddenText: "course start" }] }
             },
           workingInEnglandRow,
           courseFundingCheckRow,

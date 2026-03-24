@@ -9,7 +9,7 @@
   tag: {
     text: "Prototype"
   },
-  html: 'This is a prototype used for testing. <a class="govuk-link" href="/ur-round2/funding-check/setting">Show version 1</a>'
+  html: 'This is a prototype used for testing. <a class="govuk-link" href="/ur-round2-iterations/funding-check/setting">Show version 1</a>'
 }) }}
   {{ govukBackLink({
     text: "Back",
@@ -38,12 +38,12 @@
     </span>
 
     <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
-      Which setting do you work in?
+     Where do you mainly work?
     </h1>
-        <p class="govuk-hint">If you work across more than one school, setting or phase, choose the one you work with most often. If none fit, select 'Other'.</p>
+        <p class="govuk-hint">If you work across more than one school, setting or phase, choose the one you work in most often. If none fit, select 'Other'.</p>
 
 
-    <form class="form" action="/ur-round2/setting-funding-check-answer" method="post">
+    <form class="form" action="/ur-round2-iterations/setting-funding-check-answer" method="post">
       {% set schoolOptionsHtml %}
         {{ govukRadios({
           name: "school-setting",
@@ -101,6 +101,7 @@
           },
           { value: "Academy trust", text: "Academy trust" },
           { value: "Working across schools", text: "Local authority – working across schools" },
+           { value: "Young offender institution", text: "Young offender institution" },
           { value: "Virtual school", text: "Virtual school" },
           { value: "Hospital school", text: "Hospital school" },
           { value: "Secure children's home or training centre", text: "Secure children's home or training centre" },
