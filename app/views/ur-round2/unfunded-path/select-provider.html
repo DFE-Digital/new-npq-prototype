@@ -26,6 +26,9 @@
 
           {{ govukRadios({
             name: "select-provider",
+                     hint: {
+              html: "If you’re not sure which to choose, <a class=\"govuk-link\" href=\"https://www.gov.uk/guidance/apply-for-a-national-professional-qualification-npq#find-an-npq-course-provider\" target=\"_blank\" rel=\"noopener noreferrer\">learn about the providers that offer your course</a>."
+            },
             fieldset: {
               legend: {
                 text: "Select your provider",
