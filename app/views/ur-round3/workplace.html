@@ -1,0 +1,88 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Check your funding eligibility
+      </span>
+
+      <h1 class="govuk-heading-l">
+        Your workplace
+      </h1>
+
+      <p class="govuk-body">
+        Search for your workplace using any combination of postcode, workplace name, unique reference number (URN) or street name.
+      </p>
+
+      <p class="govuk-body">
+        If you work for a trust, search for the school you work in most often.
+      </p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            If you cannot find your workplace
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+  <p class="govuk-body">You can check the details you entered are correct on
+                <a href="https://get-information-schools.service.gov.uk/Search?SelectedTab=Establishments"
+                   class="govuk-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                   Get information about schools (opens in a new tab)
+                </a>
+              </li>
+             
+            </ul>
+        </div>
+      </details>
+
+      <form class="form" action="select-workplace" method="post">
+
+        {{ xGovukAutocomplete({
+          id: "workplace",
+          name: "workplace",
+          allowEmpty: false,
+          label: {
+            classes: "govuk-label--m",
+            isPageHeading: false,
+            text: "Search for your workplace"
+          },
+          items: [
+            { text: "Riverside Sixth Form College", value: "A workplace on either the schools, 16-19 or RISE list" },
+            { text: "other", value: "Workplace not on any of the eligibility lists and not one of the settings eligible for SENCO and Headship" },
+            { text: "Meadow View Maintained Nursery School", value: "Maintained nursery school - disadvantaged list" },
+            { text: "Little Acorns Maintained Nursery School", value: "Early years organisation - disadvantaged list" },
+            { text: "Willow Tree Early Learning Centre", value: "Early years organisation - disadvantaged list but also one of the settings eligible for SENCO and Headship" },
+            { text: "Greenfield Community School", value: "A publicly funded: school, 16-19-setting, nursery, hospital school" }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

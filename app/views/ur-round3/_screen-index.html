@@ -1,0 +1,104 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-l">
+UR round 3: Redesigning the setting page
+  </h1>
+
+
+  <p>24th March 2026</p>
+
+  <p>
+    <a href="https://lucid.app/lucidspark/158d1b3a-e8ed-4c76-9250-3353b40307dd/edit?invitationId=inv_6159bace-9e97-48bd-84cc-07ab4c380ab2&page=0_0#">Design exploration board</a>
+  </p>
+
+<p>
+  In the third round, we plan on concept testing a new settings page.
+</p>
+</div>
+
+
+   <div class="govuk-grid-column-full">
+<div class="govuk-!-padding-bottom-3"></div>
+
+ <table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Link</th>
+      <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Status</th>
+      <th scope="col" class="govuk-table__header">Description</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+   
+
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="setting">Former Setting page</a></td>
+           <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">No changes following iterations from round 2. Screen for reference.</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="workplace">Workplace input</a></td>
+           <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">In progress</td>
+    </tr>
+
+     <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="select-workplace">Select workplace</a></td>
+           <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--gren">
+          New
+        </strong>
+    </td>
+      <td class="govuk-table__cell">New screen, in progress</td>
+    </tr>
+
+     <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="confirm-workplace">Confirm workplace</a></td>
+           <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--gren">
+          New
+        </strong>
+    </td>
+      <td class="govuk-table__cell">New screen, in progress</td>
+    </tr>
+
+     <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="funding-messages/other-outcome">Funding message: other</a></td>
+           <td class="govuk-table__cell">
+        <strong class="govuk-tag govuk-tag--grey">
+          No changes
+        </strong>
+    </td>
+      <td class="govuk-table__cell">Taken from previous prototype</td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+</div>
+{% endblock %}

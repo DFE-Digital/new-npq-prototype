@@ -1,0 +1,123 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing. <a class="govuk-link" href="/ur-round2-iterations/funding-check/setting">Show version 1</a>'
+}) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if schoolSettingError %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: schoolSettingError.text,
+            href: "#school-setting"
+          }
+        ]
+      }) }}
+    {% endif %}
+
+    <span class="govuk-caption-l">
+      Check your funding eligibility
+    </span>
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+     Where do you mainly work?
+    </h1>
+        <p class="govuk-hint">If you work across more than one school, setting or phase, choose the one you work in most often. If none fit, select 'Other'.</p>
+
+
+    <form class="form" action="/ur-round2-iterations/setting-funding-check-answer" method="post">
+      {% set schoolOptionsHtml %}
+        {{ govukRadios({
+          name: "school-setting",
+          errorMessage: schoolSettingError,
+          fieldset: {
+            legend: {
+              text: "Which type of school?",
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            { value: "Primary school", text: "Primary school (5 to 11)" },
+            { value: "Secondary school", text: "Secondary school (11 to 16)" },
+            {
+              value: "Post 16 provider",
+              text: "Post-16 provider (16 to 19)",
+              hint: {
+                text: "Sixth forms, further education colleges"
+              }
+            }
+          ]
+        }) }}
+      {% endset %}
+
+      {{ govukRadios({
+        name: "ur1-setting",
+        fieldset: {
+          legend: {
+            text: "What setting do you work in?",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "Early years",
+            text: "Early years",
+            hint: {
+              text: "Nurseries, preschools, playgroups, childminders"
+            }
+          },
+          {
+            value: "School",
+            text: "School",
+            conditional: {
+              html: schoolOptionsHtml
+            }
+          },
+          { value: "Special school", text: "Special school or Special educational needs and disabilities (SEND) unit" },
+          {
+            value: "Alternative provision",
+            text: "Alternative provision (AP)",
+            hint: {
+              text: "Pupil referral units (PRUs), AP academies"
+            }
+          },
+          { value: "Academy trust", text: "Academy trust" },
+          { value: "Working across schools", text: "Local authority – working across schools" },
+           { value: "Young offender institution", text: "Young offender institution" },
+          { value: "Virtual school", text: "Virtual school" },
+          { value: "Hospital school", text: "Hospital school" },
+          { value: "Secure children's home or training centre", text: "Secure children's home or training centre" },
+         
+          { value: "As a lead mentor for an accredited ITT provider", text: "Initial teacher training (ITT) – as a lead mentor" },
+          { value: "Other", text: "Other" }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

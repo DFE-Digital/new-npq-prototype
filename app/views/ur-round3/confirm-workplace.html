@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Check your funding eligibility
+      </span>
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+        Confirm your workplace
+      </h1>
+
+      <p>
+        Placeholder text
+      </p>
+
+      <form class="form" action="" method="post">
+
+        {{ govukRadios({
+          name: "workplace",
+          fieldset: {
+            legend: {
+              text: "Is this correct?",
+              classes: "govuk-heading-m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No, change my answer",
+              text: "No, change my answer"
+            },
+            {
+              value: "Let me enter my details manually",
+              text: "Let me enter my details manually"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
