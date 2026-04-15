@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+
+
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+       <h1 class="govuk-heading-xl">
+        Register for a national professional qualification (NPQ)
+      </h1>
+
+      <p>Use this service to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>check if you're eligible for DfE scholarship funding</li>
+        <li>register for an NPQ or the Early Headship Coaching Offer (EHCO)</li>
+      </ul>
+
+      <p>We’ll send your registration to your chosen course provider. They’ll contact you to complete their application form. </p>
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+
+      <p>
+           To check your funding eligibility, you'll need:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              
+            <li>the NPQ course you want to take and the provider you'll use</li>
+            <li>the address of your workplace</li>
+            <li>an Ofsted unique reference number (URN) if you work in early years or childcare</li>
+          </ul>
+          <p class="govuk-body govuk-!-padding-bottom-3"></p>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "check-funding-start",
+        isStartButton: true
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Sign in
+      </h2>
+
+      <p>
+        You can also <a href="/ur-round3/not-in-prototype">sign in</a> through GOV.UK One Login to view a previous registration or change your personal details.
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

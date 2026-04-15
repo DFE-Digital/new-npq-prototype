@@ -26,37 +26,33 @@
         Check your funding eligibility
       </span>
       <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
-        Confirm your workplace
+        Enter your workplace details
       </h1>
 
-      <p>
-        Placeholder text
-      </p>
+      <form class="form" action="/ur-round3/enter-manually-answer" method="post">
 
-      <form class="form" action="/ur-round3/confirm-workplace-answer" method="post">
-
-        {{ govukRadios({
-          name: "workplace",
-          fieldset: {
-            legend: {
-              text: "Is this correct?",
-              classes: "govuk-heading-m"
-            }
+        {{ govukInput({
+          label: {
+            text: "Workplace name"
           },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes"
-            },
-            {
-              value: "No, change my answer",
-              text: "No, change my answer"
-            },
-            {
-              value: "Let me enter my details manually",
-              text: "Let me enter my details manually"
-            }
-          ]
+          id: "workplace-name",
+          name: "workplace-name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Workplace address"
+          },
+          id: "workplace-address",
+          name: "workplace-address"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Postcode"
+          },
+          id: "workplace-postcode",
+          name: "workplace-postcode"
         }) }}
 
         {{ govukButton({

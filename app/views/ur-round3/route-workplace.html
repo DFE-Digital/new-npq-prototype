@@ -26,48 +26,35 @@
         Check your funding eligibility
       </span>
       <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
-       We need more information about your workplace
+      Placeholder
       </h1>
 
-      <p>Select the setting you work in:</p>
+      <p>
+        Placeholder text
+      </p>
 
-      <form class="form" action="/ur-round3/select-workplace-answer" method="post">
+      <form class="form" action="/ur-round3/route-workplace-answer" method="post">
 
         {{ govukRadios({
           name: "workplace",
           fieldset: {
             legend: {
-              text: "Select your setting",
-              classes: "govuk-visually-hidden"
+              text: "Do any of these settings describe your workplace?",
+              classes: "govuk-heading-m"
             }
           },
           items: [
             {
-              value: "Virtual school",
-              text: "Virtual school"
+              value: "Yes",
+              text: "Option 1"
             },
             {
-              value: "Local authority",
-              text: "Local authority"
+              value: "No",
+              text: "Option 2"
             },
             {
-              value: "Hospital school",
-              text: "Hospital school"
-            },
-            {
-              value: "Young offender institution",
-              text: "Young offender institution"
-            },
-            {
-              value: "Initial Teacher Training (ITT) provider for ITT mentors",
-              text: "Initial Teacher Training (ITT) provider for ITT mentors"
-            },
-            {
-            divider: "or"
-            },
-            {
-               value: "none",
-               text: "None of these"
+              value: "Let me enter my details manually",
+              text: "Let me enter my details manually"
             }
           ]
         }) }}

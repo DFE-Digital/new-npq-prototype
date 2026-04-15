@@ -25,39 +25,32 @@
       <span class="govuk-caption-l">
         Check your funding eligibility
       </span>
+
       <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
-        Confirm your workplace
+        Have you received DfE funding for this course before?
       </h1>
 
-      <p>
-        Placeholder text
-      </p>
+      <form class="form" action="/ur-round3/previous-funding-answer" method="post">
 
-      <form class="form" action="/ur-round3/confirm-workplace-answer" method="post">
-
-        {{ govukRadios({
-          name: "workplace",
-          fieldset: {
-            legend: {
-              text: "Is this correct?",
-              classes: "govuk-heading-m"
-            }
-          },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes"
-            },
-            {
-              value: "No, change my answer",
-              text: "No, change my answer"
-            },
-            {
-              value: "Let me enter my details manually",
-              text: "Let me enter my details manually"
-            }
-          ]
-        }) }}
+          {{ govukRadios({
+              name: "previous-funding",
+              fieldset: {
+                legend: {
+                  text: "Have you received DfE funding for this course before?",
+                  classes: "govuk-visually-hidden"
+                }
+              },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
 
         {{ govukButton({
           text: "Continue"

@@ -1620,3 +1620,252 @@ router.post('/ur-round2-iterations/teacher-auth/find-your-record', function (req
 router.post('/ur-round2-iterations/teacher-auth/matched-success', function (req, res) {
     res.redirect('/ur-round2-iterations/teacher-auth/matched-success')
 })
+
+
+/// EC Round 3 UR
+
+router.post('/ur-round3/course-start-answer', function (req, res) {
+
+    var startMonth = req.session.data['course-start']
+    const data = req.session.data;
+
+    delete data['check-funding'];
+    delete data['england'];
+    delete data['previous-funding'];
+    delete data['setting-funding-check'];
+    delete data['workplace'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['publicly-funded-nursery'];
+    delete data['funding-source-not-funded'];
+    delete data['select-provider-funded'];
+    delete data['select-provider'];
+    delete data['select-npq'];
+    delete data['npq-funded'];
+
+    if (startMonth === "No, I already started in Spring") {
+        res.redirect('/ur-round3/not-in-prototype')
+    } else {
+        res.redirect('/ur-round3/funding-check/england')
+    }
+
+})
+
+
+router.all('/ur-round3/check-funding-answer', function (req, res) {
+
+    const data = req.session.data || {};
+
+    delete data['england'];
+    delete data['previous-funding'];
+    delete data['setting-funding-check'];
+    delete data['workplace'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['publicly-funded-nursery'];
+    delete data['select-provider-funded'];
+    delete data['select-provider'];
+    delete data['select-npq'];
+    delete data['npq-funded'];
+
+    if (req.query['check-funding'] === 'no') {
+        data['check-funding'] = 'no';
+        return res.redirect('/ur-round3/not-in-prototype');
+    }
+
+    if (req.body['check-funding'] === 'yes') {
+        data['check-funding'] = 'yes';
+        delete data['select-provider']
+        return res.redirect('/ur-round3/funding-check/england');
+    }
+
+    res.redirect('/ur-round3/check-funding-start')
+
+})
+
+
+router.post('/ur-round3/funding-check/england', function (req, res) {
+    res.redirect('/ur-round3/funding-check/england')
+})
+
+
+router.post('/ur-round3/england-funding-check-answer', function (req, res) {
+
+    const data = req.session.data;
+
+    delete data['previous-funding'];
+    delete data['setting-funding-check'];
+    delete data['workplace'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['publicly-funded-nursery'];
+    delete data['select-provider-funded'];
+    delete data['select-provider'];
+    delete data['select-npq'];
+    delete data['npq-funded'];
+    delete data['funding-source-not-funded'];
+    delete data['funding-source'];
+
+    if (data['england'] === "Yes") {
+        res.redirect('/ur-round3/funding-check/select-npq');
+    } else {
+        res.redirect('/ur-round3/funding-messages/other-outcome');
+    }
+});
+
+
+router.post('/ur-round3/select-npq-answer', function (req, res) {
+
+    if (req.session.data['npq-funded'] === 'Early headship coaching offer') {
+        res.redirect('/ur-round3/funding-check/ehco');
+    } else {
+        res.redirect('/ur-round3/funding-check/previous-funding');
+    }
+
+})
+
+
+router.post('/ur-round3/previous-funding-answer', function (req, res) {
+
+    const previousFunding = req.session.data['previous-funding'];
+
+    if (previousFunding === "Yes") {
+        return res.redirect('/ur-round3/funding-messages/other-outcome');
+    }
+
+    res.redirect('/ur-round3/funding-check/workplace');
+})
+
+
+// Removed ur-round3 setting routes (setting and setting-v2 no longer used).
+
+
+router.post('/ur-round3/nursery-funding-check-answer', function (req, res) {
+
+    const data = req.session.data;
+    const publiclyFundedNursery = data['publicly-funded-nursery'];
+
+    delete data['workplace'];
+    delete data['funding-source-not-funded'];
+    delete data['do-you-have-ofsted-number'];
+    delete data['ofsted-number'];
+    delete data['select-provider-funded']
+
+    if (publiclyFundedNursery === "Local authority-maintained nursery" || publiclyFundedNursery === "Pre-school class or nursery that’s part of a school (maintained or independent)") {
+        res.redirect('/ur-round3/funding-check/workplace')
+    } else if (publiclyFundedNursery === "Private nursery" || publiclyFundedNursery === "Childminding") {
+        res.redirect('/ur-round3/funding-check/ofsted');
+    } else {
+        res.redirect('/ur-round3/funding-check/ofsted');
+    }
+
+});
+
+
+router.post('/ur-round3/hospital-school-funding-check-answer', function (req, res) {
+
+    var publiclyFundedHospitalSchool = req.session.data['publicly-funded-hospital-school']
+
+    if (publiclyFundedHospitalSchool === "Yes") {
+        res.redirect('/ur-round3/funding-check/workplace')
+    } else {
+        res.redirect('/ur-round3/funding-check/employer')
+    }
+
+})
+
+
+router.post('/ur-round3/workplace-funding-check-answer', function (req, res) {
+    const workplace = req.session.data['workplace'];
+
+    if (workplace === 'Riverside School') {
+        return res.redirect('/ur-round3/confirm-workplace');
+    }
+
+    if (workplace === 'Little Acorns Nursery') {
+        return res.redirect('/ur-round3/select-workplace');
+    }
+
+    res.redirect('/ur-round3/not-in-prototype');
+})
+
+
+router.post('/ur-round3/ofsted-number-funding-check-answer', function (req, res) {
+    res.redirect('/ur-round3/funding-messages/other-outcome')
+})
+
+
+router.post('/ur-round3/echo-answer', function (req, res) {
+    res.redirect('/ur-round3/funding-messages/other-outcome')
+})
+
+
+router.post('/ur-round3/path/of/next/page', function (req, res) {
+    res.redirect('/ur-round3/not-in-prototype')
+})
+
+
+router.post('/ur-round3/select-workplace', function (req, res) {
+    const workplace = req.session.data['workplace'];
+
+    if (workplace === 'Riverside School') {
+        return res.redirect('/ur-round3/confirm-workplace');
+    }
+
+    if (workplace === 'Little Acorns Nursery') {
+        return res.redirect('/ur-round3/select-workplace');
+    }
+
+    res.redirect('/ur-round3/not-in-prototype');
+})
+
+
+router.post('/ur-round3/select-workplace-answer', function (req, res) {
+    const workplace = req.session.data['workplace'];
+
+    if (workplace === 'none' || workplace === 'Other') {
+        return res.redirect('/ur-round3/ineligible-workplace-other');
+    }
+
+    res.redirect('/ur-round3/enter-manually');
+})
+
+
+router.post('/ur-round3/confirm-workplace-answer', function (req, res) {
+    const workplaceConfirmation = req.session.data['workplace'];
+
+    if (workplaceConfirmation === 'Yes') {
+        return res.redirect('/ur-round3/funding-messages/other-outcome');
+    }
+
+    if (workplaceConfirmation === 'No, change my answer') {
+        return res.redirect('/ur-round3/select-workplace');
+    }
+
+    if (workplaceConfirmation === 'Let me enter my details manually') {
+        return res.redirect('/ur-round3/funding-check/workplace');
+    }
+
+    res.redirect('/ur-round3/confirm-workplace');
+})
+
+
+router.post('/ur-round3/enter-manually-answer', function (req, res) {
+    res.redirect('/ur-round3/not-in-prototype')
+})
+
+
+router.post('/ur-round3/route-workplace-answer', function (req, res) {
+    const routeWorkplace = req.session.data['workplace'];
+
+    if (routeWorkplace === 'Let me enter my details manually') {
+        return res.redirect('/ur-round3/funding-check/workplace');
+    }
+
+    res.redirect('/ur-round3/confirm-workplace');
+})
+
+
+router.post('/ur-round3/not-in-prototype', function (req, res) {
+    res.redirect('/ur-round3/not-in-prototype')
+})
