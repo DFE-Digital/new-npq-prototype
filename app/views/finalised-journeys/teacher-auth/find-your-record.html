@@ -1,0 +1,32 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Find your teaching record – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="moj-interruption-card">
+      <div class="moj-interruption-card__content">
+        <h1 class="moj-interruption-card__heading">Find your teaching record</h1>
+        <div class="moj-interruption-card__body">
+          <p> You’ve signed in with GOV.UK One Login and verified your identity.</p>
+          <p>We’ll ask for your National Insurance number or teacher reference number (TRN) to find your teaching record.</p>
+        
+          <p>You’ll only need to do this once.</p>
+        </div>
+        <div class="govuk-button-group moj-interruption-card__actions">
+          <a href="national-insurance" role="button" draggable="false" class="govuk-button govuk-button--inverse" data-module="govuk-button">
+            Find your teaching record
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

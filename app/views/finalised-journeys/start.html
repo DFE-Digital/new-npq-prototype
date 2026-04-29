@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+
+
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+       <h1 class="govuk-heading-xl">
+        Register for a national professional qualification (NPQ)
+      </h1>
+
+      <p>Use this service to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>check if you're eligible for DfE scholarship funding</li>
+        <li>register for an NPQ or the Early Headship Coaching Offer (EHCO)</li>
+      </ul>
+
+      <p>We’ll send your registration to your chosen course provider. They’ll contact you to complete their application form. </p>
+
+      <div class="govuk-inset-text">
+      <b>Being eligible for funding does not guarantee a funded place</b>
+      <br><br>
+      Your training provider must confirm two things after you apply with them:
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a funded place is available</li>
+        <li>you meet their suitability requirements for the course</li>
+      </ul>
+      </div>
+
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+
+      <p>
+           To check your funding eligibility, you'll need:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              
+            <li>the NPQ course you want to take and the provider you'll use</li>
+            <li>the address of your workplace</li>
+            <li>an Ofsted unique reference number (URN) if you work in early years or childcare</li>
+          </ul>
+          <p class="govuk-body govuk-!-padding-bottom-3"></p>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "course-start",
+        isStartButton: true
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Sign in
+      </h2>
+
+      <p>
+        You can also <a href="/finalised-journeys/teacher-auth/find-your-record">sign in</a> through GOV.UK One Login to view a previous registration or change your personal details.
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}
