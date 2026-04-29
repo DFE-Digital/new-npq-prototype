@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Check your funding eligibility
+    </span>
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+      Do you or your employer have an Ofsted unique reference number (URN)?
+    </h1>
+
+        <form action="/finalised-journeys/ofsted-answer" method="post">
+
+      <div class="govuk-form-group">
+
+        <fieldset class="govuk-fieldset" aria-describedby="urn-hint">
+          
+
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                I need help with this
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              Your employer may have a URN if they are registered with Ofsted.
+              You can ask your employer if you are unsure.
+            </div>
+          </details>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input"
+                     id="urn-yes"
+                     name="urn"
+                     type="radio"
+                     value="yes">
+              <label class="govuk-label govuk-radios__label" for="urn-yes">
+                Yes
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input"
+                     id="urn-no"
+                     name="urn"
+                     type="radio"
+                     value="no">
+              <label class="govuk-label govuk-radios__label" for="urn-no">
+                No
+              </label>
+            </div>
+
+          </div>
+        </fieldset>
+
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+    </div>
+  </div>
+
+{% endblock %}

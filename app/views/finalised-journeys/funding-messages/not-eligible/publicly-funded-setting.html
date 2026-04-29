@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <h1 class="govuk-heading-l" style="margin: 0;">
+            DfE scholarship funding
+          </h1>
+          {{ govukTag({
+            text: "Not eligible",
+            classes: "govuk-tag--red"
+          }) }}
+        </div>
+
+      <p class="govuk-body govuk-!-margin-top-6">
+        You’re not eligible for DfE scholarship funding for the {{ data['npq-funded'] }} NPQ because your workplace is not listed as one of the disadvantaged schools or 16 to 19 settings.
+      </p>
+
+      <p>
+        However, your workplace counts as of the settings eligible for the Headship and SENCO NPQ.
+      </p>
+
+      <p>
+        You can go back to
+        <a href="/finalised-journeys/funding-check/select-npq" class="govuk-link">change your NPQ</a>
+        if you prefer.
+      </p>
+
+      <form class="form" action="/finalised-journeys/funded-follow-up/funding-source" method="post">
+
+        {{ govukButton({
+          text: "Continue to register"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

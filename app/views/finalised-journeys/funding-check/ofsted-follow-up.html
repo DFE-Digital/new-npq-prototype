@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Check your funding eligibility
+    </span>
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-5">
+     Enter your or your employer's unique reference number (URN)
+    </h1>
+
+        <form action="../funding-messages/not-eligible/workplace-not-eligible" method="post">
+
+      <div class="govuk-form-group">
+        <div id="event-name-hint" class="govuk-hint">
+          For example a 7 digit number (1234567) or a 6 digit number sometimes prefixed with EY (EY456789)
+        </div>
+        <input class="govuk-input" id="event-name" name="eventName" type="text">
+      </div>
+
+      <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      My URN is not listed
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    If the URN is not listed, double check the details you’ve entered.
+    <br>
+    <br>
+    If it’s still not listed, <a href="">contact us</a> for support.
+  </div>
+</details>
+
+     
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+ </div>
+    </form>
+    </div>
+  </div>
+
+{% endblock %}
