@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<div style="display: flex; align-items: center; gap: 1rem;">
+        <h1 class="govuk-heading-l" style="margin: 0;">
+          DfE scholarship funding
+        </h1>
+        {{ govukTag({
+          text: "In review",
+          classes: "govuk-tag--yellow"
+        }) }}
+      </div>
+<div class="govuk-!-padding-bottom-6"></div>
+
+      <form class="form" action="/finalised-journeys/start" method="get">
+
+        <p>
+          Your registration will be reviewed by the Department for Education (DfE) to check if
+          you're eligible for scholarship funding.
+        </p>
+
+        <p>
+          We may contact you to request more information about your registration.
+        </p>
+
+        <p>
+          If you're eligible, this does not guarantee funding for your course will be available.
+          Your provider must confirm they can offer you a funded place, after you apply to them.
+        </p>
+
+        {{ govukButton({
+          text: "Continue to register"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
