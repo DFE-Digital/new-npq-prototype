@@ -285,20 +285,20 @@
         } %}
       {% endif %}
 
-      <!--Add hint text for the course start row-->
-      {% set courseStartHint = '' %}
-      {% if data['course-start'] == 'April 2026' %}
-        {% set courseStartHint = '<p class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">DfE scholarship funding is not available</p>' %}
-      {% elseif data['check-funding'] != 'yes' and data['course-start'] == 'November 2026' %}
-        {% set courseStartHint = '<p class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">You’re continuing without DfE funding</p>' %}
+      <!--Add display text for the cohort row-->
+      {% set courseStartDisplay = '' %}
+      {% if data['course-start'] == 'Yes' %}
+        {% set courseStartDisplay = 'Autumn 2026' %}
+      {% elseif data['course-start'] == 'No, I already started in Spring' %}
+        {% set courseStartDisplay = 'Spring 2026' %}
       {% endif %}
 
       <!--Build the check answers table-->
       {{ govukSummaryList({
         rows: [
           {
-              key: { text: "Autumn 2026 start" },
-              value: { html: data['course-start'] + courseStartHint },
+              key: { text: "Cohort" },
+              value: { text: courseStartDisplay },
               actions: { items: [{ href: "/finalised-journeys/course-start", text: "Change", visuallyHiddenText: "course start" }] }
             },
           workingInEnglandRow,

@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <h1 class="govuk-heading-l" style="margin: 0;">
+          DfE scholarship funding
+        </h1>
+        {{ govukTag({
+        text: "Not eligible",
+        classes: "govuk-tag--red"
+        }) }}
+      </div>
+
+      <form class="form" action="/finalised-journeys/unfunded-path/select-npq" method="post">
+
+        <p class="govuk-body govuk-!-margin-top-6">
+          You’re not eligible for DfE scholarship funding because you have received DfE funding for this course before.
+        </p>
+
+        {{ govukButton({
+          text: "Continue to register"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

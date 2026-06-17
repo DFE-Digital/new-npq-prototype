@@ -1721,7 +1721,7 @@ router.post('/finalised-journeys/previous-funding-answer', function (req, res) {
     const previousFunding = req.session.data['previous-funding'];
 
     if (previousFunding === "Yes") {
-        return res.redirect('/finalised-journeys/funding-messages/other-outcome');
+        return res.redirect('/finalised-journeys/funding-messages/not-eligible/previous-funding-ineligible');
     }
 
     res.redirect('/finalised-journeys/funding-check/setting-v2');

@@ -37,17 +37,30 @@
     <div class="govuk-button-group" style="align-items: center;">
 
       <form class="form" action="/finalised-journeys/funding-check/england" method="post" style="display:inline">
+       
+        <div class="govuk-button-group">
         {{ govukButton({
           text: "Check funding",
           name: "check-funding",
           value: "yes"
         }) }}
+
+          {{ govukButton({
+            text: "Continue without DfE funding",
+            classes: "govuk-button--secondary",
+            href: "/finalised-journeys/check-funding-answer?check-funding=no"
+          }) }}
+        </div>
+       
       </form>
 
+
+
+      <!-- 
       <a class="govuk-link" href="/finalised-journeys/check-funding-answer?check-funding=no">
         Continue without DfE funding
       </a>
-
+-->
     </div>
 
   </div>
