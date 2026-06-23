@@ -1,0 +1,202 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your NPQ registrations – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype used for testing.'
+}) }}
+  
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Your registrations",
+      href: "#"
+    }
+  ]
+}) }}
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-l">
+      Your NPQ registrations
+    </h1>
+
+    <div class="govuk-inset-text">
+      You can change your personal details on
+      <a href="#" class="govuk-link">
+        GOV.UK OneLogin (opens in a new tab)
+      </a>.
+    
+    </div>
+
+    <!-- Registration card 1 -->
+
+    <div class="govuk-!-margin-bottom-6 govuk-summary-card">
+
+      <div class="govuk-summary-card__title-wrapper">
+        <div>
+          <h2 class="govuk-summary-card__title">
+            Headship NPQ
+          </h2>
+
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            LLSE
+          </p>
+        </div>
+
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">
+              View details
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="govuk-summary-card__content">
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Registration submitted"
+              },
+              value: {
+                text: "8 Jun 2026"
+              }
+            },
+            {
+              key: {
+                text: "Application status"
+              },
+              value: {
+                html: '
+<strong class="govuk-tag govuk-tag--yellow govuk-!-margin-top-1">
+                    Awaiting provider
+                  </strong>
+
+                 
+                    <p class="govuk-body govuk-body govuk-!-margin-top-3 govuk-!-margin-bottom-0">
+                      Your provider will contact you with instructions on how to apply for the course.
+                    </p>
+
+                    <p class="govuk-body">
+                      You do not need to do anything until they contact you.
+                    </p>
+
+                '
+              }
+            }
+          ]
+        }) }}
+
+      </div>
+
+    </div>
+
+    <!-- Registration card 2 -->
+
+    <div class="govuk-!-margin-bottom-8 govuk-summary-card">
+
+      <div class="govuk-summary-card__title-wrapper">
+        <div>
+          <h2 class="govuk-summary-card__title">
+            Headship NPQ
+          </h2>
+
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            Ambition Institute
+          </p>
+        </div>
+
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">
+              View details
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="govuk-summary-card__content">
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Registration submitted"
+              },
+              value: {
+                text: "28 May 2026"
+              }
+            },
+            {
+              key: {
+                text: "Application status"
+              },
+              value: {
+                html: '
+                  <strong class="govuk-tag govuk-tag--yellow govuk-!-margin-top-1">
+                    Awaiting provider
+                  </strong>
+
+                
+                    <p class="govuk-body govuk-body govuk-!-margin-top-3 govuk-!-margin-bottom-0">
+                      Your provider will contact you with instructions on how to apply for the course.
+                    </p>
+
+                    <p class="govuk-body">
+                      You do not need to do anything until they contact you.
+                    </p>
+                 
+                '
+              }
+            }
+          ]
+        }) }}
+
+      </div>
+
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">
+      We'd like your feedback
+    </h2>
+
+    <p class="govuk-body">
+      Tell us about your experience using the registration service by
+      <a href="#" class="govuk-link">completing a short feedback form</a>.
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">
+      Register for another NPQ
+    </h2>
+
+    <p class="govuk-body">
+      Use this service to submit a new registration.
+    </p>
+
+    {{ govukButton({
+      text: "Register for another NPQ",
+      href: "#",
+      isStartButton: true
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}

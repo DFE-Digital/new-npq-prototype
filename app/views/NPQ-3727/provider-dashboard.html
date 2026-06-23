@@ -1,0 +1,203 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+
+  <div class="govuk-grid-column-one-third">
+    <nav class="moj-side-navigation" aria-label="Side navigation">
+      <ul class="moj-side-navigation__list">
+        <li class="moj-side-navigation__item">
+          <a href="#1" aria-current="location">Courses dashboard</a>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#2">Providers dashboard</a>
+        </li>
+        <li class="moj-side-navigation__item moj-side-navigation__item--active">
+          <a href="#3">Declarations dashboard</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+
+
+ <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">
+    Declarations dashboard
+  </h1>
+
+  <div class="govuk-!-padding-6 govuk-!-margin-bottom-6" style="background-color:#f3f2f1;">
+
+    <form method="post">
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="provider">
+          Provider
+        </label>
+
+        <div style="max-width:300px;">
+          <select class="govuk-select" id="provider" name="provider">
+            <option value="ambition" selected>Ambition</option>
+            <option value="bpn">BPN</option>
+            <option value="coe">CoE</option>
+            <option value="llse">LLSE</option>
+            <option value="niot">NIoT</option>
+            <option value="teach-first">Teach First</option>
+            <option value="ucl">UCL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="cohort">
+          Cohort
+        </label>
+
+        <div style="max-width:300px;">
+          <select class="govuk-select" id="cohort" name="cohort">
+            <option value="2024">Autumn 2024</option>
+            <option value="2025" selected>Autumn 2025</option>
+            <option value="2026">Autumn 2026</option>
+          </select>
+        </div>
+      </div>
+
+      {{ govukButton({
+        text: "Select",
+        classes: "govuk-button govuk-!-margin-bottom-0"
+      }) }}
+
+    </form>
+
+  </div>
+
+  <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+    Ambition
+  </h2>
+
+  <p class="govuk-body">
+    Showing declaration data for the Autumn 2025 cohort.
+  </p>
+
+{{ govukTable({
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Declaration type"
+    },
+    {
+      text: "Expected",
+      format: "numeric"
+    },
+    {
+      text: "Received",
+      format: "numeric"
+    },
+    {
+      text: "Remaining",
+      format: "numeric"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "Started"
+      },
+      {
+        text: "200",
+        format: "numeric"
+      },
+      {
+        text: "164",
+        format: "numeric"
+      },
+      {
+        text: "36",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Retained-1"
+      },
+      {
+        text: "180",
+        format: "numeric"
+      },
+      {
+        text: "145",
+        format: "numeric"
+      },
+      {
+        text: "35",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Retained-2"
+      },
+      {
+        text: "160",
+        format: "numeric"
+      },
+      {
+        text: "127",
+        format: "numeric"
+      },
+      {
+        text: "33",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Completed"
+      },
+      {
+        text: "140",
+        format: "numeric"
+      },
+      {
+        text: "112",
+        format: "numeric"
+      },
+      {
+        text: "28",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        html: "<strong>Estimated Total</strong>"
+      },
+      {
+        text: ""
+      },
+      {
+        text: ""
+      },
+      {
+        text: ""
+      }
+    ]
+  ]
+}) }}
+
+</div>
+{% endblock %}
