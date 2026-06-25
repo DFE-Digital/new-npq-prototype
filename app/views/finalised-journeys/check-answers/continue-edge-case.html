@@ -1,0 +1,157 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: "This is a prototype used for testing."
+}) }}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    {% call govukNotificationBanner() %}
+      <p class="govuk-notification-banner__heading">
+       Our records show that you have previously received funding for this course. This means you are not eligible for further funding.
+      </p>
+    {% endcall %}
+
+    <h1 class="govuk-heading-l">
+      Check your answers
+    </h1>
+
+   {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Cohort"
+      },
+      value: {
+        text: "Autumn 2026"
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "Change"
+        }]
+      }
+    },
+    {
+      key: {
+        text: "Working in England"
+      },
+      value: {
+        text: "Yes"
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "Change"
+        }]
+      }
+    },
+    {
+      key: {
+        text: "Course"
+      },
+      value: {
+        text: "Headship"
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "Change"
+        }]
+      }
+    },
+    {
+      key: {
+        text: "Workplace"
+      },
+      value: {
+        text: "A workplace on either the schools, 16-19 or RISE list"
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "Change"
+        }]
+      }
+    },
+    {
+      key: {
+        text: "Previous funding"
+      },
+     value: {
+        text: "Previous funding received"
+      }
+        
+      
+    },
+    {
+      key: {
+        text: "DfE scholarship funding"
+      },
+      value: {
+        html: govukTag({
+          text: "Not eligible",
+          classes: "govuk-tag--red"
+        })
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "View"
+        }]
+      }
+    },
+    {
+      key: {
+        text: "Provider"
+      },
+      value: {
+        text: "Ambition Institute"
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "Change"
+        }]
+      }
+    }
+  ]
+}) }}
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-7">
+      Continue to register
+    </h2>
+
+    <p class="govuk-body">
+      You can still check or change your answers later.
+    </p>
+
+    <form action="/finalised-journeys/one-login-wrapper/continue" method="post">
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
